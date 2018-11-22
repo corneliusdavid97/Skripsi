@@ -5,40 +5,71 @@
 \section{Latar Belakang}
 \label{sec:label}
 
-Bagian ini akan diisi dengan apa yang melatarbelakangi pembuatan template skripsi ini.
-Termasuk juga masalah-masalah yang akan dihadapi untuk membuatnya, termasuk kurangnya kemampuan penguasaan \LaTeX{} sehingga template ini dibuat dengan mengandalkan berbagai contoh yang tersebar di dunia maya, yang digabung-gabung menjadi satu jua.
-Bagian lain juga akan dilengkapi, untuk sementara diisi dengan lorem ipsum versi bahasa inggris.
+Pengelompokan (\textit{clustering}) merupakan teknik yang digunakan untuk membagi kumpulan data (\textit{dataset}) ke dalam kelompok objek serupa. Setiap kelompok (\textit{cluster}) terdiri dari objek-objek yang serupa satu sama lain berdasarkan suatu ukuran dan tidak serupa dengan objek-objek lain di luar kelompoknya.
 
-\dtext{5-10}
+\textit{Clustering} merupakan salah satu teknik pembelajaran tak terarah (\textit{unsupervised learning}). Pembagian kelompok dalam \textit{clustering} tidak berdasarkan sesuatu yang telah diketahui sebelumnya, melainkan berdasarkan kesamaan tertentu menurut suatu ukuran tertentu\cite{raposo2014automatic}.
+
+Salah satu algoritma pengelompokan yang paling sering digunakan adalah \textit{K-means} yang dilakukan dengan cara membagi data ke dalam \textit{K} kelompok. Kelompok tersebut dibentuk dengan cara meminimalkan jarak antara titik pusat \textit{cluster} (\textit{centroid}) dengan setiap anggota \textit{cluster} tersebut. Titik pusat \textit{cluster} dicari dengan menggunakan rata-rata (\textit{mean}) dari nilai setiap anggota \textit{cluster}. Dalam hal ini, setiap anggota \textit{cluster} dimodelkan sebagai vektor dalam $n$ dimensi ($n$ merupakan banyaknya atribut). \textit{K-means} sudah terbukti efektif dalam melakukan pengelompokan  dalam situasi apapun. Namun, cara tersebut tetap saja memiliki kekurangan yaitu dapat terjebak dalam \textit{local optima} tergantung dengan pemilihan \textit{centroid} awal.\cite{maulik2000genetic}
+
+Masalah \textit{local optima} dapat ditangani menggunakan \textit{Genetic Algorithm} (GA) yang telah terbukti efektif dalam menyelesaikan masalah pencarian dan optimasi. GA merupakan teknik pencarian heuristik tingkat tinggi yang menirukan proses evolusi yang secara alami terjadi\cite{holland1992genetic} berdasarkan prinsip \textit{survival of the fittest}. Algoritma ini dinamakan demikian karena menggunakan konsep-konsep dalam genetika sebagai model pemecahan masalahnya. \cite{sivanandam2007introduction}
+
+Dalam GA, parameter dari \textit{search space} dikodekan dalam bentuk deretan objek yang disebut kromosom. Kumpulan kromosom tersebut lalu dikenal sebagai populasi. Pada awalnya, populasi dibangkitkan secara acak. Kemudian, akan dipilih beberapa kromosom menggunakan teknik \textit{roulette wheel selection} berdasarkan fungsi \textit{fitness}. Operasi dasar yang terinspirasi dari Ilmu Biologi seperti persilangan (\textit{crossover}) dan mutasi (\textit{mutation}) digunakan untuk membangkitkan generasi berikutnya. Proses seleksi, persilangan, dan mutasi ini berlangsung dalam jumlah generasi tertentu atau sampai kondisi akhir tercapai.
+
+Fungsi \textit{fitness} tidak hanya berfungsi untuk menentukan seberapa baik solusi yang dihasilkan namun juga menentukan seberapa dekat solusi tersebut dengan hasil yang optimal.\cite{sivanandam2007introduction} Oleh karena itu, diperlukan fungsi \textit{fitness} yang cocok sehingga GA dapat menghasilkan keluaran yang optimal. Pada masalah \textit{clustering} menggunakan GA, maka fungsi \textit{fitness} yang digunakan harus bisa menggambarkan bahwa seluruh elemen sudah berada dalam \textit{cluster} yang terbaik dan sudah sesuai.
 
 \section{Rumusan Masalah}
 \label{sec:rumusan}
-Bagian ini akan diisi dengan penajaman dari masalah-masalah yang sudah diidentifikasi di bagian sebelumnya. 
+Berdasarkan latar belakang yang telah dipaparkan, rumusan masalah dari penelitian ini adalah sebagai berikut:
 
-\dtext{6}
+\begin{enumerate}
+ \item Bagaimana algoritma genetik dapat digunakan untuk mengelompokkan dokumen?
+ \item Bagaimana membangun perangkat lunak yang menggunakan algoritma genetik untuk dapat mengelompokkan
+dokumen?
+\end{enumerate}
 
-\section{Tujuan}
+\section{Tujuan Penelitian}
 \label{sec:tujuan}
-Akan dipaparkan secara lebih terperinci dan tersturkur apa yang menjadi tujuan pembuatan template skripsi ini
+Berdasarkan rumusan masalah yang telah disebutkan, tujuan dari penelitian ini adalah sebagai berikut:
 
-\dtext{7}
+\begin{enumerate}
+	\item Mempelajari algoritma genetik dan hubungannya dengan pengelompokan dokumen.
+	\item Membangun perangkat lunak yang mengimplementasikan algoritma genetik untuk dapat mengelompokkan
+dokumen.
+\end{enumerate}
 
 \section{Batasan Masalah}
 \label{sec:batasan}
-Untuk mempermudah pembuatan template ini, tentu ada hal-hal yang harus dibatasi, misalnya saja bahwa template ini bukan berupa style \LaTeX{} pada umumnya (dengan alasannya karena belum mampu jika diminta membuat seperti itu)
+Rumusan masalah yang telah disebutkan memiliki ruang lingkup yang cukup luas. Dengan menyadari terbatasnya waktu serta kemampuan, penelitian ini akan difokuskan dengan memperlihatkan batasan masalah sebagai berikut:
 
-\dtext{8}
+\begin{enumerate}
+	\item Jenis dokumen yang dapat diproses dengan perangkat lunak yang akan dibuat hanyalah \textit{Text Document} dengan ekstensi \textit{TXT}.
+	\item Informasi dari dokumen yang akan diproses dalam pengelompokan hanya berasal dari teks yang menjadi isi dari dokumen tersebut. Gambar dan \textit{metadata} (pemilik, tanggal modifikasi) tidak akan diperhitungkan.
+\end{enumerate}
+
 
 \section{Metodologi}
 \label{sec:metlit}
-Tentunya akan diisi dengan metodologi yang serius sehingga templatenya terkesan lebih serius.
+Langkah-langkah yang akan dilakukan dalam penelitian ini adalah:
 
-\dtext{9}
+\begin{enumerate}
+	\item Melakukan studi literatur mengenai model ruang vektor, {\it Document Clustering} (pengelompokan dokumen), {\it Genetic Algorithm} (algoritma genetik), dan penggunaan algoritma genetik dalam pengelompokan dokumen.
+	\item Mencari dokumen yang akan dijadikan {\it training} dan {\it test datasets}.
+	\item Membuat rancangan perangkat lunak yang menggunakan algoritma genetik sebagai algoritma pengelompokan dokumen.
+	\item Mengimplementasikan hasil rancangan menjadi perangkat lunak dalam bahasa pemrograman Java.
+	\item Melatih dan menguji perangkat lunak dengan dokumen yang telah tersedia.
+	\item Mengevaluasi hasil pengujian lalu lakukan implementasi dan pengujian kembali sampai didapatkan hasil yang sudah sesuai dengan harapan.
+\end{enumerate}
 
 \section{Sistematika Pembahasan}
 \label{sec:sispem}
-Rencananya Bab 2 akan berisi petunjuk penggunaan template dan dasar-dasar \LaTeX.
-Mungkin bab 3,4,5 dapt diisi oleh ketiga jurusan, misalnya peraturan dasar skripsi atau pedoman penulisan, tentu jika berkenan.
-Bab 6 akan diisi dengan kesimpulan, bahwa membuat template ini ternyata sungguh menghabiskan banyak waktu.
-
-\dtext{10}
+Dokumentasi dari penelitian ini akan disajikan dalam enam bab dengan sistematika pembahasan sebagai berikut:
+\begin{enumerate}
+	\item Bab 1 Pendahuluan\\
+		Bab 1 berisi latar belakang pemilihan "Pengelompokan Dokumen berbasis Algoritma Genetika" sebagai judul dari penelitian ini. Selain itu, dibahas juga rumusan masalah, tujuan penelitian, batasan masalah, serta metodologi penelitian yang menjadi acuan dari penelitian ini.
+	\item Bab 2 Dasar Teori\\
+		Bab 2 memuat landasan teori yang digunakan dalam penelitian ini. Konsep-konsep yang dibahas yaitu temu kembali informasi, pembelajaran mesin, algoritma genetika, dan GA dalam pengelompokan.
+	\item Bab 3 Analisis\\		
+	\item Bab 4 Perancangan\\
+	\item Bab 5 Implementasi dan Pengujian\\
+	\item Bab 6 Kesimpulan\\
+\end{enumerate}
