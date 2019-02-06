@@ -15,8 +15,9 @@ Dalam penelitian ini, temu kembali informasi digunakan untuk merepresentasikan d
 Selanjutnya, setiap jumlah kemunculan suatu istilah dalam sebuah dokumen akan diubah menjadi suatu bobot tertentu berdasarkan teknik pemodelannya. Dalam penelitian ini, digunakan 2 teknik pembobotan yaitu bobot frekuensi dan bobot tf-idf.
 
 \subsection{Bobot frekuensi}
-Bobot frekuensi merupakan teknik pembobotan yang sangat sederhana karena bobotnya merupakan jumlah kemunculan istilah tersebut dalam dokumen. Bobot frekuensi dapat digambarkan dalam rumus:
+Bobot frekuensi merupakan teknik pembobotan yang sangat sederhana karena bobotnya merupakan jumlah kemunculan istilah tersebut dalam dokumen. Bobot frekuensi dapat digambarkan dengan Persamaan \ref{eq:bobot}
 \begin{equation}
+\label{eq:bobot}
 w_i=tf_i
 \end{equation}
 dengan $w_i$ merupakan bobot istilah ke-$i$ dan $tf_i$ merupakan frekuensi kemunculan istilah ke-$i$ pada dokumen.
@@ -39,8 +40,9 @@ worser 		& 1 & 0 & 1 & 1 & 1 & 0 & \\
 \end{table}
 
 \subsection{Bobot TF-IDF}
-Pada bobot frekuensi, bobot hanya dihitung berdasarkan kemunculan istilah dalam dokumen itu sendiri. Namun dalam bobot TF-IDF (\textit{term frequency-inverse document frequency}), bobot juga dihitung berdasarkan kemunculan istilah pada himpunan dokumen. Metode ini sangat populer digunakan oleh sistem rekomendasi berbasis teks.\cite{aizawa2003information} Rumus dari TF-IDF adalah sebagai berikut: 
+Pada bobot frekuensi, bobot hanya dihitung berdasarkan kemunculan istilah dalam dokumen itu sendiri. Namun dalam bobot TF-IDF (\textit{term frequency-inverse document frequency}), bobot juga dihitung berdasarkan kemunculan istilah pada himpunan dokumen. Metode ini sangat populer digunakan oleh sistem rekomendasi berbasis teks.\cite{aizawa2003information} Rumus dari pembobotan menggunakan TF-IDF ditunjukkan oleh Persamaan \ref{eq:tf-idf} 
 \begin{equation}
+\label{eq:tf-idf}
 w_i=tf_i \times log \frac{N}{N_i}
 \end{equation}
 dengan $w_i$ merupakan bobot istilah ke-$i$, $tf_i$ merupakan frekuensi kemunculan istilah ke-$i$ pada dokumen, $N$ menyatakan banyaknya anggota himpunan dokumen, dan $N_i$ menunjukkan frekuensi dokumen dari istilah ke-$i$ (banyaknya dokumen pada himpunan dokumen yang memuat istilah ke-$i$).
@@ -61,16 +63,18 @@ Dalam pengolahan model ruang vektor, dibutuhkan cara untuk menghitung kesamaan a
 
 \subsubsection{Jarak Euclidean}
 \label{sub:euclideanDist}
-Jarak Euclidean atau biasa disebut jarak garis lurus merupakan metode paling banyak digunakan untuk menghitung jarak antara dua buah vektor. Secara umum, rumus dari Jarak Euclidean adalah sebagai berikut:
+Jarak Euclidean atau biasa disebut jarak garis lurus merupakan metode paling banyak digunakan untuk menghitung jarak antara dua buah vektor. Secara umum, rumus dari Jarak Euclidean ditunjukkan oleh persamaan \ref{eq:euclidean}
 \begin{equation}
+\label{eq:euclidean}
 d_{ij}=\sqrt{\sum_{v=1}^N (x_{vi}-x_{vj})^2}
 \end{equation}
 dengan $d_{ij}$ adalah jarak antara vektor ke-$i$ dengan vektor ke-$j$, $N$ adalah jumlah dimensi pada vektor, dan $x_{vi}$ adalah nilai dimensi ke-$v$ dari vektor ke-$i$.
 
 \subsubsection{Persamaan Cosinus}
 \label{sub:cosineDist}
-Persamaan cosinus merupakan normalisasi hasil kali titik dengan panjang masing-masing vektor. Persamaan cosinus memiliki persamaan sebagai berikut:
+Persamaan cosinus merupakan normalisasi hasil kali titik dengan panjang masing-masing vektor. Persamaan cosinus ditunjukkan dalam persamaan \ref{eq:cosine}
 \begin{equation}
+\label{eq:cosine}
 s_{ij}=\frac{i\cdot j}{\parallel i \parallel \times \parallel j \parallel}
 \end{equation}
 dengan $s_{ij}$ adalah kesamaan antara vektor ke-$i$ dengan vektor ke-$j$, $i$ adalah vektor ke-$i$, dan $j$ adalah vektor ke-$j$. Persamaan ini menjelaskan bahwa semakin kecil sudut antara dua vektor, maka tingkat kemiripannya semakin besar.
@@ -82,7 +86,7 @@ Pembelajaran mesin merupakan sistem yang dapat beradaptasi dengan keadaan baru d
 Tugas pengelompokan (\textit{clustering}) merupakan salah satu bagian dari pembelajaran mesin. Pengelompokan terdiri dari dua jenis berdasarkan metode pembelajarannya. \textit{Classification} merupakan jenis pembelajaran terarah karena sudah diberikan label sejak awal, lalu dilakukan pengelompokan berdasarkan label untuk setiap kelompoknya. Sedangkan \textit{clustering} merupakan jenis pembelajaran tak terarah karena tidak diberikan label sejak awal sehingga pengelompokan dilakukan berdasarkan suatu kesamaan tertentu.
 
 \subsubsection{K-Means}
-K-means merupakan algoritma pengelompokan yang paling populer digunakan saat ini. algoritma ini membagi data ke dalam $K$ \textit{cluster}. Setiap \textit{cluster} direpresentasikan dengan titik tengahnya (\textit{centroid}). Setiap iterasi, titik tengah akan dihitung sebagai rata-rata dari semua titik data dari \textit{cluster} tersebut. Rumus untuk menghitung \textit{centroid} adalah sebagai berikut:
+K-means merupakan algoritma pengelompokan yang paling populer digunakan saat ini. algoritma ini membagi data ke dalam $K$ \textit{cluster}. Setiap \textit{cluster} direpresentasikan dengan titik tengahnya (\textit{centroid}). Setiap iterasi, titik tengah akan dihitung sebagai rata-rata dari semua titik data dari \textit{cluster} tersebut. Persamaaan \ref{eq:kmeans} merupakan persamaan untuk menghitung \textit{centroid}
 \begin{equation}
 \label{eq:kmeans}
 \mu_i=\frac{1}{N_i}\sum_{q=1}^{N_i}x_q
@@ -116,7 +120,17 @@ Dalam GA, kromosom adalah himpunan parameter yang mendefinisikan suatu solusi ya
 
 \subsection{Seleksi}
 \label{sub:selection}
-Seleksi dalam algoritma genetika bertugas untuk memilih kromosom dari populasi untuk proses persilangan. Salah satu teknik yang populer digunakan dalam seleksi adalah \textit{roulette-wheel selection}. Teknik ini memungkinkan terjadinya pemilihan berdasarkan fungsi \textit{fitness} sehingga kromosom yang memiliki fungsi \textit{fitness} lebih besar memiliki peluang lebih besar untuk terpilih dan menjadi induk dari generasi selanjutnya.
+Seleksi dalam algoritma genetika bertugas untuk memilih kromosom dari populasi untuk proses persilangan berdasarkan nilai \textit{fitness}. Salah satu teknik yang populer digunakan dalam seleksi adalah \textit{roulette-wheel selection} atau \textit{fitness proportional selection}. \textit{Roulette-wheel selection} memilih suatu individu dari populasi dengan probabilitas yang sebanding dengan nilai \textit{fitness} relatifnya. Hal ini serupa dengan sebuah diagram lingkaran pada gambar \ref{fig:pieChart} di mana setiap kromosom telah dialokasikan sebuah bagian pada diagram sesuai dengan nilai \textit{fitness} relatif. Semakin tinggi nilai \textit{fitness}, maka semakin besar bagian yang dialokasikan dan semakin besar kemungkinan kromosom tersebut akan terpilih dalam proses seleksi.
+
+Dalam GA, proses seleksi akan memilih sejumlah induk yang cukup untuk reproduksi dan membentuk generasi selanjutnya. Dalam penelitian ini diterapkan strategi \textit{elitism} yaitu dengan langsung memindahkan individu dengan nilai \textit{fitness} terbesar ke generasi selanjutnya. Hal ini dilakukan untuk mencegah individu tersebut terhilang dari populasi dalam proses reproduksi.
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[scale=0.755]{pieChart}
+		\caption{Diagram Lingkaran}
+		\label{fig:pieChart}
+	\end{center}
+\end{figure}
 
 \subsection{Persilangan}
 \label{sub:crossover}
@@ -138,42 +152,51 @@ Mutasi adalah suatu operator genetik yang digunakan untuk mempertahankan keragam
 \label{sub:fitnessFn}
 Fungsi \textit{fitness} adalah fungsi objektif yang digunakan untuk mengukur seberapa baik suatu kromosom sebagai calon solusi. Sebuah fungsi \textit{fitness} harus bisa memperkirakan seberapa dekat sebuah calon solusi dengan solusi yang optimal. Dalam algoritma genetika, fungsi \textit{fitness} juga digunakan dalam proses seleksi (\textit{roulette-wheel selection}) untuk menentukan seberapa baik suatu kromosom untuk menjadi induk dari generasi berikutnya.
 
+\subsection{Proses pencarian dalam algoritma genetika}
+Seperti yang disebutkan dalam Algoritma \ref{alg:GA}, algoritma genetika dimulai dengan menginisialisasi suatu populasi (biasanya dibangkitkan secara acak jika tidak diketahui heuristik masalahnya). Lalu, akan dibangkitkan populasi baru untuk generasi berikutnya dengan cara mengambil dua kromosom secara acak dengan teknik \textit{roulette-wheel selection}. Setelah itu akan dilakukan persilangan dengan teknik \textit{single-point crossover}. Teknik ini dilakukan dengan cara menentukan sebuah titik potong $c$ yang diambil secara acak antara angka 1 sampai panjang kromosom $n$. Keturunan dari kedua induk tersebut akan memiliki kromosom induk pertama dari gen ke-1 sampai gen ke-$c$ dan dari induk kedua mulai dari gen ke-($c$+1) sampai gen ke-$n$. Setelah itu, apabila terjadi mutasi, maka salah satu gen dari anak akan diubah nilainya. Iterasi ini akan dilakukan terus-menerus hingga kriteria berhenti tercapai atau sudah mencapai batas jumlah generasi tertentu.
+
+\section{GA dalam Pengelompokan}
+Meskipun pada umumnya algoritma \textit{K-means} digunakan dalam pengelompokan, tetapi ternyata algoritma \textit{K-means} masih memiliki kekurangan yaitu masih dapat terjebak pada \textit{local optimum}. Oleh karena itu, pada penelitian ini digunakan algoritma genetika sebagai solusi dari permasalahan \textit{local optimum}. Algoritma genetika memiliki kemampuan untuk menghindari terjadinya \textit{local optimum} karena algoritma genetika merupakan algoritma pencarian yang bersifat stokastik karena memperbolehkan terjadinya variasi acak dalam proses pencarian solusinya. Oleh karena itu, diharapkan pengelompokan berbasis GA dapat menghasilkan solusi yang lebih baik dibandingkan dengan pengelompokan pada umumnya yang menggunakan algoritma \textit{K-means}.
+
 \begin{algorithm}[h]
 	\caption{Algoritma Genetika\cite{russell2016artificial}}
 	\label{alg:GA}
 	\begin{flushleft}
-		\textbf{function} Algoritma-Genetika(\textit{populasi},Fung-Fitness) \textbf{returns} solusi berupa individu
+		\textbf{function} Algoritma-Genetika(\textit{populasi}) \textbf{returns} solusi berupa individu
 		\begin{flushleft}
 			\begin{tabular}{ l l }
-  				\textbf{inputs:} & \textit{populasi}, himpunan individu \\
- 		 		& Fung-Fitness, fungsi yang mengukur \textit{fitness} dari tiap individu
+  				\textbf{inputs:} & \textit{populasi}, himpunan individu
 			\end{tabular}
 			\hspace{5pt}  
 		\end{flushleft}
 	\end{flushleft}
 	\begin{algorithmic}[1]
+		\STATE $solusi \leftarrow$ himpunan solusi tiap generasi
 		\REPEAT
-			\STATE $populasi\_baru \leftarrow$ himpunan kosong
+			\STATE tambahkan individu dengan nilai \textit{fitness} tertinggi dari $populasi$ ke $solusi$
+			\STATE $populasi\_baru \leftarrow$ himpunan kosong %\COMMENT{this is a comment}
 			\FOR{$i$=1 \TO Size($populasi$)} 
-				\STATE $x \leftarrow$ Seleksi-acak(populasi, Fung-Fitness)
-				\STATE $y \leftarrow$ Seleksi-acak(populasi, Fung-Fitness)
+				\STATE $x \leftarrow$ Seleksi-acak($populasi$)
+				\STATE $y \leftarrow$ Seleksi-acak($populasi$)
 				\STATE $anak \leftarrow$ Persilangan($x$, $y$)
-				\IF{probabilitas mutasi} 
-					\STATE Mutasi($anak$)
+				\STATE $rand \leftarrow$ Random(0,1)
+				\IF{$rand \leq$ $prob\_mutasi$} 
+					\STATE $anak \leftarrow$ Mutasi($anak$)
 				\ENDIF
 				\STATE tambahkan $anak$ ke $populasi\_baru$
 			\ENDFOR
 			\STATE $populasi \leftarrow populasi\_baru$
-		\UNTIL{kriteria berakhir dipenuhi atau sampai jumlah generasi tertentu}
-		\RETURN {individu terbaik dalam populasi, berdasarkan Fung-Fitness}
+		\UNTIL{$N$ solusi terakhir pada $solusi$ tidak memiliki perubahan yang signifikan}
+		\RETURN {individu terbaik dalam populasi, berdasarkan nilai \textit{fitness}}
 	\end{algorithmic}
 
 	\rule{\textwidth}{0.4pt}
+	%fungsi persilangan
 	\begin{flushleft}
 		\textbf{function} Persilangan($x$,$y$) \textbf{returns} anak berupa individu
 		\begin{flushleft}
 			\begin{tabular}{ l l }
-				\textbf{inputs:}& $x$, $y$, individu induk
+				\textbf{inputs:}& $x$ dan $y$, individu induk
 				\hspace{5pt} 
 			\end{tabular} 
 		\end{flushleft}
@@ -184,11 +207,56 @@ Fungsi \textit{fitness} adalah fungsi objektif yang digunakan untuk mengukur seb
 		\STATE $c \leftarrow$ angka acak antara 1 sampai $n$
 		\RETURN{Append(Substring($x$,1,$c$), Substring($y$,$c$+1,$n$))}
 	\end{algorithmic}
-	\hspace{5pt} 
+	\hspace{5pt}
 \end{algorithm}
 
-\subsection{Proses pencarian dalam algoritma genetika}
-Seperti yang disebutkan dalam Algoritma \ref{alg:GA}, algoritma genetika dimulai dengan menginisialisasi suatu populasi (biasanya dibangkitkan secara acak jika tidak diketahui heuristik masalahnya). Lalu, akan dibangkitkan populasi baru untuk generasi berikutnya dengan cara mengambil dua kromosom secara acak dengan teknik \textit{roulette-wheel selection}. Setelah itu akan dilakukan persilangan dengan teknik \textit{single-point crossover}. Teknik ini dilakukan dengan cara menentukan sebuah titik potong $c$ yang diambil secara acak antara angka 1 sampai panjang kromosom $n$. Keturunan dari kedua induk tersebut akan memiliki kromosom induk pertama dari gen ke-1 sampai gen ke-$c$ dan dari induk kedua mulai dari gen ke-($c$+1) sampai gen ke-$n$. Setelah itu, untuk apabila terjadi mutasi, maka salah satu gen dari anak akan diubah nilainya. Iterasi ini akan dilakukan terus-menerus hingga kriteria berhenti tercapai atau sudah mencapai batas jumlah generasi tertentu.
-
-\section{GA dalam Pengelompokan}
-Meskipun pada umumnya algoritma \textit{K-means} digunakan dalam pengelompokan, tetapi ternyata algoritma \textit{K-means} masih memiliki kekurangan yaitu masih dapat terjebak pada \textit{local optimum}. Oleh karena itu, pada penelitian ini digunakan algoritma genetika sebagai solusi dari permasalahan \textit{local optimum}. Algoritma genetika memiliki kemampuan untuk menghindari terjadinya \textit{local optimum} karena algoritma genetika merupakan algoritma pencarian yang bersifat stokastik karena memperbolehkan terjadinya variasi acak dalam proses pencarian solusinya. Oleh karena itu, diharapkan pengelompokan berbasis GA dapat menghasilkan solusi yang lebih baik dibandingkan dengan pengelompokan pada umumnya yang menggunakan algoritma \textit{K-means}.
+\begin{algorithm}[h]
+	%fungsi seleksi acak
+	\begin{flushleft}
+		\textbf{function} Seleksi-acak($populasi$) \textbf{returns} sebuah individu hasil seleksi
+		\begin{flushleft}
+			\begin{tabular}{ l l }
+				\textbf{inputs:}& $populasi$, populasi saat ini
+				\hspace{5pt} 
+			\end{tabular} 
+		\end{flushleft}
+	\end{flushleft}
+	
+	\begin{algorithmic}[1]
+		\STATE $sum \leftarrow$ 0
+		\FORALL{$individu \in populasi$ } 
+			\STATE $sum \leftarrow$ $sum$ $+$ Fitness($individu$)
+		\ENDFOR
+		\STATE $terpilih \leftarrow$ Random(0,1) $\times$ $sum$
+		\FORALL{$individu \in populasi$}
+			\STATE $terpilih \leftarrow$ $terpilih$ $-$ Fitness($individu$)
+			\IF{$terpilih \leq 0$ }
+				\RETURN $individu$
+			\ENDIF
+		\ENDFOR
+		\RETURN individu dengan urutan terakhir di $populasi$
+	\end{algorithmic}
+	\hspace{5pt}
+	\rule{\textwidth}{0.4pt}
+	
+	%fungsi mutasi
+	\begin{flushleft}
+		\textbf{function} Mutasi($individu$) \textbf{returns} individu hasil mutasi
+		\begin{flushleft}
+			\begin{tabular}{ l l }
+				\textbf{inputs:}& $individu$, individu yang akan dilakukan mutasi
+				\hspace{5pt} 
+			\end{tabular} 
+		\end{flushleft}
+	\end{flushleft}
+	
+	\begin{algorithmic}[1]
+		\STATE $n \leftarrow$ Length($x$)
+		\STATE $c \leftarrow$ angka acak antara 1 sampai $n$
+		\STATE ubah nilai gen ke-$c$ pada $individu$ \COMMENT{nilai bervariasi tergantung metode}
+		\RETURN{$individu$}
+	\end{algorithmic}
+	\hspace{5pt} 
+	
+	\rule{\textwidth}{0.4pt}
+\end{algorithm}

@@ -13,18 +13,20 @@ Perhitungan \textit{fitness} dalam penelitian ini terdiri dari dua tahap. Pada t
 \Vert x_i-z_j \Vert < \Vert x_i-z_p \Vert , p=1,2, ... ,K \mbox{, dan } p \neq j.
 \end{equation}
 
-Setelah proses pengelompokan selesai, titik pusat yang terkandung dalam kromosom diganti dengan rata-rata titik dari tiap \textit{cluster}. Dengan kata lain, untuk \textit{cluster} $C_i$, \textit{centroid} baru $z_i^*$ dapat dihitung dengan rumus:
+Setelah proses pengelompokan selesai, titik pusat yang terkandung dalam kromosom diganti dengan rata-rata titik dari tiap \textit{cluster}. Dengan kata lain, untuk \textit{cluster} $C_i$, \textit{centroid} baru $z_i^*$ dapat dihitung menggunakan persamaan \ref{eq:centroid}
 
 \begin{equation}
+\label{eq:centroid}
 z_i^*=\frac{1}{n_i} \sum_{x_j\in C_i} x_j,   i=1,2, ... ,K.
 \end{equation}
 
 dengan $z_i^*$ merupakan titik pusat \textit{cluster} ke-$i$, $n_i$ merupakan jumlah anggota \textit{cluster} ke-$i$, dan $x_j$ merupakan titik ke-$j$ yang merupakan anggota dari \textit{cluster} ke-$i$. $z_i^*$ ini akan menggantikan $z_i$ sebelumnya di kromosom. Ada dua metode perhitungan fungsi fitness yang diimplementasikan dalam penelitian ini yaitu \textit{euclidean distance} dan \textit{cosine similarity}.
 
 \subsection{Euclidean Distance}
-Pada perhitungan dengan \textit{euclidean distance}, akan dihitung sebuah \textit{clustering metric} $M$ dengan rumus:
+Pada perhitungan dengan \textit{euclidean distance}, akan dihitung sebuah \textit{clustering metric} $M$ dengan persamaan \ref{eq:euclDist}
 
 \begin{equation}
+\label{eq:euclDist}
 	\begin{gathered}
 	M=\sum_{i=1}^K M_i , \\
 	M_i=\sum_{x_j\in C_i}\parallel x_j-z_i\parallel
@@ -34,9 +36,9 @@ Pada perhitungan dengan \textit{euclidean distance}, akan dihitung sebuah \texti
 Lalu, fungsi \textit{fitness} akan didefinisikan sebagai $f=1/M$, sehingga maksimalisasi terhadap nilai $f$ akan meminimalkan nilai $M$.
 
 \subsection{Cosine Similarity}
-Perhitungan \textit{fitness} menggunakan \textit{cosine similarity} dapat dilakukan dengan rumus:
-
+Perhitungan \textit{fitness} menggunakan \textit{cosine similarity} dapat dilakukan dengan persamaan \ref{eq:cosSim}
 \begin{equation}
+\label{eq:cosSim}
 	\begin{gathered}
 	f=\sum_{i=1}^K f_i , \\
 	f_i=\sum_{x_j\in C_i}\dfrac{x_j\cdot z_i}{\parallel x_j \parallel \times \parallel z_i \parallel}

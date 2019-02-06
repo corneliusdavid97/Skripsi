@@ -1,0 +1,2 @@
+indonesian stopword list: https://raw.githubusercontent.com/stopwords-iso/stopwords-id/master/stopwords-id.txt
+indonesian stemmer: https://github.com/adrianaden/java-indonesian-stemmer
