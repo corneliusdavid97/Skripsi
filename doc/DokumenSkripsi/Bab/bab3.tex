@@ -4,7 +4,17 @@
 Untuk menyelesaikan masalah pengelompokan dokumen menggunakan algoritma genetika, maka perlu dibangun sebuah model yang dapat diterapkan ke dalam algoritma tersebut.
 
 \section{Representasi Kromosom}
-Setiap \textit{string} kromosom merupakan deretan bilangan riil yang merepresentasikan $K$ titik pusat \textit{cluster} (\textit{centroid}). Dalam ruang $N$ dimensi, panjang dari kromosom akan menjadi $N\times K$ gen. $N$ kata pertama merepresentasikan $N$ dimensi dari \textit{centroid} pertama, $N$ kata selanjutnya merepresentasikan $N$ dimensi dari \textit{centroid} kedua, dan seterusnya.
+Setiap \textit{string} kromosom merupakan deretan bilangan riil yang merepresentasikan $K$ titik pusat \textit{cluster} (\textit{centroid}). Dalam ruang $N$ dimensi, panjang dari kromosom akan menjadi $N\times K$ gen. $N$ kata pertama merepresentasikan $N$ dimensi dari \textit{centroid} pertama, $N$ kata selanjutnya merepresentasikan $N$ dimensi dari \textit{centroid} kedua, dan seterusnya. Sebagai contoh, dalam suatu bidang dua dimensi akan dilakukan pengelompokan ke dalam tiga \textit{cluster} $C1, C2,$ dan $C3$. Pada suatu iterasi, $C1$ berada pada posisi (3.05, 1.43), $C2$ berada pada posisi (15.85, 14.23), dan $C3$ berada pada posisi (5.12, 9.45). Kromosom yang terbentuk dari ketiga \textit{cluster} ditunjukkan dalam Tabel \ref{tbl:chromosome}.
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\multicolumn{2}{c}{\textbf{$\mathbf{C1}$}} & \multicolumn{2}{c}{\textbf{$\mathbf{C2}$}} & \multicolumn{2}{c}{$\mathbf{C3}$}\\ \hline
+		3.05 & 1.43 & 15.85 & 14.23 & 5.12 & 9.45\\ \hline
+	\end{tabular}
+	\caption{Representasi \textit{centroid} ke dalam kromosom}
+	\label{tbl:chromosome}
+\end{table}
 
 \section{Fungsi \textit{Fitness}}
 Perhitungan \textit{fitness} dalam penelitian ini terdiri dari dua tahap. Pada tahap pertama, terjadi pembentukan \textit{cluster} berdasarkan titik pusat yang terkandung dalam kromosom. Hal ini dilakukan dengan menetapkan setiap titik $x_i,i=1,2, ... ,n$ ke dalam sebuah \textit{cluster} $C_j$ dengan \textit{centroid} $z_j$ sehingga
@@ -54,13 +64,24 @@ Ada beberapa operasi genetik yang akan dibahas, di antaranya: inisialisasi popul
 $K$ \textit{centroid} yang terkandung dalam kromosom pada mulanya dipilih secara acak sebanyak $K$ titik dari keseluruhan himpunan data. Lalu proses ini diulang sebanyak $P$ kali di mana $P$ merupakan ukuran populasi yang diinginkan.
 
 \subsection{Seleksi}
-Proses seleksi ini terjadi berdasarkan konsep \textit{survival of the fittest} yang diadaptasi dari sistem genetika alami. Dalam penelitian ini, calon induk dari generasi selanjutnya dipilih dengan menggunakan teknik \textit{roulette-wheel selection} yang merupakan salah satu teknik yang digunakan karena mengimplementasikan \textit{proportional selection strategy}.
+Proses seleksi ini terjadi berdasarkan konsep \textit{survival of the fittest} yang diadaptasi dari sistem genetika alami. Konsep ini mengatakan bahwa hanya individu terbaik yang akan bertahan hidup (lolos seleksi alam). Dengan mengadaptasi konsep tersebut, GA menerapkan seleksi berdasarkan nilai \textit{fitness} tiap individu. Dalam penelitian ini, calon induk dari generasi selanjutnya dipilih dengan menggunakan teknik \textit{roulette-wheel selection}. Seperti yang telah dijelaskan dalam subbab \ref{sub:selection}, dalam teknik \textit{roulette-wheel selection} individu yang memiliki nilai \textit{fitness} lebih tinggi akan memiliki peluang lebih besar untuk terpilih dan menjadi induk bagi generasi berikutnya. Namun karena masih ada peluang individu dengan nilai \textit{fitness} terbaik tidak terpilih, maka dalam penelitian ini juga akan digunakan teknik elitisme \cite{ahn2003elitism}. Dengan digunakannya elitisme, maka individu dengan nilai \textit{fitness} terbaik akan disalin dan langsung menjadi anggota dari generasi berikutnya. Hal ini akan menjamin individu terbaik tidak akan hilang akibat tidak terpilih oleh \textit{roulette-wheel selection}.
 
 \subsection{Persilangan}
-Persilangan dalam penelitian ini terjadi terhadap dua induk dengan satu titik potong. Misalkan kromosom memiliki panjang $l$, sebuah angka acak akan diambil sebagai titik potong dalam batas [1,$l-1$]. Bagian kromosom sebelah kanan titik potong akan ditukar  antara kedua induk sehingga menghasilkan dua individu keturunan.
+Persilangan dalam penelitian ini terjadi terhadap dua induk dengan satu titik potong (\textit{single-point crossover}). Misalkan kromosom memiliki panjang $l$, sebuah angka acak akan diambil sebagai titik potong dalam batas [1,$l-1$]. Bagian kromosom sebelah kanan titik potong akan ditukar  antara kedua induk sehingga menghasilkan dua individu keturunan.
 
 \subsection{Mutasi}
-Setiap kromosom mengalami mutasi dengan probabilitas mutasi tetap $\mu_c$. Setelah itu, ditentukan gen mana yang akan mengalami mutasi dengan mengambilnya secara acak. Perubahan nilai gen tersebut juga merupakan angka acak yang diambil mulai dari angka 0 sampai dengan jumlah kemunculan kata keseluruhan dalam \textit{vocabulary}.
+Setiap kromosom mengalami mutasi dengan probabilitas mutasi tetap $\mu_c$. Apabila mutasi terjadi, maka akan ditentukan gen mana yang akan mengalami mutasi dengan mengambilnya secara acak. Nilai gen yang baru akan ditentukan dari pembangkitan suatu angka acak yang berada antara batas minimum kemunculan istilah (0) dan total kemunculan istilah tersebut dari keseluruhan dokumen. Sebagai contoh dengan menggunakan Tabel \ref{tbl:chromosome}, akan ditentukan satu dari enam gen yang akan mengalami mutasi. Misalkan dalam contoh ini gen kedua yang mengalami mutasi. Lalu akan dilakukan pembangkitan angka acak antara 0 sampai dengan total kemunculan istilah dari keseluruhan dokumen (dalam contoh ini bernilai 9). Kromosom hasil mutasi ditunjukkan dalam Tabel \ref{tbl:mutated}
+
+\begin{table}[h]
+	\centering
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\multicolumn{2}{c}{\textbf{$\mathbf{C1}$}} & \multicolumn{2}{c}{\textbf{$\mathbf{C2}$}} & \multicolumn{2}{c}{$\mathbf{C3}$}\\ \hline
+		3.05 & {\color{red} \textbf{4.18}} & 15.85 & 14.23 & 5.12 & 9.45\\ \hline
+	\end{tabular}
+	\caption{Kromosom hasil mutasi}
+	\label{tbl:mutated}
+\end{table}
+
 
 %\section{Diagram Kelas}
 %Berdasarkan hasil analisis dari masalah yang dihadapi, dibentuklah diagram kelas pada gambar \ref{fig:diagramkelas} sebagai gambaran dari perangkat lunak yang akan dibuat.
