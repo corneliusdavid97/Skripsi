@@ -47,11 +47,13 @@
 \usepackage{todo}
 \usepackage{verbatim} 		%multiline comment
 \usepackage{pgfplots}
+\usepackage{algcompatible}
 \usepackage{algorithm}
-\usepackage{algorithmic}
 \usepackage{amsmath}
 \usepackage{tabularx}
 \usepackage{xcolor}
+\usepackage{subcaption}
+\usepackage{multirow}
 
 %\overfullrule=3mm % memperlihatkan overfull 
 %=============================================================================
@@ -79,7 +81,7 @@
 % Mode default adalah 'template' yang menghasilkan isian berwarna merah, 
 % aktifkan salah satu mode di bawah ini :
 %=============================================================================
-%\mode{bimbingan} 		% untuk keperluan bimbingan
+\mode{bimbingan} 		% untuk keperluan bimbingan
 %\mode{sidang} 			% untuk sidang 1
 %\mode{sidangakhir} 	% untuk sidang 2 / sidang pada Skripsi 2(IF)
 %\mode{final} 			% untuk mencetak buku skripsi 
@@ -291,4 +293,8 @@
 %=============================================================================
 \renewcommand{\vtemplateauthor}{lionov}
 \pgfplotsset{compat=newest}
+
+\newcommand{\term}{\textit{term }}
+\newcommand{\Term}{\textit{Term }}
+
 %=============================================================================
