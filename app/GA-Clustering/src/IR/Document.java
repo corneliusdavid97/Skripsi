@@ -6,7 +6,6 @@
 package IR;
 
 import GA.Chromosome;
-import com.sun.xml.internal.messaging.saaj.util.ByteInputStream;
 import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
@@ -26,7 +25,7 @@ import org.apache.pdfbox.text.PDFTextStripper;
 public class Document {
     private File file;
     protected HashMap<String,Integer> wordCount;
-    private VectorSpaceModel vector;
+    private Vector vector;
     private int clusterCode;
     
     public Document(File file){
@@ -38,7 +37,7 @@ public class Document {
         } catch (Exception ex) {}
         
         
-        this.vector=new BagOfWordVSM(wordCount,"COS");//TODO: ganti param
+        this.vector=new Vector(wordCount);//TODO: ganti param
     }
 
     private void indexDocument() throws FileNotFoundException, IOException {
@@ -59,14 +58,15 @@ public class Document {
 //            if(ClusteringConfig.getInstance().USE_STEMMER){
 //                temp=stemmer.getRootWord(temp);
 //            }
-            if(ClusteringConfig.getInstance().STOPWORD_REMOVAL){
-                if(Dictionary.getInstance().isStopWord(temp)){
-                    continue;
-                }
-            }
-            Dictionary.getInstance().insertTerm(temp);
+//            if(ClusteringConfig.getInstance().STOPWORD_REMOVAL){
+//                if(Lexicon.getInstance().isStopWord(temp)){
+//                    continue;
+//                }
+//            }
+            Lexicon.getInstance().insertTerm(temp);
             if (!wordCount.containsKey(temp)) {
                 wordCount.put(temp, 0);
+                Lexicon.getInstance().updateDF(temp);
             }
             wordCount.put(temp, wordCount.get(temp) + 1);
         }
@@ -84,7 +84,7 @@ public class Document {
         return vector.toString();
     }
 
-    public VectorSpaceModel getVector() {
+    public Vector getVector() {
         return vector;
     }
 

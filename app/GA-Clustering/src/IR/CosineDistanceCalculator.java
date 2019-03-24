@@ -15,19 +15,19 @@ import java.util.Set;
 public class CosineDistanceCalculator extends DistanceCalculator{
 
     @Override
-    public double calculateDistance(VectorSpaceModel vsm1, VectorSpaceModel vsm2) {
-//        System.out.println("l1 "+vectorLength(vsm1));
-//        System.out.println("l2 "+vectorLength(vsm2));
+    public double calculateDistance(Vector vsm1, Vector vsm2) {
+//        System.out.println("l1 "+vsm1.getLength());
+//        System.out.println("l2 "+vsm2.getLength());
 //        System.out.println("dot "+dotProduct(vsm1, vsm2));
-        if(vectorLength(vsm1)==0 || vectorLength(vsm2)==0){
+        if(vsm1.getLength()==0 || vsm2.getLength()==0){
 //            System.out.println("asdasad");
             return 0;
         }
-        return dotProduct(vsm1, vsm2)/(vectorLength(vsm1)*vectorLength(vsm2));
+        return dotProduct(vsm1, vsm2)/vsm1.getLength()*vsm2.getLength();
     }
     
-    private double dotProduct(VectorSpaceModel vsm1, VectorSpaceModel vsm2){
-        Set<String> terms=Dictionary.getInstance().getAllTermList();
+    private double dotProduct(Vector vsm1, Vector vsm2){
+        Set<String> terms=Lexicon.getInstance().getAllTermList();
         Iterator<String> it=terms.iterator();
         double result=0;
         while(it.hasNext()){
@@ -37,17 +37,5 @@ public class CosineDistanceCalculator extends DistanceCalculator{
             result+=(weight1*weight2);
         }
         return result;
-    }
-    
-    private double vectorLength(VectorSpaceModel vsm){
-        Set<String> terms=Dictionary.getInstance().getAllTermList();
-        Iterator<String> it=terms.iterator();
-        double result=0;
-        while(it.hasNext()){
-            String term=it.next();
-            double weight=vsm.getWeight(term);
-            result+=(weight*weight);
-        }
-        return Math.sqrt(result);
     }
 }

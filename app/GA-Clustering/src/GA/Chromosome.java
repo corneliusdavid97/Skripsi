@@ -1,7 +1,7 @@
 package GA;
 
 
-import IR.Dictionary;
+import IR.Lexicon;
 import IR.Document;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -19,7 +19,7 @@ import java.util.Random;
  *
  * @author CorneliusDavid
  */
-public class Chromosome {
+public class Chromosome implements Comparable<Chromosome>{
     public static final double MUTATION_PROBABILITY=.20;
     private List<Gene> genes;
     private Random rand;
@@ -57,35 +57,33 @@ public class Chromosome {
     
     public double computeFitness(){
 //        if(fitnessValue!=-1)return fitnessValue;
-        int fitnessValue=0;
-        Document docs[]=Clusterer.getInstance().getAllDocs();
+        double fitnessValue=0;
+        List<Document> docs=Clusterer.getInstance().getAllDocs();
         HashMap<String, Double> sumOfCentroid[]=new HashMap[genes.size()];
         for (int i = 0; i < genes.size(); i++) {
             sumOfCentroid[i]=new HashMap<>();
         }
         int pointCount[]=new int[genes.size()];
-        for (int i = 0; i < docs.length; i++) {
-            docs[i].determineClusterCode(this);
-            int clusterCode=docs[i].getClusterCode();
-            double tmp=docs[i].getVector().calculateDistance(this.genes.get(clusterCode).getValue());
+        for (int i = 0; i < docs.size(); i++) {
+            docs.get(i).determineClusterCode(this);
+            int clusterCode=docs.get(i).getClusterCode();
+            double tmp=docs.get(i).getVector().calculateDistance(this.genes.get(clusterCode).getValue());
             fitnessValue+=tmp;
-//            System.out.println(tmp);
-            for(String term:Dictionary.getInstance().getAllTermList()){
+            for(String term:Lexicon.getInstance().getAllTermList()){
                 double nextValue=sumOfCentroid[clusterCode].containsKey(term)?sumOfCentroid[clusterCode].get(term):0;
                 nextValue+=tmp;
                 sumOfCentroid[clusterCode].put(term, nextValue);
             }
             pointCount[clusterCode]++;
         }
-        
         for (int i = 0; i < genes.size(); i++) {
-            for(String term:Dictionary.getInstance().getAllTermList()){
+            for(String term:Lexicon.getInstance().getAllTermList()){
                 double nextValue=sumOfCentroid[i].containsKey(term)?sumOfCentroid[i].get(term):0;
                 nextValue=pointCount[i]==0.0?0.0:nextValue/pointCount[i];
                 sumOfCentroid[i].put(term, nextValue);
             }
 //            System.out.println(sumOfCentroid[i]);
-//            genes.get(i).setTermsWeight(sumOfCentroid[i]);
+            genes.get(i).setTermsWeight(sumOfCentroid[i]);
         }
         return fitnessValue;
     }
@@ -93,6 +91,9 @@ public class Chromosome {
     public List<Gene> getAllGenes() {
         return genes;
     }
-    
-    
+
+    @Override
+    public int compareTo(Chromosome o) {
+        return this.computeFitness()>o.computeFitness()?-1:this.computeFitness()<o.computeFitness()?1:0;
+    }
 }

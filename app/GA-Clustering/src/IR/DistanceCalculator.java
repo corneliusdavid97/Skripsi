@@ -10,5 +10,5 @@ package IR;
  * @author CorneliusDavid
  */
 public abstract class DistanceCalculator {
-    public abstract double calculateDistance(VectorSpaceModel vsm1,VectorSpaceModel vsm2);
+    public abstract double calculateDistance(Vector vsm1,Vector vsm2);
 }

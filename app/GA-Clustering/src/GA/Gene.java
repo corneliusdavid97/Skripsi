@@ -1,6 +1,6 @@
 package GA;
 
-import IR.VectorSpaceModel;
+import IR.Vector;
 import java.util.HashMap;
 
 /*
@@ -14,13 +14,13 @@ import java.util.HashMap;
  * @author CorneliusDavid
  */
 public class Gene {
-    private VectorSpaceModel value;
+    private Vector value;
 
-    public Gene(VectorSpaceModel value) {
+    public Gene(Vector value) {
         this.value = value;
     }
 
-    public VectorSpaceModel getValue() {
+    public Vector getValue() {
         return value;
     }
     

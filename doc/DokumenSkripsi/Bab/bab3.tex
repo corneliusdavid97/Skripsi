@@ -31,7 +31,7 @@ Pada subbab \ref{sec:vsm} telah dijelaskan bahwa dokumen akan dibentuk ke dalam 
 Berdasarkan tiga dokumen tersebut akan ditentukan bobot dari masing-masing \textit{term} dalam tiap dokumen untuk setiap jenis pembobotan.
 
 \subsection{Bobot Frekuensi}
-Pada subbab \ref{sub:freq} telah dijelaskan bahwa bobot frekuensi dari suatu \term dapat ditentukan dengan cara menghitung banyaknya kemunculan \term tersebut dalam dokumen. Hasil perhitungan bobot frekuensi berdasarkan contoh pada subbab \ref{sec:analysis:vsm} ditunjukkan dalam tabel \ref{tbl:freq}.
+Pada subbab \ref{sub:freq} telah dijelaskan bahwa bobot frekuensi dari suatu \term dapat ditentukan dengan cara menghitung banyaknya kemunculan \term tersebut dalam dokumen. Hasil perhitungan bobot frekuensi berdasarkan contoh pada Subbab \ref{sec:analysis:vsm} ditunjukkan dalam Tabel \ref{tbl:freq}.
 
 \begin{table}[h]
 	\centering
@@ -54,116 +54,238 @@ Pada subbab \ref{sub:freq} telah dijelaskan bahwa bobot frekuensi dari suatu \te
 	\label{tbl:freq}
 \end{table}
 
-Semakin besar bobot, maka \term dianggap semakin mewakili isi dokumen. Sebagai contoh pada tabel \ref{tbl:freq}, \term "di" muncul dua kali pada dokumen 1 sehingga berbobot 2, muncul satu kali pada dokumen 2 sehingga berbobot 1, dan tidak muncul sama sekali pada dokumen 3 sehingga memiliki bobot 0 sehingga \term "di" dianggap mewakili dokumen 1 karena muncul dua kali pada dokumen tersebut.
+Semakin besar bobot, maka \term dianggap semakin mewakili isi dokumen. Sebagai contoh pada Tabel \ref{tbl:freq}, \term "di" muncul dua kali pada dokumen 1 sehingga berbobot 2, muncul satu kali pada dokumen 2 sehingga berbobot 1, dan tidak muncul sama sekali pada dokumen 3 sehingga memiliki bobot 0 sehingga \term "di" dianggap mewakili dokumen 1 karena muncul dua kali pada dokumen tersebut.
 
 \subsection{Bobot TF-IDF}
-Berbeda dengan bobot frekuensi yang hanya menghitung frekuensi kemunculan \term pada dokumen, perhitungan bobot TF-IDF ini memerlukan perhitungan seperti yang telah dijelaskan dalam persamaan \ref{eq:tf-idf} pada subbab \ref{sub:tf-idf}. Hasil perhitungan bobot TF-IDF berdasarkan contoh pada Subbab \ref{sec:analysis:vsm} ditunjukkan dalam Tabel \ref{tbl:tf-idf}.
+Berbeda dengan bobot frekuensi yang hanya menghitung frekuensi kemunculan \term pada dokumen, perhitungan bobot TF-IDF ini memerlukan perhitungan seperti yang telah dijelaskan dalam Persamaan \ref{eq:tf-idf} pada Subbab \ref{sub:tf-idf}. Sama dengan perhitungan bobot frekuensi, contoh yang berasal dari Subbab \ref{sec:analysis:vsm} akan digunakan sebagai ilustrasi perhitungan TF-IDF. Sesuai dengan apa yang telah dijelaskan pada Subbab \ref{sub:tf-idf}, perhitungan dari TF-IDF akan dibagi menjadi dua tahap yaitu perhitungan TF dan perhitungan IDF. 
 
-\begin{table}[h]
+\Term "properti" akan digunakan dalam contoh perhitungan TF. Berdasarkan Persamaan \ref{eq:tf} pada Subbab \ref{sub:tf-idf}, maka perhitungan TF dari \term "properti" ditunjukkan pada Persamaan \ref{eq:tf-idf:tf}.
+
+\begin{equation}
+	\label{eq:tf-idf:tf}
+	\begin{gathered}
+ 	\textrm{tf}_{t,d}=\frac{\textrm{f}_{t,d}}{\sum_{t' \in d}\textrm{f}_{t',d}} \\
+	\textrm{tf}_{"properti",1}=\frac{1}{8}=0.125
+	\end{gathered}
+\end{equation}
+
+Penjelasan dari Persamaan \ref{eq:tf-idf:tf} adalah sebagai berikut. $\textrm{f}_{"properti",1}$ bernilai 1 karena \term "properti" hanya muncul 1 kali pada dokumen 1. Dokumen 1 terdiri dari 8 \term sehingga $\textrm{tf}_{"properti",1}$ bernilai $0.125$. Berdasarkan Persamaan \ref{eq:tf-idf:tf}, maka hasil perhitungan TF dari ketiga dokumen tersebut ditunjukkan pada Tabel \ref{tbl:tf-idf:tf}.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|c|c|} \hline
+		\multirow{2}{*}{\Term} & \multicolumn{3}{c|}{Bobot} \\ \cline{2-4}
+		& Dokumen 1 & Dokumen 2 & Dokumen 3 \\ \hline 
+        penjualan & 0.1250 & 0.1667 & 0.1429  \\ \hline
+        properti & 0.1250 & 0 & 0  \\ \hline
+        di & 0.2500 & 0.1667 & 0  \\ \hline
+        indonesia & 0.1250 & 0.1667 & 0  \\ \hline
+        meningkat & 0.1250 & 0.1667 & 0  \\ \hline
+        bulan & 0.1250 & 0 & 0.2857  \\ \hline
+        februari & 0.1250 & 0 & 0.1429  \\ \hline
+        asuransi & 0 & 0.1667 & 0  \\ \hline
+        kendaraan & 0 & 0.1667 & 0.1429  \\ \hline
+        merupakan & 0 & 0 & 0.1429  \\ \hline
+        puncak & 0 &	0 &	0.1429  \\ \hline
+	\end{tabular}
+	\caption{Hasil perhitungan TF}
+	\label{tbl:tf-idf:tf}
+\end{table}
+
+Untuk perhitungan IDF akan digunakan Persamaan \ref{eq:idf} pada Subbab \ref{sub:tf-idf}. Perhitungan IDF untuk \term "properti" ditunjukkan oleh Persamaan \ref{eq:tf-idf:idf}.
+
+\begin{equation}
+	\label{eq:tf-idf:idf}
+	\begin{gathered}
+	\textrm{idf}_t = \textrm{log} \frac{N}{\textrm{df}_t} \\
+	\textrm{idf}_{"properti"}=\textrm{log} \frac{3}{1}=0.4771
+	\end{gathered}
+\end{equation}
+
+Penjelasan dari Persamaan \ref{eq:tf-idf:idf} adalah sebagai berikut. $N$ bernilai 3 karena banyaknya dokumen dalam seluruh koleksi dokumen adalah 3. $\textrm{df}_t$ bernilai 1 karena hanya ada 1 dokumen yang memuat \term "properti" yaitu dokumen 1. Hasil dari perhitungan IDF untuk setiap \term ditunjukkan oleh Tabel \ref{tbl:tf-idf:idf}.
+
+\begin{table}[H]
+	\centering
+	\begin{tabular}{|c|c|} \hline
+		\Term & IDF \\ \hline 
+        penjualan & 0 \\ \hline
+        properti & 0.4771 \\ \hline
+        di & 0.1761 \\ \hline
+        indonesia & 0.1761 \\ \hline
+        meningkat & 0.1761 \\ \hline
+        bulan & 0.1761 \\ \hline
+        februari & 0.1761 \\ \hline
+        asuransi & 0.4771 \\ \hline
+        kendaraan & 0.1761 \\ \hline
+        merupakan & 0.4771 \\ \hline
+        puncak & 0.4771 \\ \hline
+	\end{tabular}
+	\caption{Hasil perhitungan IDF}
+	\label{tbl:tf-idf:idf}
+\end{table}
+
+\Term penjualan pada Tabel \ref{tbl:tf-idf:idf} bernilai 0. \Term "penjualan" muncul di ketiga dokumen sehingga pada saat perhitungan IDF menghasilkan nilai nol ($log \frac{N}{N_i}=log \frac{3}{3} = 0$). Dapat disimpulkan bahwa \term "penjualan" tidak mewakili dokumen manapun karena muncul di semua dokumen.
+
+Hasil dari perhitungan TF dan IDF digabung dengan cara dikalikan. Perhitungan TF-IDF untuk \term "properti" pada dokumen 1 ditunjukkan dalam Persamaan \ref{eq:tf-idf:complete}.
+
+\begin{equation}
+	\label{eq:tf-idf:complete}
+	\begin{gathered}
+	\textrm{tf-idf}_{t,d} = \textrm{tf}_{t,d} \times \textrm{idf}_t \\
+	\textrm{tf-idf}_{"properti",1} = 0.125 \times 0.4771 = 0.0075
+	\end{gathered}
+\end{equation}
+
+Nilai yang berasal dari Persamaan \ref{eq:tf-idf:tf} dan Persamaan \ref{eq:tf-idf:idf} dikalikan sehingga didapatkan hasil sesuai dengan Persamaan \ref{eq:tf-idf:complete}. Hasil perhitungan TF-IDF untuk seluruh \term dalam ketiga dokumen ditunjukkan dalam Tabel \ref{tbl:tf-idf}.
+
+\begin{table}[H]
 	\centering
 	\begin{tabular}{|c|c|c|c|} \hline
 		\multirow{2}{*}{\Term} & \multicolumn{3}{c|}{Bobot} \\ \cline{2-4}
 		& Dokumen 1 & Dokumen 2 & Dokumen 3 \\ \hline 
         penjualan & 0 & 0 & 0 \\ \hline
-        properti & 0.0596 & 0 & 0 \\ \hline
-        di & 0.0440 & 0.0293 & 0 \\ \hline
-        indonesia & 0.0220 & 0.0293 & 0 \\ \hline
-        meningkat & 0.0220 & 0.0293 & 0 \\ \hline
-        bulan & 0.0220 & 0 & 0.0503 \\ \hline
-        februari & 0.0220 & 0 & 0.0252 \\ \hline
-        asuransi & 0 & 0.0795 & 0 \\ \hline
-        kendaraan & 0 & 0.0293 & 0.0252 \\ \hline
-        merupakan & 0 & 0 & 0.0682 \\ \hline
-        puncak & 0 & 0 & 0.0682 \\ \hline
+        properti & 0.0075 & 0 & 0 \\ \hline
+        di & 0.0055 & 0.0049 & 0 \\ \hline
+        indonesia & 0.0028 & 0.0049 & 0 \\ \hline
+        meningkat & 0.0028 & 0.0049 & 0 \\ \hline
+        bulan & 0.0028 & 0 & 0.0072 \\ \hline
+        februari & 0.0028 & 0 & 0.0036 \\ \hline
+        asuransi & 0 & 0.0133 & 0 \\ \hline
+        kendaraan & 0 & 0.0049 & 0.0036 \\ \hline
+        merupakan & 0 & 0 & 0.0097 \\ \hline
+        puncak & 0 & 0 & 0.0097 \\ \hline
 	\end{tabular}
 	\caption{Hasil perhitungan bobot TF-IDF}
 	\label{tbl:tf-idf}
 \end{table}
 
-Sama halnya dengan bobot frekuensi, semakin besar bobotnya maka \term tersebut semakin mewakili isi dokumen. \Term "penjualan" muncul di ketiga dokumen sehingga pada saat perhitungan IDF menghasilkan nilai nol ($log \frac{N}{N_i}=log \frac{3}{3} = 0$). Dapat disimpulkan bahwa \term "penjualan" tidak mewakili dokumen manapun karena muncul di semua dokumen. Untuk menjelaskan nilai dalam tabel, dijelaskan  salah satu contoh perhitungan TF-IDF untuk \term "properti" pada dokumen 1 ditunjukkan dalam Persamaan \ref{eq:tf-idf-ex1} dan \ref{eq:tf-idf-ex2}.
-
-\begin{equation}
-	\label{eq:tf-idf-ex1}
-	\begin{gathered}
- 	tf_{i,d}=\frac{f_{i,d}}{\sum_{t \in d}f_{t,d}} \\
-	tf_{"properti",1}=\frac{1}{8}=0.125 \\
-	\end{gathered}
-\end{equation}
-	
-\begin{equation}
-	\label{eq:tf-idf-ex2}
-	\begin{gathered}
-	w_{i,d}=tf_{i,d} \times log \frac{N}{N_i} \\
-	w_{"properti",1}=0.125 \times log \frac{3}{1} = 0.125 \times 0.4771 = 0.0596
-	\end{gathered}
-\end{equation}
-
 \section{Representasi Kromosom}
-Setiap \textit{string} kromosom merupakan deretan bilangan riil yang merepresentasikan $K$ titik pusat \textit{cluster} (\textit{centroid}) dalam bentuk vektor. Dalam ruang $N$ dimensi, panjang dari kromosom akan menjadi $N\times K$ gen. $N$ kata pertama merepresentasikan $N$ dimensi dari \textit{centroid} pertama, $N$ kata selanjutnya merepresentasikan $N$ dimensi dari \textit{centroid} kedua, dan seterusnya. Sebagai contoh apabila diketahui ada tiga buah \textit{centroid} dalam bidang dua dimensi $\mathbf{C1}$ (3.05, 1.43), $\mathbf{C2}$ (15.85, 14.23), dan $\mathbf{C3}$ (5.12, 9.45). Hasil representasi ketiga \textit{centroid} pada kromosom ditunjukkan oleh Tabel \ref{tbl:chromosome}..
+\label{sec:chromosome-rep}
+Dalam penelitian ini, kromosom tersusun dari gen-gen yang merupakan \textit{centroid} dari $K$ buah \textit{cluster} yang akan dibentuk. \textit{Centroid} disimpan dalam bentuk vektor yang terdiri dari $N$ buah bilangan riil. $N$ merupakan dimensi dari vektor tersebut yang merupakan banyaknya \term berbeda yang terdapat pada seluruh koleksi dokumen. Secara umum representasi \textit{centroid} ke dalam kromosom ditunjukkan pada Gambar \ref{fig:chromosome-rep}.
 
-\begin{table}[h]
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{c c c c}
+		$C_1$ & $C_2$ & & $C_k$ \\
+		$w_{1,1}, w_{1,2}, ..., w_{1,n}$, & $w_{2,1}, w_{2,2}, ..., w_{2,n}$ & ... & $w_{k,1}, w_{k,2}, ..., w_{k,n}$
+	\end{tabular}
+	\caption{Formula representasi kromosom}
+	\label{fig:chromosome-rep}
+\end{figure}
+
+Berdasarkan Gambar \ref{fig:chromosome-rep}, kromosom akan memiliki $N\times K$ buah gen. $N$ kata pertama merepresentasikan $N$ dimensi dari \textit{centroid} pertama $C_1$ ($w_{1,1}, w_{1,2}, ..., w_{1,n}$), $N$ kata selanjutnya merepresentasikan $N$ dimensi dari \textit{centroid} kedua $C_2$ ($w_{2,1}, w_{2,2}, ..., w_{2,n}$), dan seterusnya sampai \textit{centroid} $C_k$ ($w_{k,1}, w_{k,2}, ..., w_{k,n}$). Sebagai contoh apabila diketahui ada tiga buah \textit{centroid} dalam bidang dua dimensi $\mathbf{C1}$ (3.05, 1.43), $\mathbf{C2}$ (15.85, 14.23), dan $\mathbf{C3}$ (5.12, 9.45). Hasil representasi ketiga \textit{centroid} pada kromosom ditunjukkan oleh Gambar \ref{fig:chromosome}.
+
+\begin{figure}[H]
 	\centering
 	\begin{tabular}{|c|c|c|c|c|c|}
 		\multicolumn{2}{c}{\textbf{$\mathbf{C1}$}} & \multicolumn{2}{c}{\textbf{$\mathbf{C2}$}} & \multicolumn{2}{c}{$\mathbf{C3}$}\\ \hline
 		3.05 & 1.43 & 15.85 & 14.23 & 5.12 & 9.45\\ \hline
 	\end{tabular}
-	\caption{Representasi \textit{centroid} ke dalam kromosom}
-	\label{tbl:chromosome}
-\end{table}
+	\caption{Contoh representasi \textit{centroid} ke dalam kromosom}
+	\label{fig:chromosome}
+\end{figure}
 
 \section{Fungsi \textit{Fitness}}
-Perhitungan \textit{fitness} dalam penelitian ini terdiri dari dua tahap. Pada tahap pertama, terjadi pembentukan \textit{cluster} berdasarkan titik pusat yang terkandung dalam kromosom. Hal ini dilakukan dengan menetapkan setiap titik $x_i,i=1,2, ... ,n$ ke dalam sebuah \textit{cluster} $C_j$ dengan \textit{centroid} $z_j$ sehingga
+\label{sec:func-fitness-analysis}
+Seperti yang telah dijelaskan pada Subbab \ref{sec:chromosome-rep}, kromosom akan tersusun atas \textit{centroid} yang berbentuk vektor. Oleh karena itu, perhitungan \textit{fitness} akan mengalami beberapa penyesuaian. Perhitungan \textit{fitness} dalam penelitian ini terdiri dari tiga tahap. Pada tahap pertama, terjadi pembentukan \textit{cluster} berdasarkan titik pusat yang terkandung dalam kromosom. Hal ini dilakukan dengan menetapkan setiap dokumen $x_i,i=1,2, ... ,n$ ke dalam sebuah \textit{cluster} $C_j$ dengan \textit{centroid} $z_j$ sehingga memenuhi Persamaan \ref{eq:minimum-dist}.
 
 \begin{equation}
+\label{eq:minimum-dist}
 \Vert x_i-z_j \Vert < \Vert x_i-z_p \Vert , p=1,2, ... ,K \mbox{, dan } p \neq j.
 \end{equation}
 
-Setelah proses pengelompokan selesai, titik pusat yang terkandung dalam kromosom diganti dengan rata-rata titik dari tiap \textit{cluster}. Dengan kata lain, untuk \textit{cluster} $C_i$, \textit{centroid} baru $z_i^*$ dapat dihitung menggunakan Persamaan \ref{eq:centroid}
+Persamaan \ref{eq:minimum-dist} menjelaskan bahwa akan dicari suatu \textit{cluster} $C_j$ yang paling dekat dengan dokumen $x_i$. Hal ini dilakukan dengan cara membandingkan jarak antara dokumen $x_i$ dengan seluruh \textit{centroid} dari $K$ buah \textit{cluster}. 
+
+Setelah proses pengelompokan selesai, maka akan dilanjutkan dengan tahap kedua yaitu mengganti \textit{centroid} terkandung dalam kromosom dengan \textit{centroid} baru. \textit{Centroid} baru ini ditentukan dengan cara menghitung rata-rata vektor dari tiap \textit{cluster}. Untuk \textit{cluster} $C_i$, \textit{centroid} baru $z_i^*$ dapat dihitung menggunakan Persamaan \ref{eq:centroid}.
 
 \begin{equation}
 \label{eq:centroid}
 z_i^*=\frac{1}{n_i} \sum_{x_j\in C_i} x_j,   i=1,2, ... ,K.
 \end{equation}
 
-dengan $z_i^*$ merupakan titik pusat \textit{cluster} ke-$i$, $n_i$ merupakan jumlah anggota \textit{cluster} ke-$i$, dan $x_j$ merupakan titik ke-$j$ yang merupakan anggota dari \textit{cluster} ke-$i$. $z_i^*$ ini akan menggantikan $z_i$ sebelumnya di kromosom. Ada dua metode perhitungan fungsi fitness yang diimplementasikan dalam penelitian ini yaitu \textit{cosine similarity}.
+dengan $z_i^*$ merupakan \textit{centroid} dari \textit{cluster} $i$, $n_i$ merupakan jumlah anggota \textit{cluster} $i$, dan $x_j$ merupakan dokumen $j$ yang merupakan anggota dari \textit{cluster} $i$. $z_i^*$ ini akan menggantikan $z_i$ sebelumnya di kromosom. 
 
-\subsection{Cosine Similarity}
-Perhitungan \textit{fitness} menggunakan \textit{cosine similarity} dapat dilakukan dengan Persamaan \ref{eq:cosSim}
+Tahap terakhir dari perhitungan \textit{fitness} adalah menghitung nilai \textit{fitness} itu sendiri. Pada penelitian ini, nilai \textit{fitness} akan dihitung menggunakan \textit{cosine similarity} seperti yang sudah dijelaskan pada Subbab \ref{sec:vsm}. Sesuai dengan Persamaan \ref{eq:intracluster} pada Subbab \ref{sec:metric}, perhitungan \textit{fitness} sebagai metrik yang menggambarkan seberapa baiknya suatu calon solusi ditunjukkan dalam Persamaan \ref{eq:cosSim-fitness} dengan beberapa penyesuaian.
 \begin{equation}
-\label{eq:cosSim}
+\label{eq:cosSim-fitness}
 	\begin{gathered}
-	f=\sum_{i=1}^K f_i , \\
-	f_i=\sum_{x_j\in C_i}\dfrac{x_j\cdot z_i}{\parallel x_j \parallel \times \parallel z_i \parallel}
+	\textrm{f}=\sum_{i=1}^K \textrm{f}_i , \\
+	\textrm{f}_i=\sum_{x_j\in C_i}\dfrac{x_j\cdot z_i}{\parallel x_j \parallel \times \parallel z_i \parallel}
 	\end{gathered}
 \end{equation}
 
-semakin besar nilai dari fungsi \textit{fitness} $f$, maka kromosom tersebut semakin mendekati solusi yang optimal.
+Penjelasan dari Persamaan \ref{eq:cosSim-fitness} adalah sebagai berikut. Nilai \textit{fitness} $\textrm{f}$ didapatkan dengan menjumlahkan nilai \textit{fitness} $\textrm{f}_i$ setiap \textit{centroid} $i=1, 2, ..., K$. Nilai \textit{fitness} $\textrm{f}_i$ tiap \textit{centroid} didapatkan dengan menjumlahkan jarak setiap dokumen ke \textit{centroid} masing-masing (Subbab \ref{sec:metric}). Perhitungan jarak antara dokumen dengan \textit{centroid} akan dihitung dengan menggunakan \textit{cosine similarity} sehingga persamaan untuk menghitung \textit{cosine similarity} (Persamaan \ref{eq:cosine} pada Subbab \ref{sec:vsm}) dimasukkan ke dalam Persamaan \ref{eq:cosSim-fitness}. Semakin besar nilai \textit{fitness} $\textrm{f}$, maka kromosom tersebut semakin mendekati solusi yang optimal.
 
 \section{Operasi Genetik}
-Ada beberapa operasi genetik yang akan dibahas, di antaranya: inisialisasi populasi, seleksi, persilangan, dan mutasi.
+Seperti yang telah di bahas pada Subbab \ref{sec:GA}, ada beberapa operator genetik yang digunakan dalam algoritma genetika. Beberapa operasi genetik yang akan digunakan dalam penelitian ini di antaranya adalah inisialisasi populasi, seleksi, persilangan, dan mutasi. Sama seperti kromosom, operator genetik ini juga perlu dimodifikasi sedemikian rupa sehingga dapat digunakan untuk proses pengelompokan dokumen. Berikut merupakan pembahasan lebih detil mengenai setiap operator genetik yang akan digunakan.
 
 \subsection{Inisialisasi Populasi}
-$K$ \textit{centroid} yang terkandung dalam kromosom pada mulanya dipilih secara acak sebanyak $K$ titik dari keseluruhan himpunan data. Lalu proses ini diulang sebanyak $P$ kali di mana $P$ merupakan ukuran populasi yang diinginkan.
+Proses pengelompokan dengan menggunakan algoritma genetika akan dimulai dengan inisialisasi populasi awal. Seperti yang sudah dijelaskan pada Subbab \ref{sec:chromosome-rep}, kromosom dari masing-masing individu akan terdiri dari $K$ buah \textit{centroid} dalam bentuk vektor. Populasi awal akan dibangkitkan dengan cara memilih $K$ dokumen secara acak yang akan dijadikan \textit{centroid} mula-mula. Kemudian proses tersebut akan dilakukan sebanyak $P$ kali dengan $P$ adalah banyaknya individu dalam populasi.
 
 \subsection{Seleksi}
-Proses seleksi ini terjadi berdasarkan konsep \textit{survival of the fittest} yang diadaptasi dari sistem genetika alami. Konsep ini mengatakan bahwa hanya individu terbaik yang akan bertahan hidup (lolos seleksi alam). Dengan mengadaptasi konsep tersebut, GA menerapkan seleksi berdasarkan nilai \textit{fitness} tiap individu. Dalam penelitian ini, calon induk dari generasi selanjutnya dipilih dengan menggunakan teknik \textit{roulette-wheel selection}. Seperti yang telah dijelaskan dalam Subbab \ref{sub:selection}, dalam teknik \textit{roulette-wheel selection} individu yang memiliki nilai \textit{fitness} lebih tinggi akan memiliki peluang lebih besar untuk terpilih dan menjadi induk bagi generasi berikutnya. Namun karena masih ada peluang individu dengan nilai \textit{fitness} terbaik tidak terpilih, maka dalam penelitian ini juga akan digunakan teknik elitisme \cite{ahn2003elitism}. Dengan digunakannya elitisme, maka individu dengan nilai \textit{fitness} terbaik akan disalin dan langsung menjadi anggota dari generasi berikutnya. Hal ini akan menjamin individu terbaik tidak akan hilang akibat tidak terpilih oleh \textit{roulette-wheel selection}.
+Proses seleksi akan dilakukan setiap iterasi (setiap generasi) untuk memilih calon induk dari generasi selanjutnya. Pada penelitian ini akan digunakan teknik seleksi \textit{roulette-wheel selection} seperti yang telah dijelaskan pada Subbab \ref{sub:selection}. \textit{Roulette-wheel selection} digunakan secara langsung pada penelitian ini dan tidak dimodifikasi. Individu dengan nilai \textit{fitness} lebih tinggi akan memiliki probabilitas lebih tinggi untuk terpilih menjadi induk dari generasi selanjutnya dan akan masuk ke dalam proses persilangan. Namun karena masih ada peluang individu dengan nilai \textit{fitness} tertinggi tidak terpilih, maka dalam penelitian ini juga akan digunakan teknik elitisme \cite{ahn2003elitism}. Dengan digunakannya elitisme, maka individu dengan nilai \textit{fitness} terbaik akan disalin dan langsung menjadi anggota dari generasi berikutnya. Hal ini dilakukan untuk menjamin individu terbaik tidak hilang akibat tidak terpilih oleh \textit{roulette-wheel selection}.
 
 \subsection{Persilangan}
-Persilangan dalam penelitian ini terjadi terhadap dua induk dengan satu titik potong (\textit{single-point crossover}). Misalkan kromosom memiliki panjang $l$, sebuah angka acak akan diambil sebagai titik potong dalam batas [1,$l-1$]. Bagian kromosom sebelah kanan titik potong akan ditukar  antara kedua induk sehingga menghasilkan dua individu keturunan.
+Dua kromosom yang terpilih dalam proeses seleksi akan disilangkan untuk menghasilkan keturunan yang akan dimasukkan ke dalam generasi selanjutnya. Dalam penelitian ini akan digunakan teknik persilangan dengan satu titik potong (\textit{single-point crossover}). Teknik \textit{single-point crossover} yang digunakan dalam penelitian ini sedikit berbeda karena perlu disesuaikan dengan kebutuhan pengelompokan dokumen. Titik potong tidak ditentukan pada tingkat gen, namun ditentukan pada tingkat \textit{centroid}. Apabila diketahui terdapat kromosom seperti pada Gambar \ref{fig:ilust-crossover:chromosome}, maka titik potong yang dipilih bukan berupa gen ($w_{k,n}$) melainkan \textit{centroid} ($C_k$).
+
+\begin{figure}[H]
+	\centering
+	\begin{tabular}{c c c c c}
+		$C_1$ & $C_2$ & $C_3$ & $C_4$ & $C_5$ \\
+		$w_{1,1}, w_{1,2}, ..., w_{1,n}$, & $w_{2,1}, w_{2,2}, ..., w_{2,n}$, & $w_{3,1}, w_{3,2}, ..., w_{3,n}$, & $w_{4,1}, w_{4,2}, ..., w_{4,n}$, & $w_{5,1}, w_{5,2}, ..., w_{5,n}$
+	\end{tabular}
+	\caption{Ilustrasi kromosom untuk persilangan}
+	\label{fig:ilust-crossover:chromosome}
+\end{figure}
+
+Sebagai contoh, diketahui dua buah kromosom yang akan mengalami persilangan adalah kromosom $A$ dengan kromosom $B$ seperti pada Gambar \ref{fig:illust-crossover}. Setelah itu akan ditentukan suatu titik potong (\textit{crossover point}) secara acak dan ditandai dengan garis tegak berwarna merah pada Gambar \ref{fig:illust-crossover}. Proses selanjutnya adalah pembentukan individu keturunan. Proses ini dilakukan dengan cara menggabungkan seluruh gen induk $A$ yang berada di sebelah kiri garis merah dengan seluruh gen induk $B$ yang berada di sebelah kanan garis merah. Keturunan yang dihasilkan dari proses ini hanya satu individu seperti yang dapat dilihat pada Gambar \ref{fig:illust-crossover}. 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[width=0.5 \linewidth]{crossover}
+	\caption{Ilustrasi persilangan}
+	\label{fig:illust-crossover}
+\end{figure}
 
 \subsection{Mutasi}
-Setiap kromosom mengalami mutasi dengan probabilitas mutasi tetap $\mu_c$. Apabila mutasi terjadi, maka akan ditentukan gen mana yang akan mengalami mutasi dengan mengambilnya secara acak. Nilai gen yang baru akan ditentukan dari pembangkitan suatu angka acak yang berada antara batas minimum kemunculan istilah (0) dan total kemunculan istilah tersebut dari keseluruhan dokumen. Sebagai contoh dengan menggunakan Tabel \ref{tbl:chromosome}, akan ditentukan satu dari enam gen yang akan mengalami mutasi. Misalkan dalam contoh ini gen kedua yang mengalami mutasi. Lalu akan dilakukan pembangkitan angka acak antara 0 sampai dengan total kemunculan istilah dari keseluruhan dokumen (dalam contoh ini bernilai 9). Kromosom hasil mutasi ditunjukkan dalam Tabel \ref{tbl:mutated}
+Setiap individu keturunan yang berasal dari proses persilangan akan memiliki peluang untuk mengalami mutasi. Seperti yang telah dijelaskan pada Subbab \ref{sub:mutation}, mutasi dapat terjadi berdasarkan peluang mutasi $\mu_m$. Apabila mutasi terjadi, maka akan ditentukan gen mana yang akan mengalami mutasi dengan mengambilnya secara acak. Nilai gen yang baru akan ditentukan dari pembangkitan suatu angka acak yang berada antara batas minimum kemunculan istilah (0) dan total kemunculan istilah tersebut dari keseluruhan dokumen. Sebagai contoh dengan menggunakan Gambar \ref{fig:mutated:before}, akan ditentukan satu dari enam gen yang akan mengalami mutasi. Misalkan dalam contoh ini gen kedua yang mengalami mutasi (Gambar \ref{fig:mutated:choose}). Lalu akan dilakukan pembangkitan angka acak antara 0 sampai dengan total kemunculan istilah dari keseluruhan dokumen (dalam contoh ini bernilai 9). Kromosom hasil mutasi ditunjukkan dalam Gambar \ref{fig:mutated:after}.
 
-\begin{table}[h]
+\begin{figure}[H]
 	\centering
-	\begin{tabular}{|c|c|c|c|c|c|}
-		\multicolumn{2}{c}{\textbf{$\mathbf{C1}$}} & \multicolumn{2}{c}{\textbf{$\mathbf{C2}$}} & \multicolumn{2}{c}{$\mathbf{C3}$}\\ \hline
+	\begin{subfigure}[t]{\textwidth}
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|}
+			\multicolumn{2}{c}{\textbf{$\mathbf{C1}$}} & \multicolumn{2}{c}{\textbf{$\mathbf{C2}$}} & \multicolumn{2}{c}{$\mathbf{C3}$}\\ \hline
+		3.05 & 1.43 & 15.85 & 14.23 & 5.12 & 9.45\\ \hline
+		\end{tabular}
+		\caption{Kromosom sebelum mutasi}
+		\label{fig:mutated:before}
+	\end{subfigure}
+	
+	\vspace{5mm}
+	\begin{subfigure}[t]{\textwidth}
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|}
+			\multicolumn{2}{c}{\textbf{$\mathbf{C1}$}} & \multicolumn{2}{c}{\textbf{$\mathbf{C2}$}} & \multicolumn{2}{c}{$\mathbf{C3}$}\\ \hline
+		3.05 & \textbf{1.43} & 15.85 & 14.23 & 5.12 & 9.45\\ \hline
+		\end{tabular}
+		\caption{Pemilihan gen yang akan dimutasi}
+		\label{fig:mutated:choose}
+	\end{subfigure}
+	
+	\vspace{5mm}
+	\begin{subfigure}[t]{\textwidth}
+		\centering
+		\begin{tabular}{|c|c|c|c|c|c|}
+			\multicolumn{2}{c}{\textbf{$\mathbf{C1}$}} & \multicolumn{2}{c}{\textbf{$\mathbf{C2}$}} & \multicolumn{2}{c}{$\mathbf{C3}$}\\ \hline
 		3.05 & {\color{red} \textbf{4.18}} & 15.85 & 14.23 & 5.12 & 9.45\\ \hline
-	\end{tabular}
-	\caption{Kromosom hasil mutasi}
-	\label{tbl:mutated}
-\end{table}
-
+		\end{tabular}
+		\caption{Kromosom hasil mutasi}
+		\label{fig:mutated:after}
+	\end{subfigure}
+		\caption{Ilustrasi mutasi kromosom}
+		\label{fig:mutated}
+\end{figure}
 
 %\section{Diagram Kelas}
 %Berdasarkan hasil analisis dari masalah yang dihadapi, dibentuklah diagram kelas pada gambar \ref{fig:diagramkelas} sebagai gambaran dari perangkat lunak yang akan dibuat.

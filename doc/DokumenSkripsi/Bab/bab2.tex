@@ -77,43 +77,63 @@ dengan $\mu_i$ merupakan \textit{centroid} ke-$i$, $N_i$ merupakan jumlah titik 
 \end{algorithmic}
 \end{algorithm}
 
-Baris ke-4 pada Algoritma \ref{alg:kmeans} dilakukan dengan cara menentukan \textit{centroid} baru yang dihitung menggunakan Persamaan \ref{eq:kmeans}. Baris ke-5 pada Algoritma \ref{alg:kmeans} berarti \textit{centroid} mengalami pergeseran yang tidak terlalu signifikan (lebih kecil dari suatu nilai $\epsilon$ yang merupakan masukan dari pengguna).
+Penjelasan dari Algoritma \ref{alg:kmeans} adalah sebagai berikut:
+\begin{itemize}
+	\item Pada baris 4, \textit{centroid} baru akan ditentukan dengan menggunakan Persamaan \ref{eq:kmeans}.
+	\item Pada baris 5, pengulangan akan berhenti saat \textit{centroid} mengalami pergeseran yang tidak terlalu signifikan (lebih kecil dari suatu nilai $\epsilon$ yang merupakan masukan dari pengguna).
+\end{itemize}
 
 \section{Algoritma Genetika}
+\label{sec:GA}
 Algoritma genetika atau biasa disebut \textit{Genetic Algorithm}(GA) adalah suatu algoritma pencarian yang terinspirasi dari proses seleksi alam yang terjadi secara alami dalam proses evolusi. Di alam, individu dalam suatu populasi berkompetisi satu sama lain untuk memperebutkan tempat tinggal, makanan, dll \cite{sivanandam2007introduction}. Bahkan setiap individu dalam spesies yang sama pun harus bersaing menarik lawan jenis untuk berkembang biak. Individu yang kurang baik akan memiliki peluang bertahan hidup lebih kecil, dan individu yang bisa beradaptasi dengan baik atau "\textit{fit}" akan menghasilkan keturunan dengan jumlah yg relatif banyak. 
 
-GA merupakan metode penyelesaian masalah yang menggunakan genetika sebagai pemodelannya. Suatu calon solusi dalam GA dimodelkan sebagai suatu individu. Kumpulan individu-individu ini disebut dengan populasi. Setiap individu dalam populasi direpresentasikan dengan kromosom. Kromosom merupakan kumpulan parameter yang membentuk suatu solusi. Parameter-parameter yang menyusun kromosom disebut dengan gen. Setiap kromosom memiliki suatu nilai yang terkait dengan \textit{fitness} dari solusi yang direpresentasikannya. Nilai \textit{fitness} masing-masing individu akan digunakan dalam proses seleksi. Individu yang lebih "kuat" akan memiliki peluang terpilih lebih besar dalam proses seleksi. Individu yang terpilih pada proses seleksi akan disilangkan untuk menghasilkan keturunan. Keturunan yang dihasilkan pada proses persilangan dapat memiliki peluang untuk mengalami mutasi. Setelah itu, akan dilakukan proses evaluasi terhadap nilai \textit{fitness} dari setiap kromosom untuk menentukan apakah solusi yang baik sudah ditemukan atau belum. Proses ini akan diulang terus-menerus untuk setiap generasi sampai ditemukan solusi yang sudah optimal. Secara umum, \textit{flowchart} dari GA ditunjukkan pada Gambar \ref{fig:GA-flowchart}.
+GA merupakan metode penyelesaian masalah yang menggunakan genetika sebagai pemodelannya. Suatu calon solusi dalam GA dimodelkan sebagai suatu individu. Kumpulan individu-individu ini disebut dengan populasi. Setiap individu dalam populasi direpresentasikan dengan kromosom. Kromosom merupakan kumpulan parameter yang membentuk suatu solusi. Parameter-parameter yang menyusun kromosom disebut dengan gen. 
+
+Setiap kromosom memiliki suatu nilai yang terkait dengan \textit{fitness} dari solusi yang direpresentasikannya. Nilai \textit{fitness} masing-masing individu akan digunakan dalam proses seleksi. Individu yang lebih "kuat" akan memiliki peluang terpilih lebih besar dalam proses seleksi. Individu yang terpilih pada proses seleksi akan disilangkan untuk menghasilkan keturunan. Keturunan yang dihasilkan pada proses persilangan dapat memiliki peluang untuk mengalami mutasi. Setelah itu, akan dilakukan proses evaluasi terhadap nilai \textit{fitness} dari setiap kromosom untuk menentukan apakah solusi yang baik sudah ditemukan atau belum. Proses ini akan diulang terus-menerus untuk setiap generasi sampai ditemukan solusi yang sudah optimal. Secara umum, \textit{flowchart} dari GA ditunjukkan pada Gambar \ref{fig:GA-flowchart}.
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=0.9 \textwidth]{GA-flowchart}
-	\caption{\textit{flowchart} dari algoritma genetika.}
+	\includegraphics[width=0.45 \textwidth]{GA-flowchart2}
+	\caption{Alur algoritma genetika dasar}
 	\label{fig:GA-flowchart}
 \end{figure}
 
 \subsection{\textit{Fitness}}
 \label{sub:fitness}
-Fitness dari suatu individu dalam algoritma genetika adalah suatu nilai fungsi objektif untuk fenotipenya\cite{sivanandam2007introduction}. \textit{Fitness} harus bisa memperkirakan seberapa dekat sebuah calon solusi dengan solusi yang optimal. Suatu solusi yang optimal akan memaksimalkan fungsi \textit{fitness}. 
+Fitness dari suatu individu dalam algoritma genetika adalah suatu nilai fungsi objektif untuk fenotipenya \cite{sivanandam2007introduction}. \textit{Fitness} harus bisa memperkirakan seberapa dekat sebuah calon solusi dengan solusi yang optimal. Suatu solusi yang optimal akan memaksimalkan fungsi \textit{fitness}. 
 
 \subsection{Seleksi}
 \label{sub:selection}
 Seleksi adalah proses pemilihan dua induk dari populasi untuk disilangkan \cite{sivanandam2007introduction}. Tujuan dari proses seleksi adalah untuk menonjolkan individu yang memiliki nilai \textit{fitness} tinggi dalam populasi dengan harapan keturunannya akan memiliki \textit{fitness} yang lebih tinggi. Seleksi adalah suatu metode yang memilih kromosom secara acak dari populasi berdasarkan fungsi \textit{fitness}. Semakin tinggi fungsi \textit{fitness} maka semakin tinggi peluang suatu individu akan terpilih. 
 
-Salah satu teknik yang populer digunakan dalam seleksi adalah \textit{roulette-wheel selection} atau \textit{fitness proportional selection}. \textit{Roulette-wheel selection} memilih suatu individu dari populasi dengan probabilitas yang sebanding dengan nilai \textit{fitness} relatifnya. Hal ini serupa dengan sebuah diagram lingkaran pada Gambar \ref{fig:pieChart} di mana setiap kromosom telah dialokasikan sebuah bagian pada diagram sesuai dengan nilai \textit{fitness} relatif. Semakin tinggi nilai \textit{fitness}, maka semakin besar bagian yang dialokasikan dan semakin besar kemungkinan kromosom tersebut akan terpilih dalam proses seleksi.
-
-Proses seleksi dalam GA akan memilih sejumlah induk yang cukup untuk reproduksi dan membentuk generasi selanjutnya. Untuk meningkatkan performa GA, dapat juga diterapkan diterapkan strategi \textit{elitism} yaitu dengan langsung memindahkan satu atau beberapa individu dengan nilai \textit{fitness} terbaik ke generasi selanjutnya. Sisanya akan dilakukan dengan cara yang sudah ditentukan sebelumnya seperti \textit{roulette-wheel selection}. Hal ini dilakukan untuk mencegah individu tersebut terhilang dari populasi dalam proses reproduksi.
+Salah satu teknik yang populer digunakan dalam seleksi adalah \textit{roulette-wheel selection} atau \textit{fitness proportional selection}. \textit{Roulette-wheel selection} memilih suatu individu dari populasi dengan probabilitas yang sebanding dengan nilai \textit{fitness} relatifnya. Berdasarkan ilustrasi yang terdapat dalam Gambar \ref{fig:pieChart}, setiap individu memiliki sebuah bagian pada diagram sesuai dengan nilai \textit{fitness} relatif. Semakin tinggi nilai \textit{fitness}, maka semakin besar bagian yang dialokasikan dan semakin besar kemungkinan individu tersebut akan terpilih dalam proses seleksi.
 
 \begin{figure}[h]
 	\begin{center}
-		\includegraphics[scale=0.755]{pieChart}
-		\caption{Diagram Lingkaran}
+		\includegraphics[scale=0.5]{pieChart2}
+		\caption{Ilustrasi \textit{roulette-wheel}}
 		\label{fig:pieChart}
 	\end{center}
 \end{figure}
 
+Sebagai penjelasan dari ilustrasi pada Gambar \ref{fig:pieChart} mengenai nilai \textit{fitness} relatif adalah sebagai berikut:
+\begin{itemize}
+	\item Ada enam individu dalam suatu populasi (Individu 1, Individu 2, dst).
+	\item Setiap individu memililiki nilai \textit{fitness} seperti yang tertera pada gambar (Individu 1 memiliki nilai \textit{fitness} sebesar 5.994, Individu 2 memiliki nilai \textit{fitness} sebesar 4.881, dst).
+	\item Berdasarkan nilai \textit{fitness} tersebut, maka tiap Individu dalam populasi memiliki peluang terpilih yang tercantum dalam persentase pada diagram lingkaran (Individu 1 memiliki peluang terpilih sebesar 11\%, Individu 2 memiliki peluang terpilih sebesar 9\%, dst). Peluang tersebut dapat dihitung menggunakan persamaan \ref{eq:ProbSelection}.
+\end{itemize}
+
+\begin{equation}
+	\label{eq:ProbSelection}
+	P_i=\frac{f_i}{\sum_{j \in Pop} f_j}
+\end{equation}
+dengan $P_i$ merupakan peluang terpilihnya individu $i$, $f_i$ merupakan nilai \textit{fitness} dari individu $i$,$Pop$ merupakan populasi, dan $f_j$ merupakan nilai \textit{fitness} dari individu $j$.
+
+Proses seleksi dalam GA akan memilih sejumlah induk yang cukup untuk reproduksi dan membentuk generasi selanjutnya. Untuk meningkatkan performa GA, dapat juga diterapkan strategi \textit{elitism} yaitu dengan langsung memindahkan satu atau beberapa individu dengan nilai \textit{fitness} terbaik ke generasi selanjutnya. Sisanya akan dilakukan dengan cara yang sudah ditentukan sebelumnya seperti \textit{roulette-wheel selection}. Hal ini dilakukan untuk mencegah individu tersebut hilang dari populasi dalam proses reproduksi.
+
 \subsection{Persilangan}
 \label{sub:crossover}
-Persilangan adalah operasi genetik yang digunakan untuk menggabungkan informasi genetik dari dua induk untuk menghasilkan keturunan baru \cite{sivanandam2007introduction}. Persilangan dilakukan untuk menghasilkan suatu individu baru yang diharapkan memiliki \textit{fitness} yang lebih baik daripada orangtuanya. Salah satu teknik yang dapat digunakan dalam persilangan adalah \textit{Single-point crossover}. Sebuah titik pada kedua induk dipilih untuk menjadi titik persilangan (\textit{crossover point}). Bit yang berada di sebelah kanan titik persilangan bertukar antara kedua kromosom induk seperti yang ditunjukkan pada Gambar \ref{fig:spcrossover}.
+Persilangan adalah operasi genetik yang digunakan untuk menggabungkan informasi genetik dari dua induk untuk menghasilkan keturunan baru \cite{sivanandam2007introduction}. Persilangan dilakukan untuk menghasilkan suatu individu baru yang diharapkan memiliki \textit{fitness} yang lebih baik daripada orangtuanya. Salah satu teknik yang dapat digunakan dalam persilangan adalah \textit{Single-point crossover}. Sebuah titik pada kedua induk dipilih untuk menjadi titik persilangan (\textit{crossover point}). Gen yang berada di sebelah kanan titik persilangan bertukar antara kedua kromosom induk seperti yang ditunjukkan pada Gambar \ref{fig:spcrossover}.
 
 \begin{figure}[h]
 	\begin{center}
@@ -125,7 +145,9 @@ Persilangan adalah operasi genetik yang digunakan untuk menggabungkan informasi 
 
 \subsection{Mutasi}
 \label{sub:mutation}
-Mutasi adalah suatu operator genetik yang digunakan untuk mempertahankan keragaman genetik dari satu generasi populasi dalam algoritma genetika. Selain itu mutasi juga dapat mencegah GA terjebak di \textit{local optimum} \cite{sivanandam2007introduction}. Mutasi mengubah satu atau beberapa nilai dalam gen. Mutasi terjadi berdasarkan probabilitas mutasi yang sudah ditentukan sebelumnya. Probabilitas mutasi menentukan seberapa sering kromosom akan dimutasi. Jika tidak terjadi mutasi, maka keturunannya akan langsung masuk ke populasi setelah persilangan tanpa pengubahan. Apabila terjadi mutasi, satu atau beberapa bagian dari kromosom akan diubah. Probabilitas ini seharusnya tidak dilakukan terlalu sering, karena jika terlalu sering dilakukan maka GA akan menjadi sama dengan algoritma pencarian acak primitif (\textit{primitive random search}). Mutasi akan dilakukan dengan mengubah nilai dari suatu gen yang telah dipilih menjadi nilai lainnya dengan teknik tertentu (tergantung struktur data dari gen yang akan diubah).
+Mutasi adalah suatu operator genetik yang digunakan untuk mempertahankan keragaman genetik dari satu generasi populasi dalam algoritma genetika. Oleh karena itu, mutasi juga dapat mencegah GA terjebak di \textit{local optimum} \cite{sivanandam2007introduction}. Mutasi mengubah satu atau beberapa nilai dalam gen. Mutasi terjadi berdasarkan probabilitas mutasi $\mu_m$ yang sudah ditentukan sebelumnya. Probabilitas mutasi menentukan seberapa sering kromosom akan dimutasi. 
+
+Jika tidak terjadi mutasi, maka keturunannya akan langsung masuk ke populasi setelah persilangan tanpa pengubahan. Apabila terjadi mutasi, satu atau beberapa bagian dari kromosom akan diubah. Probabilitas ini seharusnya tidak dilakukan terlalu sering, karena jika terlalu sering dilakukan maka GA akan menjadi sama dengan algoritma pencarian acak primitif (\textit{primitive random search}). Mutasi akan dilakukan dengan mengubah nilai dari suatu gen yang telah dipilih menjadi nilai lainnya dengan teknik tertentu (tergantung struktur data dari gen yang akan diubah).
 
 %\subsection{Proses pencarian dalam algoritma genetika}
 %Proses pencarian dalam GA secara umum dijelaskan dalam Algoritma \ref{alg:GA} dan terbagi menjadi beberapa tahapan:
@@ -139,10 +161,10 @@ Mutasi adalah suatu operator genetik yang digunakan untuk mempertahankan keragam
 %Iterasi ini akan dilakukan terus-menerus hingga mencapai titik konvergen.
 
 \subsection{GA dalam Pengelompokan}
-Meskipun pada umumnya algoritma \textit{K-means} digunakan dalam pengelompokan, tetapi ternyata algoritma \textit{K-means} masih memiliki kekurangan yaitu masih dapat terjebak pada \textit{local optimum}. Oleh karena itu, pada penelitian ini digunakan algoritma genetika sebagai solusi dari permasalahan \textit{local optimum}. Algoritma genetika memiliki kemampuan untuk menghindari terjadinya \textit{local optimum} karena algoritma genetika merupakan algoritma pencarian yang bersifat stokastik dengan memperbolehkan terjadinya variasi acak dalam proses pencarian solusinya. Oleh karena itu, diharapkan pengelompokan berbasis GA dapat menghasilkan solusi yang lebih baik dibandingkan dengan pengelompokan pada umumnya yang menggunakan algoritma \textit{K-means}.
+Algoritma yang umum diterapkan untuk pengelompokan adalah \textit{K-means}. Namun, algoritma \textit{K-means} masih memiliki kekurangan. Salah satu kekurangannya adalah masih dapat terjebak pada \textit{local optimum}. Menurut \cite{maulik2000genetic}, algoritma genetika dapat digunakan sebagai solusi dari permasalahan \textit{local optimum}. Algoritma genetika memiliki kemampuan untuk menghindari terjadinya \textit{local optimum} karena algoritma genetika sudah terbukti efektif dalam masalah pencarian dan optimasi \cite{srinivas1994genetic}. Oleh karena itu, diharapkan pengelompokan berbasis GA dapat menghasilkan solusi yang lebih baik dibandingkan dengan algoritma \textit{K-means}.
 
 \begin{algorithm}[!h]
-	\caption{Algoritma Genetika\cite{russell2016artificial}}
+	\caption{Algoritma Genetika \cite{russell2016artificial}}
 	\label{alg:GA}
 	\begin{flushleft}
 		\textbf{function} Algoritma-Genetika(\textit{populasi}) \textbf{returns} solusi berupa individu
@@ -177,14 +199,16 @@ Meskipun pada umumnya algoritma \textit{K-means} digunakan dalam pengelompokan, 
 Penjelasan untuk fungsi  Algoritma-Genetika pada Algoritma \ref{alg:GA} adalah sebagai berikut:
 \begin{itemize}
 	\item Pada baris 1, variabel $solusi$ berfungsi untuk mencatat sejarah dari solusi yang pernah dihasilkan pada setiap generasi.
-	\item Pada baris 3, dilakukan pencatatan solusi pada generasi saat ini ke variabel $solusi$.
-	\item Pada baris 9, pembangkitan bilangan riil secara acak antara 0 sampai dengan 1 dengan distribusi \textit{uniform}.
-	\item Pada baris 16, nilai \textit{fitness} pada $N$ solusi terakhir sudah mengalami konvergensi.
-	\item Pada baris 17, mengembalikan individu terbaik dalam populasi terakhir GA.
+	\item Pada baris 3, solusi pada generasi saat ini akan dicatat ke variabel $solusi$ .
+	\item Pada baris 9, variabel $rand$ akan berisi bilangan riil antara 0 sampai dengan 1. Bilangan riil ini akan dibangkitkan secara acak dengan distribusi \textit{uniform}.
+	\item Pada baris 16, proses pengulangan akan berhenti saat nilai \textit{fitness} pada $N$ solusi terakhir sudah mengalami konvergensi.
+	\item Pada baris 17, fungsi mengembalikan individu terbaik dalam populasi terakhir GA.
 \end{itemize}
 
 \begin{algorithm}[h]
 	%fungsi persilangan
+	\caption{Persilangan Algoritma Genetika}
+	\label{alg:GA:crossover}
 	\begin{flushleft}
 		\textbf{function} Persilangan($x$,$y$) \textbf{returns} anak berupa individu
 		\begin{flushleft}
@@ -202,14 +226,16 @@ Penjelasan untuk fungsi  Algoritma-Genetika pada Algoritma \ref{alg:GA} adalah s
 	\end{algorithmic}
 \end{algorithm}
 
-Penjelasan untuk fungsi Persilangan pada Algoritma \ref{alg:GA} adalah sebagai berikut:
+Penjelasan untuk fungsi Persilangan pada Algoritma \ref{alg:GA:crossover} adalah sebagai berikut:
 \begin{itemize}
-	\item Pada baris 2, akan dibangkitkan suatu bilangan bulat antara 1 sampai $N$ dengan distribusi uniform
+	\item Pada baris 2, variabel $c$ akan berisi bilangan bulat antara 1 sampai $N$. Bilangan bulat ini akan dibangkitkan secara acak dengan distribusi \textit{uniform}.
 	\item Pada baris 3, \textit{Append} merupakan fungsi untuk menggabungkan dua \textit{string} dan \textit{Substring} merupakan fungsi untuk memotong \textit{string} mulai dari batas tertentu sampai dengan batas tertentu juga.
 \end{itemize}
 
 \begin{algorithm}[h]
 	%fungsi seleksi acak
+	\caption{Seleksi Algoritma Genetika}
+	\label{alg:GA:selection}
 	\begin{flushleft}
 		\textbf{function} Seleksi-acak($populasi$) \textbf{returns} sebuah individu hasil seleksi
 		\begin{flushleft}
@@ -236,14 +262,16 @@ Penjelasan untuk fungsi Persilangan pada Algoritma \ref{alg:GA} adalah sebagai b
 	\end{algorithmic}
 \end{algorithm}
 
-Penjelasan untuk fungsi Seleksi-acak pada Algoritma \ref{alg:GA} adalah sebagai berikut:
+Penjelasan untuk fungsi Seleksi-acak pada Algoritma \ref{alg:GA:selection} adalah sebagai berikut:
 \begin{itemize}
 	\item Pada baris 3, fungsi \textit{Fitness} akan mengembalikan nilai \textit{fitness} dari individu yang menjadi parameternya.
-	\item Pada baris 5, akan dibangkitkan suatu bilangan riil secara acak antara 0 sampai $sum$ dengan cara mengalikan bilangan riil acak antara 0 sampai 1 dan $sum$.
+	\item Pada baris 5, variabel $terpilih$ akan berisi suatu bilangan 0 sampai $sum$. Hal ini dilakukan dengan cara mengalikan sebuah bilangan riil dengan $sum$. Bilangan riil tersebut merupakan bilangan antara 0 sampai 1 yang dibangkitkan secara acak dengan distribusi \textit{uniform}.
 \end{itemize}
 
 \begin{algorithm}[!h]	
 	%fungsi mutasi
+	\caption{Mutasi Algoritma Genetika}
+	\label{alg:GA:mutation}
 	\begin{flushleft}
 		\textbf{function} Mutasi($individu$) \textbf{returns} individu hasil mutasi
 		\begin{flushleft}
@@ -262,7 +290,7 @@ Penjelasan untuk fungsi Seleksi-acak pada Algoritma \ref{alg:GA} adalah sebagai 
 	\end{algorithmic}
 \end{algorithm}
 
-Penjelasan untuk fungsi Mutasi pada Algoritma \ref{alg:GA} adalah sebagai berikut:
+Penjelasan untuk fungsi Mutasi pada Algoritma \ref{alg:GA:mutation} adalah sebagai berikut:
 \begin{itemize}
 	\item Pada baris 1, fungsi \textit{Length} akan mengembalikan panjang dari \textit{string} parameterya.
 	\item Pada baris 2, fungsi \textit{Random} akan mengembalikan bilangan bulat acak antara 1 sampai $N$.
@@ -289,13 +317,15 @@ dengan $s_{ij}$ adalah kesamaan antara vektor ke-$i$ dengan vektor ke-$j$, $i$ a
 
 \section{Pembobotan \Term (\textit{Term Weighting})}
 \label{sec:termWeight}
-\Term merupakan suatu kelas dari kumpulan karakter pada suatu dokumen tertentu yang digabungkan sebagai unit semantik dan tercatat dalam kamus (\textit{dictionary}) suatu sistem \cite{schutze2008introduction}. Pembobotan \term merupakan suatu proses menentukan nilai dari suatu \term dalam sebuah dokumen. Pembobotan \term bertugas untuk memetakan \term kepada suatu nilai numerik yang merepresentasikan seberapa penting \term tersebut dalam suatu dokumen. Tidak semua \term dalam dokumen itu penting sehingga dengan memberikan nilai kepada masing-masing \term dapat dengan tepat merepresentasikan isi dokumen. Secara umum, apabila suatu \term semakin penting dalam suatu dokumen (semakin menggambarkan isi dokumen), maka nilai bobotnya akan semakin besar. Sebaliknya jika suatu \term semakin tidak penting (kata-kata yang umum digunakan seperti kata sambung, kata ganti, dan lain-lain), maka nilai bobotnya akan semakin kecil.
+Suatu dokumen teks terdiri dari deretan karakter. Sebelum suatu dokumen teks dapat diolah informasinya, maka dokumen tersebut perlu melalui suatu proses yang disebut dengan tokenisasi. Tokenisasi merupakan proses pemotongan suatu dokumen menjadi potongan-potongan (\textit{token}) tertentu \cite{schutze2008introduction}. Pada saat yang sama, karakter tertentu akan turut dibuang (tanda baca, spasi, dll). Token seringkali disebut sebagai \term atau kata. Namun sebenarnya ada perbedaan antara token, \textit{type}, dan juga \textit{term}. Token adalah urutan karakter dalam dokumen tertentu yang dikelompokkan bersama sebagai unit semantik \cite{schutze2008introduction}. \textit{Type} adalah kelas dari semua token yang berisi urutan karakter yang sama \cite{schutze2008introduction}. \Term adalah \textit{type} (mungkin dinormalisasi) yang terdapat pada suatu sistem \cite{schutze2008introduction}.
 
-Ada banyak cara untuk menghitung bobot suatu \term, dua diantaranya adalah bobot frekuensi (\textit{Frequency weighting}) dan Bobot TF-IDF (\textit{TF-IDF weighting}).
+Pembobotan \term merupakan suatu proses menentukan nilai dari suatu \term dalam sebuah dokumen. Pembobotan \term bertugas untuk memetakan \term kepada suatu nilai numerik yang merepresentasikan seberapa penting \term tersebut dalam suatu dokumen. Tidak semua \term dalam dokumen itu penting sehingga dengan memberikan nilai kepada masing-masing \term dapat dengan tepat merepresentasikan isi dokumen. Secara umum, apabila suatu \term semakin penting dalam suatu dokumen (semakin menggambarkan isi dokumen), maka nilai bobotnya akan semakin besar. Sebaliknya jika suatu \term semakin tidak penting (kata-kata yang umum digunakan seperti kata sambung, kata ganti, dan lain-lain), maka nilai bobotnya akan semakin kecil.
+
+Ada banyak cara untuk menghitung bobot suatu \term, dua diantaranya adalah bobot frekuensi (\textit{Frequency weighting}) dan bobot TF-IDF (\textit{TF-IDF weighting}). Bobot TF-IDF merupakan pengembangan dari bobot frekuensi dengan memperhitungkan kemunculan suatu \textit{term} secara global.
 
 \subsection{Bobot frekuensi}
 \label{sub:freq}
-Bobot frekuensi merupakan teknik pembobotan yang sangat sederhana karena bobotnya merupakan jumlah kemunculan \term tersebut dalam dokumen. Bobot frekuensi dapat digambarkan dengan Persamaan \ref{eq:bobot}
+Bobot frekuensi merupakan teknik pembobotan yang sangat sederhana karena bobotnya merupakan jumlah kemunculan \term tersebut dalam dokumen. \term yang sering muncul pada suatu dokumen akan dianggap berkaitan dengan dokumen tersebut. Misalkan suatu dokumen banyak memuat \term "properti", maka dokumen tersebut dianggap merupakan suatu dokumen yang membahas masalah "properti". Bobot frekuensi dapat digambarkan dengan Persamaan \ref{eq:bobot}
 \begin{equation}
 \label{eq:bobot}
 w_i=tf_i
@@ -314,7 +344,7 @@ Berdasarkan keempat contoh dokumen, maka dibentuk tabel ketetanggaan antara \tex
 \begin{table}[h]
 \centering
 \begin{tabular}{|l|c|c|c|c|} \hline
-	\textit{Term} & doc 1 & doc 2 & doc 3 & doc 4 \\ \hline
+	\textit{Term} & d1 & d2 & d3 & d4 \\ \hline
 	new		&	1	&	0	&	0	&	1	\\
 	home	&	1	&	1	&	1	&	1	\\
 	sales	&	1	&	1	&	1	&	1	\\
@@ -329,31 +359,47 @@ Berdasarkan keempat contoh dokumen, maka dibentuk tabel ketetanggaan antara \tex
 \label{tbl:term-doc}
 \end{table}
 
-\Term "\textit{in}" dalam tabel pada \textit{doc} 1 dan \textit{doc} 4 bernilai 0 karena \term "\textit{in}" tidak muncul pada \textit{doc} 1 dan \textit{doc} 4. Sedangkan pada \textit{doc} 2, \term "\textit{in}" muncul satu kali sehingga bernilai 1 pada tabel. Begitu juga pada \textit{doc} 3, \term "\textit{in}" muncul dua kali sehingga bernilai 2 pada tabel.
+\Term "\textit{in}" dalam tabel pada d1 dan d4 bernilai 0 karena \term "\textit{in}" tidak muncul pada d1 dan d4. Sedangkan pada d2, \term "\textit{in}" muncul satu kali sehingga bernilai 1 pada tabel. Begitu juga pada d3, \term "\textit{in}" muncul dua kali sehingga bernilai 2 pada tabel.
 
 \subsection{Bobot TF-IDF}
 \label{sub:tf-idf}
-Pada bobot frekuensi, bobot hanya dihitung berdasarkan kemunculan \term dalam dokumen itu sendiri. Namun dalam bobot TF-IDF (\textit{term frequency-inverse document frequency}), bobot juga dihitung berdasarkan kemunculan \term pada himpunan dokumen. Metode ini sangat populer digunakan oleh sistem rekomendasi berbasis teks \cite{aizawa2003information}. Rumus dari pembobotan menggunakan TF-IDF ditunjukkan oleh Persamaan \ref{eq:tf-idf}.
+Selain menggunakan bobot frekuensi, ada teknik pembobotan lain yang disebut dengan TF-IDF (\textit{Term Frequency-Inverse Document Frequency}). Teknik pembobotan ini merupakan pengembangan dari pembobotan frekuensi. TF-IDF merupakang gabungan dari \textit{term frequency} (tf) dengan \textit{inverse document frequency} (idf) untuk menghasilkan suatu bobot komposit untuk setiap \term dalam setiap dokumen \cite{schutze2008introduction}.
+
+\textit{Term frequency} atau biasa dilambangkan sebagai $\textrm{tf}_{t,d}$ untuk \term $t$ pada dokumen $d$. Sama seperti yang telah dijelaskan pada Subbab \ref{sub:freq}, TF merupakan banyaknya kemunculan \term pada suatu dokumen. Namun pada TF-IDF, umumnya digunakan bobot frekuensi yang telah dinormalisasi dengan jumlah kemunculan semua term pada suatu dokumen. TF yang telah dinormalisasi dapat dihitung menggunakan persamaan \ref{eq:tf}.
+
+\begin{equation}
+	\label{eq:tf}
+	\textrm{tf}_{t,d}=\frac{\textrm{f}_{t,d}}{\sum_{t' \in d}\textrm{f}_{t',d}}
+\end{equation}
+
+dengan $\textrm{tf}_{t,d}$ merupakan TF \term $t$ pada dokumen $d$, $\textrm{f}_{t,d}$ merupakan banyaknya kemunculan \term $t$ dalam dokumen $d$, $t' \in d$ merupakan seluruh \term $t'$ yang merupakan anggota dari dokumen $d$, dan $\textrm{f}_{t',d}$ merupakan banyaknya kemunculan \term $t'$ pada dokumen $d$.
+
+Terdapat suatu masalah pada pengukuran menggunakan TF yaitu semua \term dianggap sama penting. Pada kenyatannya, tidak semua \term itu sama penting karena \term yang sangat umum akan memiliki frekuensi yang sangat besar pada banyak dokumen. Seperti yang sudah dijelaskan pada Subbab \ref{sub:freq}, suatu \term yang sering muncul akan dianggap berkaitan dengan suatu dokumen. Namun hal itu ternyata belum tentu benar karena banyak \term yang sering muncul padahal \term tersebut sebenarnya tidak memiliki nilai informasi seperti \term yang merupakan kata penghubung. Oleh karena itu, diperlukan suatu mekanisme untuk mengurangi efek dari suatu \term yang sering muncul di banyak dokumen. Salah satu cara yang digunakan untuk menangani hal tersebut adalah dengan menggunakan \textit{inverse document frequency} (IDF). IDF ini dapat dihitung dengan menggunakan persamaan \ref{eq:idf}.
+
+\begin{equation}
+	\label{eq:idf}
+	\textrm{idf}_t = \textrm{log} \frac{N}{\textrm{df}_t}
+\end{equation}
+
+dengan $\textrm{idf}_t$ merupakan idf dari \term $t$, $N$ merupakan banyaknya anggota himpunan dokumen, dan $\textrm{df}_t$ merupakan \textit{document frequency} dari \term $t$. \textit{Document frequency} adalah banyaknya dokumen pada himpunan dokumen yang memuat \term $t$.
+
+Bobot TF-IDF menggabungkan teknik pembobotan TF dengan IDF. Nilai dari TF digabungkan dengan nilai dari IDF dengan cara mengalikan keduanya. Metode TF-IDF ini sangat populer digunakan oleh sistem rekomendasi berbasis teks \cite{aizawa2003information}. Pembobotan menggunakan TF-IDF dapat dihitung menggunakan Persamaan \ref{eq:tf-idf}.
 
 \begin{equation}
 	\label{eq:tf-idf}
-	\begin{gathered}
-	w_{i,d}=tf_{i,d} \times log \frac{N}{N_i} \\
-	tf_{i,d}=\frac{f_{i,d}}{\sum_{t \in d}f_{t,d}}
-	\end{gathered}
+	\textrm{tf-idf}_{t,d} = \textrm{tf}_{t,d} \times \textrm{idf}_t
 \end{equation}
-
-dengan $w_{i,d}$ merupakan bobot \term $i$ dalam dokumen $d$, $tf_{i,d}$ merupakan frekuensi \term $i$ pada dokumen $d$, $N$ menyatakan banyaknya anggota himpunan dokumen, $N_i$ menunjukkan frekuensi dokumen dari \term $i$ (banyaknya dokumen pada himpunan dokumen yang memuat \term $i$), $f_{i,d}$ merupakan banyaknya kemunculan \term $i$ dalam dokumen $d$, $t \in d$ merupakan seluruh \term $t$ yang merupakan anggota dari dokumen $d$, dan $f_{t,d}$ merupakan banyaknya kemunculan \term $t$ pada dokumen $d$.
 
 Berdasarkan rumus tersebut, maka dapat ditarik dua kesimpulan yaitu:
 \begin{itemize}
 	\item Semakin sering suatu \term muncul di suatu dokumen, maka semakin representatif \term tersebut terhadap isi dokumen.
-	\item Semakin banyak dokumen yang memuat suatu \textit{term}, maka nilai informasi \term tersebut semakin kecil. Hal ini terjadi karena \term yang muncul di mayoritas dokumen tidak dapat menggambarkan arti dari suatu dokumen.
+	\item Semakin banyak dokumen yang memuat suatu \textit{term}, maka nilai informasi \term tersebut semakin kecil. %Hal ini terjadi karena \term yang muncul di mayoritas dokumen tidak dapat menggambarkan arti dari suatu dokumen.
 \end{itemize}
 
 Metode penetapan bobot TF-IDF dianggap sebagai metode yang berkinerja baik karena mempertimbangkan frekuensi kemunculan \term baik secara lokal (TF) maupun global (IDF).
 
 \section{Metrik \textit{Intracluster} untuk Mengukur Kinerja Metode \textit{Clustering}}
+\label{sec:metric}
 Untuk mengukur performa dari suatu algoritma, perlu dilakukan pengujian. Pengujian ini dapat menentukan apakah algoritma yang digunakan sudah cukup baik dalam menyelesaikan masalah yang dibuat. Dalam pengelompokan, ada beberapa cara untuk mengukur apakah objek-objek sudah berhasil dikelompokan secara baik atau tidak. Cara yang pertama adalah dengan mengukur jarak antara tiap objek ke titik pusat \textit{cluster} (\textit{centroid}) atau biasa disebut jarak \textit{intracluster}. Lalu cara yang kedua adalah mengukur jarak antar kelompok yang dapat diukur dengan cara menghitung jarak setiap \textit{centroid} ke \textit{centroid} lainnya.
 
 Metrik yang digunakan \cite{maulik2000genetic} dalam mengukur kinerja suatu metode pengelompokan adalah perhitungan jarak \textit{intracluster}. Jarak \textit{intracluster} dapat diukur dengan cara menjumlahkan jarak setiap objek ke masing-masing titik pusatnya. Cara untuk menghitung jarak \textit{intracluster} ditunjukkan dalam Persamaan \ref{eq:intracluster}.
@@ -366,4 +412,16 @@ Metrik yang digunakan \cite{maulik2000genetic} dalam mengukur kinerja suatu meto
 	\end{gathered}
 \end{equation}
 
-dengan $M$ merupakan jumlah jarak seluruh objek ke \textit{centroid} masing-masing, $K$ merupakan banyaknya \textit{cluster}, $M_i$ merupakan jumlah jarak seluruh objek anggota \textit{cluster} ke-$i$ ke titik pusatnya, $x_j$ merupakan objek ke-$j$, $C_i$ merupakan \textit{centroid} ke-$i$, dan $z_i$ merupakan \textit{centroid} dari \textit{cluster} ke-$i$. Semakin kecil nilai $M$, maka pengelompokan dianggap semakin baik karena jarak setiap objek ke titik pusatnya dekat. Metrik ini dapat mengukur seberapa baik objek sudah dikelompokan dengan mempertimbangkan kedekatan setiap objek ke titik pusatnya.
+dengan $M$ merupakan jumlah jarak seluruh objek ke \textit{centroid} masing-masing, $K$ merupakan banyaknya \textit{cluster}, $M_i$ merupakan jumlah jarak seluruh objek anggota \textit{cluster} ke-$i$ ke titik pusatnya, $x_j$ merupakan objek ke-$j$, $C_i$ merupakan \textit{centroid} ke-$i$, dan $z_i$ merupakan \textit{centroid} dari \textit{cluster} ke-$i$. Untuk memperjelas perhitungan, Gambar \ref{fig:intracluster} akan digunakan sebagai ilustrasi dari jarak \textit{intracluster}.
+
+\begin{figure}[h]
+	\begin{center}
+		\includegraphics[width=0.6 \textwidth]{intracluster-diagram}
+		\caption{\textit{Ilustrasi untuk jarak \textit{intracluster}}}
+		\label{fig:intracluster}
+	\end{center}
+\end{figure}
+
+Persegi pada Gambar \ref{fig:intracluster} mengilustrasikan objek yang akan dikelompokkan. Lingkaran mengilustrasikan titik pusat \textit{cluster} (\textit{centroid}). Garis yang menghubungkan objek dan \textit{centroid} menggambarkan jarak antara objek dengan \textit{centroid} dan ditandai dengan label antara huruf $a$ sampai dengan $n$. Objek berwarna merah merupakan anggota dari \textit{cluster} 1, sedangkan objek berwarna biru merupakan anggota dari \textit{cluster} 2. Berdasarkan Persamaan \ref{eq:intracluster}, jarak \textit{intracluster} dari \textit{cluster} 1 ($M_1$) didapat dengan menjumlahkan $a, b, c, d, e, f,$ dan $g$. Sedangkan, jarak \textit{intracluster} dari \textit{cluster} 2 ($M_2$) didapat dengan menjumlahkan $h, i, j, k, l, m,$ dan $n$. Jarak \textit{intracluster} total didapatkan dengan menjumlahkan jarak \textit{intracluster} miliki \textit{cluster} 1 dan \textit{cluster} 2 ($a + b + ... + n$).
+
+Semakin kecil nilai $M$, maka pengelompokan dianggap semakin baik karena jarak setiap objek ke titik pusatnya dekat. Metrik ini dapat mengukur seberapa baik objek sudah dikelompokan dengan mempertimbangkan kedekatan setiap objek ke titik pusatnya.

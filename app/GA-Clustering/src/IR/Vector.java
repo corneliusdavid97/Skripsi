@@ -1,0 +1,76 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package IR;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Random;
+import java.util.Set;
+
+/**
+ *
+ * @author CorneliusDavid
+ */
+public class Vector {
+
+    private HashMap<String, Double> termsWeight;
+    private DistanceCalculator distanceCalculator;
+    private TermWeighting termWeighting;
+    
+
+    public Vector(HashMap<String, Integer> wordCount) {
+        termsWeight = new HashMap<>();
+
+        distanceCalculator = new CosineDistanceCalculator();
+        termWeighting=new TFIDFWeighting();
+        
+        generateVector(wordCount);
+    }
+
+    private void generateVector(HashMap<String, Integer> wordCount){
+        Set<Map.Entry<String,Integer>> entrySet=wordCount.entrySet();
+        for(Map.Entry<String,Integer> entry:entrySet){
+            this.termsWeight.put(entry.getKey(), calculateWeight(entry.getKey(), wordCount));
+        }
+    }
+
+    public double getWeight(String term){
+        if(!termsWeight.containsKey(term))return 0.0;
+        return termsWeight.get(term);
+    }
+    
+    public double calculateWeight(String term, HashMap<String, Integer> wordCount){
+        return termWeighting.calculateWeight(term, wordCount);
+    }
+
+    public double calculateDistance(Vector otherVSM) {
+        return distanceCalculator.calculateDistance(this, otherVSM);
+    }
+
+    @Override
+    public String toString() {
+        return termsWeight.toString();
+    }
+    
+    public void mutate(){
+        Random rand=new Random();
+        String key=(String) termsWeight.keySet().toArray()[rand.nextInt(termsWeight.size())];
+        termsWeight.put(key, rand.nextDouble()*termsWeight.get(key)*2);//mutasi dari 0 - nilai sendiri dikali 2
+    }
+
+    public void setTermsWeight(HashMap<String, Double> termsWeight) {
+        this.termsWeight = termsWeight;
+    }
+    
+    public double getLength(){
+        double res=0.0;
+        for(Map.Entry<String,Double> entry: termsWeight.entrySet()){
+            res+=(entry.getValue()*entry.getValue());
+        }
+        res=Math.sqrt(res);
+        return res;
+    }
+}
