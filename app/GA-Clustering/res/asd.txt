@@ -1,0 +1,15 @@
+Precompute: 9.875
+Init pop: 0.014
+
+
+Gen 1
+avg fitness: 27.3887
+elitism: 0.001
+roulette: 0.034
+selection: 0.035
+
+Gen 2
+avg fitness: 49.9592
+elitism: 0.0
+roulette: 0.006
+selection: 0.006

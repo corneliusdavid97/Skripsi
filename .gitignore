@@ -1,2 +1,4 @@
 Thumbs.db
 .DS_Store
+/app/GA-Clustering GUI/build/
+/app/GA-Clustering GUI/dist/

@@ -19,15 +19,15 @@ public class CosineDistanceCalculator extends DistanceCalculator{
 //        System.out.println("l1 "+vsm1.getLength());
 //        System.out.println("l2 "+vsm2.getLength());
 //        System.out.println("dot "+dotProduct(vsm1, vsm2));
-        if(vsm1.getLength()==0 || vsm2.getLength()==0){
+//        if(vsm1.getLength()==0 || vsm2.getLength()==0){
 //            System.out.println("asdasad");
-            return 0;
-        }
-        return dotProduct(vsm1, vsm2)/vsm1.getLength()*vsm2.getLength();
+//            return 0;
+//        }
+        return dotProduct(vsm1, vsm2);///vsm1.getLength()*vsm2.getLength();
     }
     
     private double dotProduct(Vector vsm1, Vector vsm2){
-        Set<String> terms=Lexicon.getInstance().getAllTermList();
+        Set<String> terms=vsm1.getKeySet();
         Iterator<String> it=terms.iterator();
         double result=0;
         while(it.hasNext()){

@@ -57,12 +57,17 @@ public class Vector {
     
     public void mutate(){
         Random rand=new Random();
+//        System.out.println("tw: "+termsWeight.size());
         String key=(String) termsWeight.keySet().toArray()[rand.nextInt(termsWeight.size())];
         termsWeight.put(key, rand.nextDouble()*termsWeight.get(key)*2);//mutasi dari 0 - nilai sendiri dikali 2
     }
 
     public void setTermsWeight(HashMap<String, Double> termsWeight) {
-        this.termsWeight = termsWeight;
+        this.termsWeight = new HashMap<>(termsWeight);
+    }
+    
+    public void setWeight(String term, double value){
+        termsWeight.put(term,value);
     }
     
     public double getLength(){
@@ -72,5 +77,17 @@ public class Vector {
         }
         res=Math.sqrt(res);
         return res;
+    }
+    
+    public Set<String> getKeySet(){
+        return termsWeight.keySet();
+    }
+
+    public HashMap<String, Double> getTermsWeight() {
+        return termsWeight;
+    }
+    
+    public int getDimension(){
+        return this.termsWeight.size();
     }
 }

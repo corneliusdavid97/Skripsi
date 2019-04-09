@@ -26,7 +26,6 @@ public class Document {
     private File file;
     protected HashMap<String,Integer> wordCount;
     private Vector vector;
-    private int clusterCode;
     
     public Document(File file){
         this.file=file;
@@ -35,7 +34,6 @@ public class Document {
         try {
             this.indexDocument();
         } catch (Exception ex) {}
-        
         
         this.vector=new Vector(wordCount);//TODO: ganti param
     }
@@ -87,24 +85,8 @@ public class Document {
     public Vector getVector() {
         return vector;
     }
-
-    public int getClusterCode() {
-        return clusterCode;
-    }
-
-    public void determineClusterCode(Chromosome chromosome) {
-        this.clusterCode=0;
-        double distance=Double.MAX_VALUE;
-        for (int i = 0; i < chromosome.getAllGenes().size(); i++) {
-            double tempDist=chromosome.getAllGenes().get(i).getValue().calculateDistance(vector);
-            if(tempDist<distance){
-                distance=tempDist;
-                clusterCode=i;
-            }
-        }
-    }
     
     public String getDocName(){
-        return file.getName();
+        return file.getAbsolutePath();
     }
 }

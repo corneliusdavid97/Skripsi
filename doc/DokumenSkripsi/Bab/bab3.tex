@@ -161,7 +161,7 @@ Nilai yang berasal dari Persamaan \ref{eq:tf-idf:tf} dan Persamaan \ref{eq:tf-id
 
 \section{Representasi Kromosom}
 \label{sec:chromosome-rep}
-Dalam penelitian ini, kromosom tersusun dari gen-gen yang merupakan \textit{centroid} dari $K$ buah \textit{cluster} yang akan dibentuk. \textit{Centroid} disimpan dalam bentuk vektor yang terdiri dari $N$ buah bilangan riil. $N$ merupakan dimensi dari vektor tersebut yang merupakan banyaknya \term berbeda yang terdapat pada seluruh koleksi dokumen. Secara umum representasi \textit{centroid} ke dalam kromosom ditunjukkan pada Gambar \ref{fig:chromosome-rep}.
+Dalam penelitian ini, kromosom tersusun dari gen-gen yang merupakan \textit{centroid} dari $K$ buah \textit{cluster} yang akan dibentuk. \textit{Centroid} disimpan dalam bentuk vektor yang terdiri dari $N$ buah bilangan riil. $N$ merupakan dimensi dari vektor tersebut yang merupakan banyaknya \term berbeda yang terdapat pada seluruh koleksi dokumen. Oleh karena itu, setiap kromosom akan memiliki $N\times K$ buah gen. Secara umum representasi \textit{centroid} ke dalam kromosom ditunjukkan pada Gambar \ref{fig:chromosome-rep}.
 
 \begin{figure}[H]
 	\centering
@@ -173,7 +173,7 @@ Dalam penelitian ini, kromosom tersusun dari gen-gen yang merupakan \textit{cent
 	\label{fig:chromosome-rep}
 \end{figure}
 
-Berdasarkan Gambar \ref{fig:chromosome-rep}, kromosom akan memiliki $N\times K$ buah gen. $N$ kata pertama merepresentasikan $N$ dimensi dari \textit{centroid} pertama $C_1$ ($w_{1,1}, w_{1,2}, ..., w_{1,n}$), $N$ kata selanjutnya merepresentasikan $N$ dimensi dari \textit{centroid} kedua $C_2$ ($w_{2,1}, w_{2,2}, ..., w_{2,n}$), dan seterusnya sampai \textit{centroid} $C_k$ ($w_{k,1}, w_{k,2}, ..., w_{k,n}$). Sebagai contoh apabila diketahui ada tiga buah \textit{centroid} dalam bidang dua dimensi $\mathbf{C1}$ (3.05, 1.43), $\mathbf{C2}$ (15.85, 14.23), dan $\mathbf{C3}$ (5.12, 9.45). Hasil representasi ketiga \textit{centroid} pada kromosom ditunjukkan oleh Gambar \ref{fig:chromosome}.
+Berdasarkan Gambar \ref{fig:chromosome-rep}, $N$ gen pertama merepresentasikan $N$ dimensi dari \textit{centroid} pertama $C_1$ ($w_{1,1}, w_{1,2}, ..., w_{1,n}$), $N$ gen selanjutnya merepresentasikan $N$ dimensi dari \textit{centroid} kedua $C_2$ ($w_{2,1}, w_{2,2}, ..., w_{2,n}$), dan seterusnya sampai \textit{centroid} $C_k$ ($w_{k,1}, w_{k,2}, ..., w_{k,n}$). Sebagai contoh apabila diketahui ada tiga buah \textit{centroid} dalam bidang dua dimensi $\mathbf{C1}$ (3.05, 1.43), $\mathbf{C2}$ (15.85, 14.23), dan $\mathbf{C3}$ (5.12, 9.45). Hasil representasi ketiga \textit{centroid} pada kromosom ditunjukkan oleh Gambar \ref{fig:chromosome}.
 
 \begin{figure}[H]
 	\centering
@@ -216,7 +216,7 @@ Tahap terakhir dari perhitungan \textit{fitness} adalah menghitung nilai \textit
 
 Penjelasan dari Persamaan \ref{eq:cosSim-fitness} adalah sebagai berikut. Nilai \textit{fitness} $\textrm{f}$ didapatkan dengan menjumlahkan nilai \textit{fitness} $\textrm{f}_i$ setiap \textit{centroid} $i=1, 2, ..., K$. Nilai \textit{fitness} $\textrm{f}_i$ tiap \textit{centroid} didapatkan dengan menjumlahkan jarak setiap dokumen ke \textit{centroid} masing-masing (Subbab \ref{sec:metric}). Perhitungan jarak antara dokumen dengan \textit{centroid} akan dihitung dengan menggunakan \textit{cosine similarity} sehingga persamaan untuk menghitung \textit{cosine similarity} (Persamaan \ref{eq:cosine} pada Subbab \ref{sec:vsm}) dimasukkan ke dalam Persamaan \ref{eq:cosSim-fitness}. Semakin besar nilai \textit{fitness} $\textrm{f}$, maka kromosom tersebut semakin mendekati solusi yang optimal.
 
-\section{Operasi Genetik}
+\section{Operasi Genetik Dalam Pengelompokan Dokumen}
 Seperti yang telah di bahas pada Subbab \ref{sec:GA}, ada beberapa operator genetik yang digunakan dalam algoritma genetika. Beberapa operasi genetik yang akan digunakan dalam penelitian ini di antaranya adalah inisialisasi populasi, seleksi, persilangan, dan mutasi. Sama seperti kromosom, operator genetik ini juga perlu dimodifikasi sedemikian rupa sehingga dapat digunakan untuk proses pengelompokan dokumen. Berikut merupakan pembahasan lebih detil mengenai setiap operator genetik yang akan digunakan.
 
 \subsection{Inisialisasi Populasi}
