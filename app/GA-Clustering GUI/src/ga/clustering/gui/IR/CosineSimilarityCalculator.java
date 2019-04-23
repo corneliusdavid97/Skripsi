@@ -12,7 +12,7 @@ import java.util.Set;
  *
  * @author CorneliusDavid
  */
-public class CosineDistanceCalculator extends DistanceCalculator{
+public class CosineSimilarityCalculator extends SimilarityCalculator{
 
     @Override
     public double calculateDistance(Vector vsm1, Vector vsm2) {
@@ -23,7 +23,7 @@ public class CosineDistanceCalculator extends DistanceCalculator{
 //            System.out.println("asdasad");
 //            return 0;
 //        }
-        return dotProduct(vsm1, vsm2);///vsm1.getLength()*vsm2.getLength();
+        return dotProduct(vsm1, vsm2)/(vsm1.getLength()*vsm2.getLength());
     }
     
     private double dotProduct(Vector vsm1, Vector vsm2){

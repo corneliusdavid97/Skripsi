@@ -6,9 +6,6 @@
 package ga.clustering.gui.IR;
 
 import java.io.File;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Queue;
 
 /**
  *
@@ -17,37 +14,13 @@ import java.util.Queue;
 public class Tester {
 
     public static void main(String[] args) {
-        List<Document> docs=new LinkedList<>();
-        File folder = new File("D:\\DAVID\\University\\Semester 7\\SKRIPSI\\Skripsi\\app\\GA-Clustering\\dataset\\bbc");
-        File[] files = folder.listFiles();
-        Queue<File> queue=new LinkedList<>();
-        for (int i = 0; i < files.length; i++) {
-            queue.offer(files[i]);
-        }
-        
-        LinkedList<File> allFiles=new LinkedList<>();
-        
-        while(!queue.isEmpty()){
-            File tmp=queue.poll();
-            if(tmp.isDirectory()){
-                File[] tmpFolder=tmp.listFiles();
-                for (int i = 0; i < tmpFolder.length; i++) {
-                    queue.offer(tmpFolder[i]);
-                }
-            }else{
-                allFiles.add(tmp);
-            }
-        }
-        
-        Lexicon.getInstance().setNumberOfDocument(allFiles.size());
-        
-        for(File file:allFiles){
-            docs.add(new Document(file));
-        }
-        
-        System.out.println(Lexicon.getInstance().getNumberOfDocument());
-        
-        double res=docs.get(0).getVector().calculateDistance(docs.get(1).getVector());
-        System.out.println(res);
+        Lexicon.getInstance().setNumberOfDocument(5);
+        Document d1=new Document(new File("D:\\DAVID\\University\\Semester 7\\SKRIPSI\\Skripsi\\app\\GA-Clustering\\dataset\\bbc\\business\\001.txt"));
+        Document d2=new Document(new File("D:\\DAVID\\University\\Semester 7\\SKRIPSI\\Skripsi\\app\\GA-Clustering\\dataset\\bbc\\business\\002.txt"));
+        Document d3=new Document(new File("D:\\DAVID\\University\\Semester 7\\SKRIPSI\\Skripsi\\app\\GA-Clustering\\dataset\\bbc\\business\\003.txt"));
+        Document d4=new Document(new File("D:\\DAVID\\University\\Semester 7\\SKRIPSI\\Skripsi\\app\\GA-Clustering\\dataset\\bbc\\business\\004.txt"));
+        Document d5=new Document(new File("D:\\DAVID\\University\\Semester 7\\SKRIPSI\\Skripsi\\app\\GA-Clustering\\dataset\\bbc\\business\\005.txt"));
+        System.out.println(d1.getVector().getLength());
+        System.out.println(d1.getVector().calculateDistance(d1.getVector()));
     }
 }

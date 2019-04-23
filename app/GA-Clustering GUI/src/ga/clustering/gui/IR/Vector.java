@@ -18,14 +18,14 @@ import java.util.Set;
 public class Vector {
 
     private HashMap<String, Double> termsWeight;
-    private DistanceCalculator distanceCalculator;
+    private SimilarityCalculator distanceCalculator;
     private TermWeighting termWeighting;
     
 
     public Vector(HashMap<String, Integer> wordCount) {
         termsWeight = new HashMap<>();
 
-        distanceCalculator = new CosineDistanceCalculator();
+        distanceCalculator = new CosineSimilarityCalculator();
         if(Params.getInstance().getWeightMethod()==0){
             termWeighting=new TFIDFWeighting();
         }else{

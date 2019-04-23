@@ -1,11 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/ga/clustering/gui/FXMLDocumentController.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>126</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/D:/DAVID/University/Semester%207/SKRIPSI/Skripsi/app/GA-Clustering%20GUI/src/ga/clustering/gui/FXMLDocument.fxml</file>
+            <file>file:/D:/DAVID/University/Semester%207/SKRIPSI/Skripsi/app/GA-Clustering%20GUI/src/ga/clustering/gui/GA/Clusterer.java</file>
+            <file>file:/D:/DAVID/University/Semester%207/SKRIPSI/Skripsi/app/GA-Clustering%20GUI/src/ga/clustering/gui/GA/Gene.java</file>
+            <file>file:/D:/DAVID/University/Semester%207/SKRIPSI/Skripsi/app/GA-Clustering%20GUI/src/ga/clustering/gui/IR/Document.java</file>
+            <file>file:/D:/DAVID/University/Semester%207/SKRIPSI/Skripsi/app/GA-Clustering%20GUI/src/ga/clustering/gui/GA/Tester.java</file>
+            <file>file:/D:/DAVID/University/Semester%207/SKRIPSI/Skripsi/app/GA-Clustering%20GUI/src/ga/clustering/gui/IR/TFIDFWeighting.java</file>
+            <file>file:/D:/DAVID/University/Semester%207/SKRIPSI/Skripsi/app/GA-Clustering%20GUI/src/ga/clustering/gui/GA/Params.java</file>
+            <file>file:/D:/DAVID/University/Semester%207/SKRIPSI/Skripsi/app/GA-Clustering%20GUI/src/ga/clustering/gui/IR/CosineDistanceCalculator.java</file>
+            <file>file:/D:/DAVID/University/Semester%207/SKRIPSI/Skripsi/app/GA-Clustering%20GUI/src/ga/clustering/gui/GA/Chromosome.java</file>
             <file>file:/D:/DAVID/University/Semester%207/SKRIPSI/Skripsi/app/GA-Clustering%20GUI/src/ga/clustering/gui/FXMLDocumentController.java</file>
             <file>file:/D:/DAVID/University/Semester%207/SKRIPSI/Skripsi/app/GA-Clustering%20GUI/src/ga/clustering/gui/GAClusteringGUI.java</file>
+            <file>file:/D:/DAVID/University/Semester%207/SKRIPSI/Skripsi/app/GA-Clustering%20GUI/src/ga/clustering/gui/KMeans/KMeans.java</file>
         </group>
     </open-files>
 </project-private>

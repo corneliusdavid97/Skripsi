@@ -61,11 +61,11 @@ public class Chromosome implements Comparable<Chromosome>{
     private void determineCluster(List<Document> docs){
         for (int i = 0; i < docs.size(); i++) {
             int cluster=0;
-            double distance=Double.MAX_VALUE;
+            double similarity=Double.MIN_VALUE;
             for (int j = 0; j < genes.size(); j++) {
                 double temp=docs.get(i).getVector().calculateDistance(genes.get(j).getValue());
-                if(temp<distance){
-                    distance=temp;
+                if(temp>similarity){
+                    similarity=temp;
                     cluster=j;
                 }
             }
