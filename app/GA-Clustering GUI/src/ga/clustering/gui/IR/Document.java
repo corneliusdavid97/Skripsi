@@ -76,11 +76,6 @@ public class Document {
         return wordCount.get(term).intValue();
     }
 
-    @Override
-    public String toString() {
-        return vector.toString();
-    }
-
     public Vector getVector() {
         return vector;
     }

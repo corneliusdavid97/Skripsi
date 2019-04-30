@@ -14,7 +14,7 @@ public class Params {
     private String filepath;
     private int K;
     private int P;
-    private int weightMethod; //0=TF-IDF, 1=Frekuensi
+    private int weightingMethod; //0=TF-IDF, 1=Frekuensi
     private double mu_m;
     private int maxIt;
     private int elitismCount;
@@ -35,7 +35,7 @@ public class Params {
     public void insertParam(String filepath, int K, int P, int weightMethod, double mu_m, int maxIt, int elitismCount, int convergeGen, double convergeEpsilon){
         this.K=K;
         this.P=P;
-        this.weightMethod=weightMethod;
+        this.weightingMethod=weightMethod;
         this.mu_m=mu_m;
         this.maxIt=maxIt;
         this.elitismCount=elitismCount;
@@ -52,8 +52,8 @@ public class Params {
         return P;
     }
 
-    public int getWeightMethod() {
-        return weightMethod;
+    public int getWeightingMethod() {
+        return weightingMethod;
     }
 
     public double getMu_m() {

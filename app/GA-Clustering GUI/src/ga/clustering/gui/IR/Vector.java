@@ -18,21 +18,31 @@ import java.util.Set;
 public class Vector {
 
     private HashMap<String, Double> termsWeight;
-    private SimilarityCalculator distanceCalculator;
+    private SimilarityCalculator similarityCalculator;
     private TermWeighting termWeighting;
     
 
     public Vector(HashMap<String, Integer> wordCount) {
         termsWeight = new HashMap<>();
 
-        distanceCalculator = new CosineSimilarityCalculator();
-        if(Params.getInstance().getWeightMethod()==0){
+        similarityCalculator = new CosineSimilarityCalculator();
+        if(Params.getInstance().getWeightingMethod()==0){
             termWeighting=new TFIDFWeighting();
         }else{
             termWeighting=new FrequencyWeighting();
         }
         
         generateVector(wordCount);
+    }
+    
+    public Vector(Vector v){
+        similarityCalculator = new CosineSimilarityCalculator();
+        if(Params.getInstance().getWeightingMethod()==0){
+            termWeighting=new TFIDFWeighting();
+        }else{
+            termWeighting=new FrequencyWeighting();
+        }
+        this.termsWeight=new HashMap<>(v.getTermsWeight());
     }
 
     private void generateVector(HashMap<String, Integer> wordCount){
@@ -51,20 +61,18 @@ public class Vector {
         return termWeighting.calculateWeight(term, wordCount);
     }
 
-    public double calculateDistance(Vector otherVSM) {
-        return distanceCalculator.calculateDistance(this, otherVSM);
-    }
-
-    @Override
-    public String toString() {
-        return termsWeight.toString();
+    public double calculateSimilarity(Vector otherVector) {
+        return similarityCalculator.calculateSimilarity(this, otherVector);
     }
     
     public void mutate(){
         Random rand=new Random();
 //        System.out.println("tw: "+termsWeight.size());
         String key=(String) termsWeight.keySet().toArray()[rand.nextInt(termsWeight.size())];
-        termsWeight.put(key, rand.nextDouble()*termsWeight.get(key)*2);//mutasi dari 0 - nilai sendiri dikali 2
+        double value=termsWeight.get(key);
+        double newVal=value+(rand.nextBoolean()?value*2*rand.nextDouble():value*-2*rand.nextDouble());
+//        System.out.println(key);
+        termsWeight.put(key, newVal);//mutasi dari 0 - nilai sendiri dikali 2
     }
 
     public void setTermsWeight(HashMap<String, Double> termsWeight) {

@@ -6,7 +6,6 @@
 package ga.clustering.gui.KMeans;
 
 
-import ga.clustering.gui.GA.Clusterer;
 import ga.clustering.gui.GA.Params;
 import ga.clustering.gui.IR.Document;
 import ga.clustering.gui.IR.Lexicon;
@@ -28,15 +27,22 @@ import javafx.beans.property.ReadOnlyDoubleWrapper;
 public class KMeans {
 
     private List<Document> docs;
-    private HashMap<Document, Integer> last;
+    private HashMap<Document, Integer> solution;
     private static KMeans instance;
-    private double lastIntracluster;
+    private double solutionIntracluster;
+    
+    private boolean isRunning;
     
     private final ReadOnlyDoubleWrapper progress = new ReadOnlyDoubleWrapper();
     
     private KMeans(){
         docs=new LinkedList<>();
-        lastIntracluster=-1;
+        solutionIntracluster=-1;
+        this.isRunning=true;
+    }
+
+    public void setIsRunning(boolean isRunning) {
+        this.isRunning = isRunning;
     }
     
     public double getProgress() {
@@ -47,8 +53,8 @@ public class KMeans {
         return progress ;
     }
 
-    public HashMap<Document, Integer> getLast() {
-        return last;
+    public HashMap<Document, Integer> getSolution() {
+        return solution;
     }
     
     public static KMeans getInstance(){
@@ -97,12 +103,22 @@ public class KMeans {
         
         System.out.println("init done");
         
+        if(!isRunning){
+            progress.set(0);
+            return;
+        }
+        
         iteration:
         for (int a = 0; a < maxIt; a++) {
             progress.set(0);
             System.out.println("it-"+(a+1));
             HashMap<Document, Integer> cluster=determineCluster(docs, centroids);
             System.out.println("assign");
+            
+            if(!isRunning){
+                progress.set(0);
+                return;
+            }
 
             HashMap<String, Double> sumOfCentroid[] = new HashMap[k];
             for (int i = 0; i < k; i++) {
@@ -118,6 +134,10 @@ public class KMeans {
                         sumOfCentroid[clusterCode].put(term, curValue);
                     }
                 }
+                if(!isRunning){
+                    progress.set(0);
+                    return;
+                }
                 pointCount[clusterCode]++;
             }
             System.out.println("recompute");
@@ -125,6 +145,10 @@ public class KMeans {
                 HashMap<String,Double> temp=new HashMap<>();
                 for (String term : Lexicon.getInstance().getAllTermList()) {
                     double nextValue = sumOfCentroid[i].containsKey(term) ? sumOfCentroid[i].get(term) : 0;
+                    if(!isRunning){
+                        progress.set(0);
+                        return;
+                    }
                     nextValue = pointCount[i] == 0.0 ? 0.0 : nextValue / pointCount[i];
                     if (nextValue != 0) {
 //                        centroids[i].setWeight(term, nextValue);
@@ -133,28 +157,32 @@ public class KMeans {
                 }
                 centroids[i].setTermsWeight(temp);
             }
-            System.out.println(Arrays.toString(pointCount));
+//            System.out.println(Arrays.toString(pointCount));
             System.out.println(computeIntracluster(cluster, centroids));
-            if(last==null)last=cluster;
+            if(!isRunning){
+                progress.set(0);
+                return;
+            }
+            if(solution==null)solution=cluster;
             else{
                 for (int i = 0; i < docs.size(); i++) {
-                    int before=last.get(docs.get(i));
+                    int before=solution.get(docs.get(i));
                     int cur=cluster.get(docs.get(i));
                     if(before!=cur){
-                        last=cluster;
+                        solution=cluster;
                         continue iteration;
                     }
                 }
-                lastIntracluster=computeIntracluster(cluster, centroids);
+                solutionIntracluster=computeIntracluster(cluster, centroids);
                 return;
             }
             progress.set((a+1)*1.0/maxIt);
         }
-        lastIntracluster=computeIntracluster(last, centroids);
+        solutionIntracluster=computeIntracluster(solution, centroids);
     }
 
-    public double getLastIntracluster() {
-        return lastIntracluster;
+    public double getSolutionIntracluster() {
+        return solutionIntracluster;
     }
     
     private double computeIntracluster(HashMap<Document, Integer> cluster, Vector[] centroids){
@@ -162,7 +190,7 @@ public class KMeans {
 //        determineCluster(docs, centroids);
         for (int i = 0; i < docs.size(); i++) {
             int clusterCode=cluster.get(docs.get(i));
-            double tmp=docs.get(i).getVector().calculateDistance(centroids[clusterCode]);
+            double tmp=docs.get(i).getVector().calculateSimilarity(centroids[clusterCode]);
             res+=tmp;
         }
         return res;
@@ -174,7 +202,7 @@ public class KMeans {
             int cluster=-1;
             double similarity=Double.MIN_VALUE;
             for (int j = 0; j < centroids.length; j++) {
-                double temp=docs.get(i).getVector().calculateDistance(centroids[j]);
+                double temp=docs.get(i).getVector().calculateSimilarity(centroids[j]);
                 if(temp>similarity){
                     similarity=temp;
                     cluster=j;

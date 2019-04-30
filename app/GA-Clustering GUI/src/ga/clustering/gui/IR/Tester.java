@@ -21,6 +21,6 @@ public class Tester {
         Document d4=new Document(new File("D:\\DAVID\\University\\Semester 7\\SKRIPSI\\Skripsi\\app\\GA-Clustering\\dataset\\bbc\\business\\004.txt"));
         Document d5=new Document(new File("D:\\DAVID\\University\\Semester 7\\SKRIPSI\\Skripsi\\app\\GA-Clustering\\dataset\\bbc\\business\\005.txt"));
         System.out.println(d1.getVector().getLength());
-        System.out.println(d1.getVector().calculateDistance(d1.getVector()));
+        System.out.println(d1.getVector().calculateSimilarity(d1.getVector()));
     }
 }

@@ -10,5 +10,5 @@ package ga.clustering.gui.IR;
  * @author CorneliusDavid
  */
 public abstract class SimilarityCalculator {
-    public abstract double calculateDistance(Vector vsm1,Vector vsm2);
+    public abstract double calculateSimilarity(Vector vector1,Vector vector2);
 }

@@ -18,7 +18,11 @@ public class Gene {
     private Vector value;
 
     public Gene(Vector value) {
-        this.value = value;
+        this.value = new Vector(value);
+    }
+    
+    public Gene(Gene g){
+        this.value=new Vector(g.value);
     }
 
     public Vector getValue() {
@@ -27,14 +31,5 @@ public class Gene {
     
     public void mutate(){
         value.mutate();
-    }
-
-    @Override
-    public String toString() {
-        return value.toString();
-    }
-    
-    public void setTermsWeight(HashMap<String, Double> termsWeight) {
-        this.value.setTermsWeight(termsWeight);
     }
 }

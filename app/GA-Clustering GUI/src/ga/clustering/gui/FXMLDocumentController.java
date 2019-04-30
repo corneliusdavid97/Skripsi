@@ -5,8 +5,7 @@
  */
 package ga.clustering.gui;
 
-import ga.clustering.gui.GA.Chromosome;
-import ga.clustering.gui.GA.Clusterer;
+import ga.clustering.gui.GA.GAClusterer;
 import ga.clustering.gui.GA.Params;
 import ga.clustering.gui.IR.Document;
 import ga.clustering.gui.KMeans.KMeans;
@@ -22,6 +21,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map.Entry;
 import java.util.ResourceBundle;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -113,6 +113,9 @@ public class FXMLDocumentController implements Initializable {
     @FXML
     private Button KMbuttonMulai;
     
+    @FXML
+    private Label KMLabelProgress;
+    
     private Thread thread;
     
     private long runningTime;
@@ -160,12 +163,12 @@ public class FXMLDocumentController implements Initializable {
         this.spinnerConvergeLimit.setValueFactory(limitValueFactory);
         
         //elitism
-        SpinnerValueFactory<Integer> elitismValueFactory =new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.MAX_VALUE,1);
+        SpinnerValueFactory<Integer> elitismValueFactory =new SpinnerValueFactory.IntegerSpinnerValueFactory(0,Integer.MAX_VALUE,1);
         this.spinnerElitism.setValueFactory(elitismValueFactory);
         attachWarning();
         
         //converge Generation
-        SpinnerValueFactory<Integer> convergeGenValueFactory =new SpinnerValueFactory.IntegerSpinnerValueFactory(1,Integer.MAX_VALUE,3);
+        SpinnerValueFactory<Integer> convergeGenValueFactory =new SpinnerValueFactory.IntegerSpinnerValueFactory(2,Integer.MAX_VALUE,3);
         this.spinnerConvergeGen.setValueFactory(convergeGenValueFactory);
         
         //KMEANS
@@ -256,23 +259,6 @@ public class FXMLDocumentController implements Initializable {
         }
     }
     
-    private void stop(){
-        //disable all
-        this.buttonDokumen.disableProperty().set(false);
-        this.spinnerCluster.disableProperty().set(false);
-        this.spinnerConvergeGen.disableProperty().set(false);
-        this.spinnerConvergeLimit.disableProperty().set(false);
-        this.spinnerElitism.disableProperty().set(false);
-        this.spinnerMaxIterasi.disableProperty().set(false);
-        this.spinnerMutasi.disableProperty().set(false);
-        this.spinnerPopulasi.disableProperty().set(false);
-        this.choiceBoxWeighting.disableProperty().set(false);
-        this.textFieldDokumen.disableProperty().set(false);
-        this.textFieldHasil.disableProperty().set(false);
-        this.buttonHasil.disableProperty().set(false);
-        this.buttonMulai.setText("Mulai");
-    }
-    
     public void reset(){
         this.buttonDokumen.disableProperty().set(false);
         this.spinnerCluster.disableProperty().set(false);
@@ -287,6 +273,15 @@ public class FXMLDocumentController implements Initializable {
         this.textFieldHasil.disableProperty().set(false);
         this.buttonHasil.disableProperty().set(false);
         this.buttonMulai.setText("Mulai");
+        this.tabGA.disableProperty().set(false);
+        this.tabKMeans.disableProperty().set(false);
+        
+        this.curIt=0;
+        this.iteration=0;
+        this.labelProgress.textProperty().unbind();
+        this.labelProgress.setText("");
+        this.runningTime=0;
+        GAClusterer.getInstance().reset();
     }
     
     public void start() throws Exception{
@@ -319,22 +314,22 @@ public class FXMLDocumentController implements Initializable {
         int convergeGen=(int)this.spinnerConvergeGen.getValue();
         double convergeEpsilon=Double.parseDouble(this.spinnerConvergeLimit.getValue().toString());
         
-        curIt=0;
+        curIt=1;
         Params.getInstance().insertParam(filepath, K, P, weightMethod, mu_m, maxIt, elitismCount, convergeGen, convergeEpsilon);
         task=new Task() {
             @Override
             protected Object call() throws Exception {
-                Clusterer.getInstance().progressProperty().addListener((obs, oldProgress, newProgress) -> {
+                GAClusterer.getInstance().progressProperty().addListener((obs, oldProgress, newProgress) -> {
                     if(newProgress.doubleValue()==1){
-                        updateMessage(String.format("Generasi %d/%d",++curIt,maxIt));
+                        updateMessage(String.format("Generasi %d",++curIt));
                     }
                     updateProgress(newProgress.doubleValue(), 1);
                 });
                 updateMessage("Inisialisasi...");
-                Clusterer.getInstance().initialize();
-                updateMessage("Generasi 0/"+maxIt);
+                GAClusterer.getInstance().initialize();
+                updateMessage("Generasi 1");
                 updateProgress(0, 100);
-                Clusterer.getInstance().getClusteringTask();
+                GAClusterer.getInstance().cluster();
                 return true;
             }
         };
@@ -355,6 +350,7 @@ public class FXMLDocumentController implements Initializable {
         this.textFieldHasil.disableProperty().set(true);
         this.buttonHasil.disableProperty().set(true);
         this.buttonMulai.setText("Berhenti");
+        this.tabKMeans.disableProperty().set(true);
         
         thread=new Thread(task);
         long currentTime=System.currentTimeMillis();
@@ -363,16 +359,30 @@ public class FXMLDocumentController implements Initializable {
         task.setOnSucceeded((event) -> {
             this.buttonMulai.setText("Reset");
             this.runningTime=System.currentTimeMillis()-currentTime;
-            writeToFile("GA",Clusterer.getInstance().getSolution().getClusteringResult(), Clusterer.getInstance().getSolution().getFitness());
+            iteration=curIt-1;
+            writeToFile("GA",GAClusterer.getInstance().getSolution().getClusteringResult(), GAClusterer.getInstance().getSolution().getFitness());
             this.labelProgress.textProperty().unbind();
-            this.labelProgress.setText("");
+            this.labelProgress.setText("Selesai");
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    KMprogressBar.setProgress(0);
+                }
+            });
         });
         
         task.setOnCancelled((event) -> {
             task.cancel();
-            stop();
+            GAClusterer.getInstance().setIsRunning(false);
             this.labelProgress.textProperty().unbind();
             this.labelProgress.setText("");
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+                    KMprogressBar.setProgress(0);
+                }
+            });
+            reset();
         });
     }
     
@@ -398,7 +408,7 @@ public class FXMLDocumentController implements Initializable {
             protected Object call() throws Exception {
                 KMeans.getInstance().progressProperty().addListener((obs, oldProgress, newProgress) -> {
                     if(newProgress.doubleValue()==1){
-                        updateMessage(String.format("Generasi %d/%d",++curIt,maxIt));
+                        updateMessage(String.format("Generasi %d",++curIt));
                     }
                     updateProgress(newProgress.doubleValue(), 1);
                 });
@@ -416,9 +426,15 @@ public class FXMLDocumentController implements Initializable {
         task.setOnSucceeded((event) -> {
             this.KMbuttonMulai.setText("Reset");
             this.runningTime=System.currentTimeMillis()-currentTime;
-            writeToFile("KMeans",KMeans.getInstance().getLast(), KMeans.getInstance().getLastIntracluster());
+            writeToFile("KMeans",KMeans.getInstance().getSolution(), KMeans.getInstance().getSolutionIntracluster());
             this.labelProgress.textProperty().unbind();
-            this.labelProgress.setText("");
+            this.labelProgress.setText("Selesai");
+            Platform.runLater(new Runnable() {
+                @Override
+                public void run() {
+//                    KMprogressBar.setProgress(0);
+                }
+            });
         });
         thread=new Thread(task);
         thread.start();
@@ -465,7 +481,7 @@ public class FXMLDocumentController implements Initializable {
             bw.write("Parameter: \r\n");
             if(Params.getInstance().getK()!=-1)bw.write("Banyaknya Cluster,"+Params.getInstance().getK()+"\r\n");
             if(Params.getInstance().getP()!=-1)bw.write("Banyaknya Populasi,"+Params.getInstance().getP()+"\r\n");
-            if(Params.getInstance().getWeightMethod()!=-1)bw.write("Metode Pembobotan,"+(Params.getInstance().getWeightMethod()==0?"TF-IDF":"Frekuensi")+"\r\n");
+            if(Params.getInstance().getWeightingMethod()!=-1)bw.write("Metode Pembobotan,"+(Params.getInstance().getWeightingMethod()==0?"TF-IDF":"Frekuensi")+"\r\n");
             if(Params.getInstance().getMu_m()!=-1)bw.write("Probabilitas Mutasi,"+Params.getInstance().getMu_m()+"\r\n");
             if(Params.getInstance().getMaxIt()!=-1)bw.write("Maksimum Iterasi,"+Params.getInstance().getMaxIt()+"\r\n");
             if(Params.getInstance().getElitismCount()!=-1)bw.write("Individu Elitisme,"+Params.getInstance().getElitismCount()+"\r\n");
