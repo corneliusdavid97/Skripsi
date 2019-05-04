@@ -1,0 +1,98 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="433.0" prefWidth="665.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ga.clustering.gui.FXMLDocumentController">
+    <children>
+      <Label layoutX="30.0" layoutY="23.0" text="Direktori Dokumen: " />
+      <TextField fx:id="textFieldDokumen" editable="false" layoutX="176.0" layoutY="19.0" prefHeight="25.0" prefWidth="354.0" />
+      <Button fx:id="buttonDokumen" layoutX="551.0" layoutY="19.0" mnemonicParsing="false" onAction="#chooseDocument" prefHeight="25.0" prefWidth="59.0" text="Pilih" />
+      <Label layoutX="30.0" layoutY="60.0" text="Direktori Hasil:" />
+      <TextField fx:id="textFieldHasil" editable="false" layoutX="176.0" layoutY="56.0" prefHeight="25.0" prefWidth="354.0" />
+      <Button fx:id="buttonHasil" layoutX="551.0" layoutY="56.0" mnemonicParsing="false" onAction="#chooseResult" prefHeight="25.0" prefWidth="59.0" text="Pilih" />
+      <TabPane layoutY="90.0" prefHeight="343.0" prefWidth="665.0" styleClass="floating" tabClosingPolicy="UNAVAILABLE">
+        <tabs>
+          <Tab fx:id="tabGA" text="Genetic Algorithm">
+               <content>
+                  <AnchorPane prefHeight="316.0" prefWidth="665.0">
+                     <children>
+                        <Label layoutX="30.0" layoutY="10.0" text="Parameter: ">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Spinner fx:id="spinnerCluster" layoutX="199.0" layoutY="48.0" prefHeight="25.0" prefWidth="104.0" />
+                        <Label layoutX="51.0" layoutY="51.0" text="Banyaknya Cluster (K)" />
+                        <Label layoutX="51.0" layoutY="90.0" text="Banyaknya Populasi (P)" />
+                        <Label layoutX="51.0" layoutY="127.0" text="Metode Pembobotan" />
+                        <Label layoutX="51.0" layoutY="164.0" text="Probabilitas Mutasi (   )" />
+                        <Label layoutX="51.0" layoutY="201.0" text="Maksimum iterasi" />
+                        <ProgressBar fx:id="progressBar" layoutX="28.0" layoutY="251.0" prefHeight="28.0" prefWidth="482.0" progress="0.0" />
+                        <Button fx:id="buttonMulai" layoutX="518.0" layoutY="245.0" mnemonicParsing="false" onAction="#start" prefHeight="42.0" prefWidth="134.0" text="Mulai">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Label layoutX="338.0" layoutY="52.0" text="Individu Elitisme" />
+                        <Label layoutX="338.0" layoutY="91.0" text="Banyaknya Generasi Konvergen" />
+                        <Label layoutX="338.0" layoutY="128.0" text="Batas Konvergen" />
+                        <Spinner fx:id="spinnerPopulasi" layoutX="199.0" layoutY="88.0" prefHeight="25.0" prefWidth="104.0" />
+                        <Spinner fx:id="spinnerMutasi" layoutX="199.0" layoutY="162.0" prefHeight="25.0" prefWidth="104.0" />
+                        <Spinner fx:id="spinnerMaxIterasi" layoutX="199.0" layoutY="198.0" prefHeight="25.0" prefWidth="104.0" />
+                        <Spinner fx:id="spinnerElitism" layoutX="522.0" layoutY="48.0" prefHeight="25.0" prefWidth="104.0" />
+                        <Spinner fx:id="spinnerConvergeGen" layoutX="522.0" layoutY="88.0" prefHeight="25.0" prefWidth="104.0" />
+                        <ChoiceBox fx:id="choiceBoxWeighting" layoutX="199.0" layoutY="124.0" prefHeight="25.0" prefWidth="105.0" />
+                        <Spinner fx:id="spinnerConvergeLimit" layoutX="522.0" layoutY="124.0" prefHeight="25.0" prefWidth="104.0" />
+                        <Label layoutX="159.0" layoutY="164.0" text="u">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                        </Label>
+                        <Label layoutX="165.0" layoutY="173.0" text="m">
+                           <font>
+                              <Font size="5.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="labelProgress" layoutX="30.0" layoutY="282.0" prefHeight="17.0" prefWidth="477.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+          </Tab>
+          <Tab fx:id="tabKMeans" text="K-Means">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Label fx:id="KMLabelProgress" layoutX="30.0" layoutY="282.0" prefHeight="17.0" prefWidth="477.0" />
+                        <ProgressBar fx:id="KMprogressBar" layoutX="28.0" layoutY="251.0" prefHeight="28.0" prefWidth="480.0" progress="0.0" />
+                        <Button fx:id="KMbuttonMulai" layoutX="518.0" layoutY="245.0" mnemonicParsing="false" onAction="#KMStart" prefHeight="42.0" prefWidth="134.0" text="Mulai">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Button>
+                        <Spinner fx:id="KMspinnerMaxIterasi" layoutX="200.0" layoutY="123.0" prefHeight="25.0" prefWidth="104.0" />
+                        <Label layoutX="30.0" layoutY="10.0" text="Parameter: ">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Label>
+                        <Spinner fx:id="KMspinnerCluster" layoutX="199.0" layoutY="48.0" prefHeight="25.0" prefWidth="104.0" />
+                        <Label layoutX="51.0" layoutY="51.0" text="Banyaknya Cluster (K)" />
+                        <Label layoutX="51.0" layoutY="90.0" text="Metode Pembobotan" />
+                        <Label layoutX="51.0" layoutY="127.0" text="Maksimum iterasi" />
+                        <ChoiceBox fx:id="KMchoiceBoxWeighting" layoutX="199.0" layoutY="86.0" prefHeight="25.0" prefWidth="105.0" />
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+        </tabs>
+      </TabPane>
+    </children>
+</AnchorPane>

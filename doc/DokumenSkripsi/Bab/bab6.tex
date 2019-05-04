@@ -1,0 +1,20 @@
+\chapter{Kesimpulan dan Saran}
+\label{chap:kesimpulan}
+
+\section{Kesimpulan}
+Kesimpulan yang dapat diambil dari penelitian ini adalah sebagai berikut:
+
+\begin{enumerate}
+	\item Algoritma genetika dapat digunakan dalam pengelompokan dokumen. Namun, diperlukan beberapa adaptasi terhadap komponen-komponen dalam algoritma genetika sebelum dapat digunakan untuk mengelompokkan dokumen. Adaptasi perlu dilakukan terhadap representasi kromosom, fungsi \textit{fitness}, seleksi, persilangan, dan mutasi yang telah dijelaskan pada Bab \ref{chap:analisis}.
+	\item Berdasarkan hasil pengujian, \textit{intracluster similarity} kurang merepresentasikan seberapa baik suatu hasil pengelompokan. 
+	\item Nilai \textit{purity} dari hasil pengelompokan menggunakan algoritma genetika lebih baik 56\% dibandingkan dengan menggunakan agloritma K-means berdasarkan hasil eksperimen. Hal ini terjadi karena algoritma genetika dapat dengan lebih baik mengatasi \textit{local optimum} dibandingkan dengan algoritma \textit{K-means}. Namun dari segi waktu, algoritma genetika membutuhkan waktu 4365\% lebih lama dibandingkan dengan algoritma \textit{K-means}. Hal ini disebabkan oleh proses komputasi yang dilakukan pada algoritma genetika jauh lebih banyak dan kompleks dibandingkan dengan algoritma \textit{K-means}.
+	\item Representasi kromosom yang kurang tepat juga menjadi alasan algoritma genetika berjalan dengan lambat. Mulai generasi kedua, \textit{centroid} yang menyusun kromosom akan memiliki dimensi yang sangat besar (sesuai dengan banyaknya \textit{term} berbeda yang ada pada \textit{lexicon}). \textit{Centroid} dengan dimensi yang besar akan memperlambat proses perhitungan \textit{fitness}. 
+\end{enumerate}
+
+\section{Saran}
+Saran dari penulis untuk peneliti selanjutnya agar dapat mengembangkan penelitian ini adalah sebagai berikut:
+
+\begin{enumerate}
+	\item Mencari suatu metrik yang dapat mengukur seberapa baik suatu hasil pengelompokan yang dapat menggantikan \textit{intracluster similarity}.
+	\item Menggunakan representasi kromosom yang lain sehingga dapat menjaga agar dimensi dari \textit{centroid} tidak terlalu besar. Hal ini dapat dilakukan dengan mengubah representasi kromosom menjadi dokumen dan keanggotaannya dalam \textit{cluster}.
+\end{enumerate}

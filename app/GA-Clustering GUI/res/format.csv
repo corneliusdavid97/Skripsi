@@ -1,0 +1,25 @@
+Direktori Dokumen:,D:\DAVID\University\Semester 7\SKRIPSI\Skripsi\app\GA-Clustering\dataset\bbc,,,
+ ,,,,
+Parameter: ,,,,
+Banyaknya Cluster,5,,,
+Banyaknya Populasi,100,,,
+Metode Pembobotan,TF-IDF,,,
+Probabilitas Mutasi,0.05,,,
+Maksimum Iterasi,100,,,
+Individu Elitisme,1,,,
+Banyaknya Generasi Konvergen,3,,,
+Batas Konvergen,1.00E-05,,,
+ ,,,,
+Hasil: ,,,,
+Waktu,20 menit 6 detik,,,
+Intracluster,565.9675341,,,
+Banyak Iterasi,4,,,
+ ,,,,
+Hasil Clustering: ,,,,
+C1,C2,C3,C4,C5
+tech\020.txt,entertainment\267.txt,tech\207.txt,sport\418.txt,sport\262.txt
+tech\128.txt,entertainment\279.txt,tech\234.txt,sport\134.txt,sport\391.txt
+tech\012.txt,business\220.txt,tech\229.txt,sport\394.txt,sport\389.txt
+tech\014.txt,entertainment\342.txt,tech\005.txt,sport\379.txt,sport\243.txt
+tech\334.txt,sport\471.txt,tech\359.txt,sport\305.txt,sport\206.txt
+…,…,…,…,…

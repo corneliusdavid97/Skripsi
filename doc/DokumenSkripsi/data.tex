@@ -31,8 +31,8 @@
 % Isilah dengan 0 atau 1 (e.g. \daftarIsiError{1}). 
 % Pemilihan 0 atau 1 silahkan disesuaikan dengan hasil PDF yang dihasilkan.
 %=============================================================================
-%\daftarIsiError{0}   
-\daftarIsiError{1}   
+\daftarIsiError{0}   
+%\daftarIsiError{1}   
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -81,9 +81,9 @@
 % Mode default adalah 'template' yang menghasilkan isian berwarna merah, 
 % aktifkan salah satu mode di bawah ini :
 %=============================================================================
-\mode{bimbingan} 		% untuk keperluan bimbingan
+%\mode{bimbingan} 		% untuk keperluan bimbingan
 %\mode{sidang} 			% untuk sidang 1
-%\mode{sidangakhir} 	% untuk sidang 2 / sidang pada Skripsi 2(IF)
+\mode{sidangakhir} 	% untuk sidang 2 / sidang pada Skripsi 2(IF)
 %\mode{final} 			% untuk mencetak buku skripsi 
 %=============================================================================
 
@@ -204,8 +204,8 @@
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda
 %=============================================================================
 \namanpm{Cornelius David Herianto}{2015730034}
-\tanggal{<<tanggal>>}{<<bulan>>}{<<tahun>>}
-\pembimbing{\TAB}{}    
+\tanggal{<<tanggal>>}{<<bulan>>}{2019}
+\pembimbing{\KDH}{}    
 \penguji{<<penguji 1>>}{<<penguji 2>>} 
 %=============================================================================
 
@@ -235,8 +235,17 @@
 % - hilangkan tanda << & >>, dan isi sesuai dengan data anda
 % - langsung mulai setelah '{' awal, jangan mulai menulis di baris bawahnya
 %=============================================================================
-\abstrakINA{<<Tuliskan abstrak anda di sini, dalam bahasa Indonesia>>}
-\abstrakENG{<<Tuliskan abstrak anda di sini, dalam bahasa Inggris>>} 
+\abstrakINA{Pengelompokan (\textit{clustering}) merupakan sebuah metode untuk menggabungkan himpunan objek ke dalam kelompok-kelompok sedemikan rupa sehingga objek dalam kelompok (\textit{cluster}) lebih mirip (karena suatu hal) satu sama lain daripada objek di kelompok lain \cite{gan2007data}. Salah satu algoritma pengelompokan yang paling sering digunakan adalah \textit{K-means}. Namun, algoritma \textit{K-means} memiliki kekurangan yaitu dapat terjebak dalam \textit{local optimum}. \textit{Local optimum} adalah suatu solusi yang optimal (baik maksimal maupun minimal) diantara kandidat solusi yang berdekatan dalam masalah optimasi. Dikatakan lokal karena solusi ini hanya optimal apabila dibandingkan dengan kandidat solusi yang berdekatan, tidak optimal secara keseluruhan (\textit{global optimum}).
+
+Algoritma genetika atau biasa disebut \textit{Genetic Algorithm} (GA) adalah suatu algoritma pencarian yang terinspirasi dari proses seleksi alam yang terjadi secara alami dalam proses evolusi. GA merupakan metode penyelesaian masalah yang menggunakan genetika sebagai pemodelannya. Suatu calon solusi dalam GA dimodelkan sebagai suatu individu. Kumpulan individu-individu ini disebut dengan populasi. Setiap individu dalam populasi direpresentasikan dengan kromosom. Kromosom merupakan kumpulan parameter yang membentuk suatu solusi. Parameter-parameter yang menyusun kromosom disebut dengan gen. Setiap kromosom memiliki suatu nilai yang terkait dengan \textit{fitness} dari solusi yang direpresentasikannya. Nilai itu biasanya disebut dengan nilai \textit{fitness}. 
+
+Dalam penelitian ini, GA akan digunakan sebagai solusi dari masalah \textit{local optimum}. \textit{Local optimum} dapat diatasi oleh GA yang sudah terbukti efektif dalam masalah pencarian dan optimasi. Dalam penelitian ini, GA dapat digunakan untuk mengelompokkan dokumen dengan beberapa adaptasi terhadap representasi kromosom, fungsi \textit{fitness}, seleksi, persilangan, dan mutasi. Algoritma genetika dan algoritma \textit{K-means} akan diuji menggunakan suatu \textit{dataset} berlabel untuk membandingkan waktu dan hasil pengelompokan dari kedua algoritma tersebut.}
+
+\abstrakENG{Clustering is a method of creating groups of objects, or clusters, in such a way that objects in one cluster are very similar and objects in different clusters are quite distinct \cite{gan2007data}. One of the most frequently used algorithm in clustering is K-means. However, K-means can easily stuck in local optimum. Local optimum of an optimization problem is a solution that is optimal (either maximal or minimal) within a neighboring set of candidate solutions. This is in contrast to a global optimum, which is the optimal solution among all possible solutions, not just those in a particular neighborhood of values.
+
+Genetic Algorithm (GA) is a search algorithm inspired by the natural selection process that occurs naturally in the evolutionary process. GA is a problem solving method that used genetics as its model. A solution candidate is modelled as an individual in GA. Set of these individuals are called population. Every individual in a population is represented by a chromosome. Chromosome is a collection of parameters which formed a solution. That parameters is called gene. Every individual in the population is assigned, by means of a fitness function, a measure of its goodness
+
+In this study, GA will be used as a solution to local optimum, which have proven to be effective in search and optimization problems. GA can be used to cluster documents by adapting chromosome representation, fitness function, selection, crossover, and mutation. Genetic algorithm and K-means algorithm will be tested using a labeled dataset to compare their running time and clustering result.} 
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -248,8 +257,8 @@
 % - kunciENG: keywords in english
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda.
 %=============================================================================
-\kunciINA{<<Tuliskan di sini kata-kata kunci yang anda gunakan, dalam bahasa Indonesia>>}
-\kunciENG{<<Tuliskan di sini kata-kata kunci yang anda gunakan, dalam bahasa Inggris>>}
+\kunciINA{Algoritma genetika, Pengelompokan dokumen, Algoritma \textit{K-means}, TF-IDF, \textit{Local optimum}}
+\kunciENG{Genetic algorithm, Document clustering, K-means algorithm, TF-IDF, Local optimum}
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -300,5 +309,7 @@
 \makeatletter
 \renewcommand{\ALG@name}{Algoritma}
 \makeatother
+
+
 
 %=============================================================================

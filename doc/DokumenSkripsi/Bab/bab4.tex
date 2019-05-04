@@ -3,6 +3,44 @@
 
 Pada bab ini dijelaskan mengenai beberapa perancangan yang dilakukan dalam penelitian ini yaitu rancangan kelas dan rancangan antarmuka pengguna
 
+\section{Kebutuhan Masukan dan Keluaran}
+Seluruh kebutuhan masukan dari perangkat lunak ini akan diakomodasi oleh antarmuka pengguna (Graphical User Interface). Rincian masukan melalui antarmuka pengguna akan dibahas lebih lanjut pada Subbab \ref{sec:guidesign}. Keluaran dari perangkat lunak ini adalah sebuah \textit{file} berformat \textit{CSV} sehingga dapat dibuka dan diolah lebih lanjut dengan perangkat pengolah \textit{spreadsheet} seperti Microsoft Excel. \textit{File} ini berisi laporan mengenai parameter masukan, hasil pengelompokan, nilai fitness, dan waktu yang dibutuhkan untuk melakukan seluruh proses tersebut. Contoh \textit{file} tersebut dapat dilihat pada Tabel \ref{tbl:csv-example}. 
+
+\textit{File} ini dinamai berdasarkan algoritma dan waktu penulisan dengan format "algoritma-YYYY.MM.DD hh{\_}mm{\_}ss.csv". Sebagai contoh apabila pengelompokan menggunakan algoritma genetika dan dilakukan pada tanggal 30 Januari 2019 pukul 08:15:30 maka nama dari \textit{file} yang dihasilkan adalah "GA-2019.01.30 08{\_}15{\_}30.csv". Apabila algoritma yang digunakan adalah \textit{K-means} maka nama \textit{file} yang dihasilkan adalah "KMeans-2019.01.30 08{\_}15{\_}30.csv".
+
+\begin{table}[H]
+\begin{tabular}{lllll}
+Direktori Dokumen:                                 & \multicolumn{4}{l}{D:\textbackslash{}dataset\textbackslash{}bbc} \\
+                                                   &                                                                &                                                       &                                                        &                                                       \\
+Parameter:                                         &                                                                &                                                       &                                                        &                                                       \\ \cline{1-2}
+\multicolumn{1}{|l|}{Banyaknya Cluster}            & \multicolumn{1}{l|}{5}                                         &                                                       &                                                        &                                                       \\ \cline{1-2}
+\multicolumn{1}{|l|}{Banyaknya Populasi}           & \multicolumn{1}{l|}{100}                                       &                                                       &                                                        &                                                       \\ \cline{1-2}
+\multicolumn{1}{|l|}{Metode Pembobotan}            & \multicolumn{1}{l|}{TF-IDF}                                    &                                                       &                                                        &                                                       \\ \cline{1-2}
+\multicolumn{1}{|l|}{Probabilitas Mutasi}          & \multicolumn{1}{l|}{0.05}                                      &                                                       &                                                        &                                                       \\ \cline{1-2}
+\multicolumn{1}{|l|}{Maksimum Iterasi}             & \multicolumn{1}{l|}{100}                                       &                                                       &                                                        &                                                       \\ \cline{1-2}
+\multicolumn{1}{|l|}{Individu Elitisme}            & \multicolumn{1}{l|}{1}                                         &                                                       &                                                        &                                                       \\ \cline{1-2}
+\multicolumn{1}{|l|}{Banyaknya Generasi Konvergen} & \multicolumn{1}{l|}{3}                                         &                                                       &                                                        &                                                       \\ \cline{1-2}
+\multicolumn{1}{|l|}{Batas Konvergen}              & \multicolumn{1}{l|}{1.00E-05}                                  &                                                       &                                                        &                                                       \\ \cline{1-2}
+                                                   &                                                                &                                                       &                                                        &                                                       \\
+Hasil:                                             &                                                                &                                                       &                                                        &                                                       \\ \cline{1-2}
+\multicolumn{1}{|l|}{Waktu}                        & \multicolumn{1}{l|}{20 menit 6 detik}                          &                                                       &                                                        &                                                       \\ \cline{1-2}
+\multicolumn{1}{|l|}{Intracluster}                 & \multicolumn{1}{l|}{565.9675341}                               &                                                       &                                                        &                                                       \\ \cline{1-2}
+\multicolumn{1}{|l|}{Banyak Iterasi}               & \multicolumn{1}{l|}{4}                                         &                                                       &                                                        &                                                       \\ \cline{1-2}
+                                                   &                                                                &                                                       &                                                        &                                                       \\
+Hasil Clustering:                                  &                                                                &                                                       &                                                        &                                                       \\
+C1                                                 & C2                                                             & C3                                                    & C4                                                     & C5                                                    \\ \hline
+\multicolumn{1}{|l|}{tech\textbackslash{}020.txt}  & \multicolumn{1}{l|}{entertainment\textbackslash{}267.txt}      & \multicolumn{1}{l|}{tech\textbackslash{}207.txt}      & \multicolumn{1}{l|}{sport\textbackslash{}418.txt}      & \multicolumn{1}{l|}{sport\textbackslash{}262.txt}     \\ \hline
+\multicolumn{1}{|l|}{tech\textbackslash{}128.txt}  & \multicolumn{1}{l|}{entertainment\textbackslash{}279.txt}      & \multicolumn{1}{l|}{tech\textbackslash{}234.txt}      & \multicolumn{1}{l|}{sport\textbackslash{}134.txt}      & \multicolumn{1}{l|}{sport\textbackslash{}391.txt}     \\ \hline
+\multicolumn{1}{|l|}{tech\textbackslash{}012.txt}  & \multicolumn{1}{l|}{business\textbackslash{}220.txt}           & \multicolumn{1}{l|}{tech\textbackslash{}229.txt}      & \multicolumn{1}{l|}{sport\textbackslash{}394.txt}      & \multicolumn{1}{l|}{sport\textbackslash{}389.txt}     \\ \hline
+\multicolumn{1}{|l|}{tech\textbackslash{}014.txt}  & \multicolumn{1}{l|}{entertainment\textbackslash{}342.txt}      & \multicolumn{1}{l|}{tech\textbackslash{}005.txt}      & \multicolumn{1}{l|}{sport\textbackslash{}379.txt}      & \multicolumn{1}{l|}{sport\textbackslash{}243.txt}     \\ \hline
+\multicolumn{1}{|l|}{tech\textbackslash{}334.txt}  & \multicolumn{1}{l|}{sport\textbackslash{}471.txt}              & \multicolumn{1}{l|}{tech\textbackslash{}359.txt}      & \multicolumn{1}{l|}{sport\textbackslash{}305.txt}      & \multicolumn{1}{l|}{sport\textbackslash{}206.txt}     \\ \hline
+\multicolumn{1}{|c|}{...}                          & \multicolumn{1}{c|}{...}                                       & \multicolumn{1}{c|}{...}                              & \multicolumn{1}{c|}{...}                               & \multicolumn{1}{c|}{...}                             
+\end{tabular}
+\caption{Contoh \textit{file CSV} hasil pengelompokan dokumen}
+\label{tbl:csv-example}
+\end{table}
+
+
 \section{Rancangan Kelas}
 Berdasarkan hasil analisis dari masalah yang dihadapi, dibentuklah diagram kelas pada Gambar \ref{fig:diagramkelas} sebagai gambaran dari perangkat lunak yang akan dibuat.
 
@@ -324,7 +362,7 @@ Kelas ini berfungsi untuk menyimpan seluruh parameter yang diberikan oleh penggu
 	\end{center}
 \end{figure}
 
-Kelas ini merupakan kelas utama yang akan mengatur jalannya proses pengelompokan menggunakan algoritma K-Means. Kelas ini merupakan kelas \textit{singleton}. Atribut yang terdapat dalam kelas ini adalah:
+Kelas ini merupakan kelas utama yang akan mengatur jalannya proses pengelompokan menggunakan algoritma \textit{K-means}. Kelas ini merupakan kelas \textit{singleton}. Atribut yang terdapat dalam kelas ini adalah:
 
 \begin{itemize}
 	\item \textit{docs}: atribut ini bertipe \textit{List of Document} yang berfungsi untuk menyimpan seluruh koleksi dokumen.
@@ -344,14 +382,74 @@ Kelas ini merupakan kelas utama yang akan mengatur jalannya proses pengelompokan
 	\item \textit{progressProperty}: \textit{method} ini merupakan \textit{getter} dari atribut \textit{progress}.
 	\item \textit{getSolution}: \textit{method} ini merupakan \textit{getter} dari atribut \textit{solution}.
 	\item \textit{getInstance}: \textit{method} ini merupakan \textit{getter} dari atribut \textit{instance}.
-	\item \textit{cluster}: \textit{method} ini merupakan \textit{method} utama yang bertugas melakukan pengelompokan dokumen dengan menggunakan algoritma K-Means.
+	\item \textit{cluster}: \textit{method} ini merupakan \textit{method} utama yang bertugas melakukan pengelompokan dokumen dengan menggunakan algoritma \textit{K-means}.
 	\item \textit{getSolutionIntracluster}: \textit{method} ini merupakan \textit{getter} dari atribut \textit{solutionIntracluster}.
 	\item \textit{computeIntracluster}: \textit{method} ini bertugas untuk menghitung \textit{intracluster} apabila diketahui \textit{centroid} setiap \textit{cluster} adalah \textit{centroids} dan keanggotaan setiap dokumen adalah \textit{cluster}.
 	\item \textit{determineCluster}: \textit{method} ini berfungsi untuk menentukan keanggotaan dari setiap dokumen.
 	%\item \textit{reset}: \textit{method} ini berfungsi untuk mengatur ulang seluruh atribut untuk proses pengelompokan berikutnya.
 \end{itemize}
 
+\subsection{\textit{FXMLDocumentController}}
+
+\begin{figure}[H]
+	\begin{center}
+		\includegraphics[width=0.75\textwidth]{DiagramKelas/FXMLDocumentController}
+		\caption{Kelas \textit{FXMLDocumentController}}
+		\label{fig:kelasFXMLDocumentController}
+	\end{center}
+\end{figure}
+
+Kelas ini merupakan kelas yang bertugas untuk mengendalikan seluruh aktivitas yang ada di antarmuka dan menghubungkannya dengan kelas lain yang dibutuhkan. Atribut yang terdapat dalam kelas ini adalah:
+
+\begin{itemize}
+	\item \textit{textFieldDokumen}: atribut ini bertipe \textit{TextField} dan berfungsi menampilkan direktori dokumen pada antarmuka pengguna.
+	\item \textit{buttonDokumen}: atribut ini bertipe \textit{Button} yang merupakan tombol untuk memilih direktori dokumen pada antarmuka pengguna.
+	\item \textit{spinnerCluster}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter banyaknya \textit{cluster} pada antarmuka pengguna di bagian GA.
+	\item \textit{spinnerPopulasi}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter banyaknya populasi pada antarmuka pengguna di bagian GA.
+	\item \textit{spinnerMutasi}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter probabilitas mutasi pada antarmuka pengguna di bagian GA.
+	\item \textit{spinnerMaxIterasi}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter maksimum iterasi pada antarmuka pengguna di bagian GA.
+	\item \textit{spinnerElitism}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter individu elitisme pada antarmuka pengguna di bagian GA.
+	\item \textit{spinnerConvergeGen}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter banyaknya generasi konvergen pada antarmuka pengguna di bagian GA.
+	\item \textit{choiceBoxWeighting}: atribut ini bertipe \textit{ChoiceBox} yang akan menangani masukan untuk parameter metode pembobotan pada antarmuka pengguna di bagian GA.
+	\item \textit{spinnerConvergeLimit}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter banyaknya generasi konvergen pada antarmuka pengguna di bagian GA.
+	\item \textit{progressBar}: atribut ini bertipe \textit{progressBar} yang akan menampilkan perkembangan dari proses pengelompokan menggunakan algoritma GA.
+	\item \textit{buttonMulai}: atribut ini bertipe \textit{Button} yang merupakan tombol untuk memulai proses pengelompokan menggunakan algoritma GA.
+	\item \textit{textFieldHasil}: atribut ini bertipe \textit{TextField} dan berfungsi menampilkan direktori hasil pada antarmuka pengguna.
+	\item \textit{buttonHasil}: atribut ini bertipe \textit{Button} yang merupakan tombol untuk memilih direktori hasil pada antarmuka pengguna.
+	\item \textit{tabGA}: atribut ini bertipe \textit{Tab} yang merupakan \textit{tab} untuk memilih pengelompokan menggunakan algoritma GA.
+	\item \textit{tabKMeans}: atribut ini bertipe \textit{Tab} yang merupakan \textit{tab} untuk memilih pengelompokan menggunakan algoritma \textit{K-means}.
+	\item \textit{labelProgress}: atribut ini bertipe \textit{Label} yang berfungsi untuk menampilkan status dari proses pengelompokan menggunakan algoritma GA.
+	\item \textit{KMspinnerCluster}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter banyaknya \textit{cluster} pada antarmuka pengguna di bagian \textit{K-means}.
+	\item \textit{KMchoiceBoxWeighting}: atribut ini bertipe \textit{ChoiceBox} yang akan menangani masukan untuk parameter metode pembobotan pada antarmuka pengguna di bagian \textit{K-means}.
+	\item \textit{KMspinnerMaxIterasi}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter maksimum iterasi pada antarmuka pengguna di bagian \textit{K-means}.
+	\item \textit{KMprogressBar}: atribut ini bertipe \textit{progressBar} yang akan menampilkan perkembangan dari proses pengelompokan menggunakan algoritma \textit{K-means}.
+	\item \textit{KMbuttonMulai}: atribut ini bertipe \textit{Button} yang merupakan tombol untuk memulai proses pengelompokan menggunakan algoritma \textit{K-means}.
+	\item \textit{labelProgress}: atribut ini bertipe \textit{Label} yang berfungsi untuk menampilkan status dari proses pengelompokan menggunakan algoritma \textit{K-means}.
+	\item \textit{thread}: atribut ini bertipe \textit{Thread} dan merupakan sebuah \textit{thread} yang akan menjalankan proses pengelompokan.
+	\item \textit{runningTime}: atribut ini bertipe \textit{long} dan berfungsi untuk menyimpan lamanya program berjalan dalam milidetik.
+	\item \textit{task}: atribut ini bertipe \textit{Task} dan berfungsi untuk menjalankan tugas pengelompokan.
+	\item \textit{curIt}: atirbut ini bertipe \textit{int} dan berfungsi untuk menyimpan banyaknya iterasi saat ini.
+\end{itemize}
+
+\textit{Method} yang terdapat dalam kelas ini adalah:
+
+\begin{itemize}
+	\item \textit{initialize}: \textit{method} ini berfungsi untuk menginisialisasi seluruh atribut dan nilai awalnya pada antarmuka pengguna.
+	\item \textit{attachWarning}: \textit{method} ini berfungsi untuk menambahkan \textit{listener} sehingga dapat menampilkan pesan apabila aturan validasi dari suatu masukan dilanggar.
+	\item \textit{warningPopulation}: \textit{method} ini berfungsi untuk melakukan pengecekkan terhadap aturan validasi parameter banyaknya populasi dan individu elitisme lalu menampilkan pesan apabila aturan validasi dilanggar.
+	\item \textit{warningIteration}: \textit{method} ini berfungsi untuk melakukan pengecekkan terhadap aturan validasi parameter maksimal iterasi dan banyaknya generasi konvergen lalu menampilkan pesan apabila aturan validasi dilanggar.
+	\item \textit{chooseDocument}: \textit{method} ini berfungsi untuk memilih direktori dokumen.
+	\item \textit{chooseResult}: \textit{method} ini berfungsi untuk memilih direktori hasil.
+	\item \textit{reset}: \textit{method} ini berfungsi untuk mengembalikan kondisi dari seluruh objek dalam halaman GA agar bisa kembali digunakan untuk proses pengelompokan selanjutnya.
+	\item \textit{KMReset}: \textit{method} ini berfungsi untuk mengembalikan kondisi dari seluruh objek dalam halaman \textit{K-means} agar bisa kembali digunakan untuk proses pengelompokan selanjutnya.
+	\item \textit{start}: \textit{method} ini berfungsi untuk memulai proses pengelompokan menggunakan GA.
+	\item \textit{KMStart}: \textit{method} ini berfungsi untuk memulai proses pengelompokan menggunakan \textit{K-means}.
+	\item \textit{timeFormatter}: \textit{method} ini berfungsi untuk membentuk \textit{string} "\textit{hh} jam \textit{mm} menit \textit{ss} detik" berdasarkan input waktu dalam milidetik.
+	\item \textit{writeToFile}: \textit{method} ini berfungsi untuk menulis hasil pengelompokan ke dalam suatu \textit{file} dengan ekstensi CSV.
+\end{itemize}
+
 \section{Perancangan Antarmuka Pengguna}
+\label{sec:guidesign}
 Antarmuka yang dirancang untuk perangkat lunak ini hanya terdiri dari 2 halaman. Rancangan antarmuka ini dibuat sedemikian rupa sehingga memudahkan penggunannya dalam melakukan pengujian terhadap perangkat lunak. Pada penelitian ini, perancangan antarmuka dibuat menggunakan perangkat lunak \textit{balsamiq}\footnote{https://balsamiq.com/}. Setiap objek dan \textit{field} akan diberi label unik agar dapat disesuaikan dengan tabel keterangan. Berikut akan dibahas rancangan antarmuka pengguna dari perangkat ini.
 
 \subsection{Halaman Algoritma Genetika}
@@ -378,7 +476,7 @@ Penjelasan setiap \textit{field} dalam halaman ini dijelaskan dalam Tabel \ref{t
 		A05 & Metode Pembobotan & \textit{dropdown} & TF-IDF & ya & - \\ \hline
 		A06 & Probabilitas Mutasi & \textit{spinner} & 0.05 & ya & Nilai minimum 0.01, maksimum 1.00 \\ \hline
 		A07 & Maksimum Iterasi & \textit{spinner} & 100 & ya & Nilai minimum 1 dan harus lebih besar dari Banyaknya Generasi Konvergen (A09)\\ \hline
-		A08 & Individu Elitisme & \textit{spinner} & 1 & ya & Nilai minimum 1 dan harus lebih kecil dari Banyaknya Populasi (A04)\\ \hline
+		A08 & Individu Elitisme & \textit{spinner} & 1 & ya & Nilai minimum 0 dan harus lebih kecil dari Banyaknya Populasi (A04)\\ \hline
 		A09 & Banyaknya Generasi Konvergen & \textit{spinner} & 3 & ya & Nilai minimum 2 dan harus lebih kecil dari Maksimum Iterasi (A07) \\ \hline
 		A10 & Batas Konvergen & \textit{spinner} & 0.00001 & ya & Hanya bisa bernilai $10^{-3}$, $10^{-4}$, $10^{-5}$, $10^{-6}$, dan $10^{-7}$ \\ \hline
 	\end{tabularx}
@@ -388,8 +486,8 @@ Penjelasan setiap \textit{field} dalam halaman ini dijelaskan dalam Tabel \ref{t
 
 Objek dengan kode A11 merupakan sebuah \textit{progress bar} yang akan menampilkan perkembangan dari jalannya program untuk setiap iterasi. Apabila proses dalam suatu iterasi sudah selesai, maka akan mengubah nilai dari label A12 dan membuat \textit{progress bar} kembali kosong. Label dengan kode A12 berfungsi untuk menampilkan status dari program yang sedang berjalan. Label ini tidak akan memiliki nilai apabila program belum dijalankan dan akan menampilkan status "Inisialisasi..." apabila program sedang melakukan pengindeksan dokumen dan inisialisasi populasi. Setelah iterasi dimulai maka label A12 akan menampilkan generasi saat ini. Sebagai contoh apabila label A12 menampilkan status "Generasi 1" artinya saat ini program sedang melakukan proses-proses pada generasi 1. Begitu juga untuk "Generasi 2" dan seterusnya. Tombol dengan kode A13 berfungsi untuk memulai proses pengelompokan menggunakan algoritma genetika berdasarkan parameter yang telah dimasukkan.
 
-\subsection{Halaman K-Means}
-
+\subsection{Halaman \textit{K-Means}}
+\label{sub:ui-kmeans}
 \begin{figure}[H]
 	\begin{center}
 		\includegraphics[width=0.7\textwidth]{UI/KMeans-mockup}
@@ -398,7 +496,7 @@ Objek dengan kode A11 merupakan sebuah \textit{progress bar} yang akan menampilk
 	\end{center}
 \end{figure}
 
-Gambar \ref{fig:UI-KMeans} merupakan tampilan yang akan digunakan oleh pengguna untuk melakukan pengelompokan dokumen menggunakan algoritma K-Means. Berbeda dengan halaman algoritma genetika, pada halaman ini hanya terdapat tiga buah parameter yang dapat diubah-ubah oleh pengguna dalam melakukan pengelompokan.
+Gambar \ref{fig:UI-KMeans} merupakan tampilan yang akan digunakan oleh pengguna untuk melakukan pengelompokan dokumen menggunakan algoritma \textit{K-means}. Berbeda dengan halaman algoritma genetika, pada halaman ini hanya terdapat tiga buah parameter yang dapat diubah-ubah oleh pengguna dalam melakukan pengelompokan.
 
 \begin{table}[H]
 	\renewcommand{\arraystretch}{2}
@@ -410,8 +508,8 @@ Gambar \ref{fig:UI-KMeans} merupakan tampilan yang akan digunakan oleh pengguna 
 		B04 & Metode Pembobotan & \textit{dropdown} & TF-IDF & ya & - \\ \hline
 		B05 & Maksimum Iterasi & \textit{spinner} & 100 & ya & Nilai minimum 1\\ \hline
 	\end{tabularx}
-	\caption{Rincian \textit{field} pada halaman algoritma genetika}
-	\label{tbl:field-GA}
+	\caption{Rincian \textit{field} pada halaman algoritma \textit{K-means}}
+	\label{tbl:field-KMeans}
 \end{table}
 
-Objek dengan kode B06 merupakan sebuah \textit{progress bar} yang akan menampilkan perkembangan dari jalannya program yang menyatakan banyaknya iterasi yang sudah selesai dijalankan dibandingkan dengan maksimum iterasi. Label B07 akan berisi keterangan dari proses yang sedang berlangsung. Salah satu contoh isi dari label B07 adalah "Iterasi 2/100" yang berarti saat ini sedang dilakukan pemrosesan pada iterasi kedua dari 100 iterasi. Tombol dengan kode B08 berfungsi untuk memulai proses pengelompokan menggunakan algoritma K-Means berdasarkan parameter yang telah dimasukkan.
+Dalam Tabel \ref{tbl:field-KMeans}, objek dengan kode B06 merupakan sebuah \textit{progress bar} yang akan menampilkan perkembangan dari jalannya program yang menyatakan banyaknya iterasi yang sudah selesai dijalankan dibandingkan dengan maksimum iterasi. Label B07 akan berisi keterangan dari proses yang sedang berlangsung. Salah satu contoh isi dari label B07 adalah "Iterasi 2/100" yang berarti saat ini sedang dilakukan pemrosesan pada iterasi kedua dari 100 iterasi. Tombol dengan kode B08 berfungsi untuk memulai proses pengelompokan menggunakan algoritma \textit{K-means} berdasarkan parameter yang telah dimasukkan.

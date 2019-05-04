@@ -4,6 +4,7 @@
 Bab ini membahas hasil analisis berdasarkan dasar teori yang sudah dijelaskan sebelumnya. Pada bab ini akan dijelaskan hasil analisis \textit{dataset} yang akan digunakan dalam pengujian, representasi dokumen dalam perangkat lunak, dan pemodelan ruang vektor pada dokumen. Selain itu pada bab ini juga akan dibahas mengenai representasi kromosom, fungsi \textit{fitness}, dan beberapa operasi genetik yang akan digunakan dalam membuat pengelompokan dokumen berbasis algoritma genetika.
 
 \section{Analisis \textit{Dataset}}
+\label{sec:dataset}
 Pada bagian ini akan dibahas mengenai \textit{dataset} yang akan digunakan dalam proses pengujian. \textit{Dataset} yang akan digunakan berisi artikel berita \textit{BBC News} dan disediakan untuk menjadi tolok ukur dalam penelitian pembelajaran mesin. Karakteristik dari \textit{dataset} ini antara lain:
 
 \begin{itemize}
@@ -161,7 +162,7 @@ Nilai yang berasal dari Persamaan \ref{eq:tf-idf:tf} dan Persamaan \ref{eq:tf-id
 
 \section{Representasi Kromosom}
 \label{sec:chromosome-rep}
-Dalam penelitian ini, kromosom tersusun dari gen-gen yang merupakan \textit{centroid} dari $K$ buah \textit{cluster} yang akan dibentuk. \textit{Centroid} disimpan dalam bentuk vektor yang terdiri dari $N$ buah bilangan riil. $N$ merupakan dimensi dari vektor tersebut yang merupakan banyaknya \term berbeda yang terdapat pada seluruh koleksi dokumen. Oleh karena itu, setiap kromosom akan memiliki $N\times K$ buah gen. Secara umum representasi \textit{centroid} ke dalam kromosom ditunjukkan pada Gambar \ref{fig:chromosome-rep}.
+Individu dalam pengelompokan merupakan salah satu cara pengelompokan. Dalam penelitian ini, individu direpresentasikan oleh sebuah kromosom. Kromosom tersusun dari gen-gen yang merupakan \textit{centroid} dari $K$ buah \textit{cluster} yang akan dibentuk. \textit{Centroid} disimpan dalam bentuk vektor yang terdiri dari $N$ buah bilangan riil. $N$ merupakan dimensi dari vektor tersebut yang merupakan banyaknya \term berbeda yang terdapat pada seluruh koleksi dokumen. Oleh karena itu, setiap kromosom akan memiliki $N\times K$ buah gen. Secara umum representasi \textit{centroid} ke dalam kromosom ditunjukkan pada Gambar \ref{fig:chromosome-rep}.
 
 \begin{figure}[H]
 	\centering

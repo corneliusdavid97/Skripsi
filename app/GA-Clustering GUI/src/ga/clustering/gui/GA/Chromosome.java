@@ -2,9 +2,9 @@ package ga.clustering.gui.GA;
 
 
 
+import ga.clustering.gui.Params;
 import ga.clustering.gui.IR.Document;
 import ga.clustering.gui.IR.Lexicon;
-import ga.clustering.gui.IR.Vector;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -66,11 +66,11 @@ public class Chromosome implements Comparable<Chromosome>{
         int breakPoint=rand.nextInt(genes.size());
         Chromosome result=new Chromosome();
         for (int i = 0; i < breakPoint; i++) {
-            result.addGene(this.genes.get(i));
+            result.addGene(new Gene(this.genes.get(i)));
         }
         
         for (int i = breakPoint; i < this.genes.size(); i++) {
-            result.addGene(otherChromosome.genes.get(i));
+            result.addGene(new Gene(otherChromosome.genes.get(i)));
         }
         
         return result;
@@ -122,10 +122,10 @@ public class Chromosome implements Comparable<Chromosome>{
 //        System.out.println("compute new centroid: "+(System.currentTimeMillis()-cur)/1000.0);
         cur=System.currentTimeMillis();
         
-        HashMap copy[]=new HashMap[genes.size()];
+//        HashMap copy[]=new HashMap[genes.size()];
         
         for (int i = 0; i < genes.size(); i++) {
-            copy[i]=new HashMap(genes.get(i).getValue().getTermsWeight());
+//            copy[i]=new HashMap(genes.get(i).getValue().getTermsWeight());
             for(String term:Lexicon.getInstance().getAllTermList()){
                 double nextValue=sumOfCentroid[i].containsKey(term)?sumOfCentroid[i].get(term):0;
                 nextValue=pointCount[i]==0.0?0.0:nextValue/pointCount[i];
@@ -139,13 +139,13 @@ public class Chromosome implements Comparable<Chromosome>{
 //        Document best[]=new Document[genes.size()];
 //        double dist[]=new double[genes.size()];
 //        for (int i = 0; i < dist.length; i++) {
-//            dist[i]=Double.MAX_VALUE;
+//            dist[i]=Double.MIN_VALUE;
 //        }
 //        
 //        for (int i = 0; i < docs.size(); i++) {
 //            int idx=clusteringResult.get(docs.get(i));
 //            double tempDist=docs.get(i).getVector().calculateSimilarity(genes.get(idx).getValue());
-//            if(tempDist<dist[idx]){
+//            if(tempDist>dist[idx]){
 //                dist[idx]=tempDist;
 //                best[idx]=docs.get(i);
 //            }

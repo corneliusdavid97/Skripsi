@@ -53,8 +53,8 @@ Hasil pencarian di Yippy dengan kata kunci "\textit{apple}" ditunjukkan dalam Ga
 
 Suatu program optimasi dapat terjebak di \textit{local optimum}. Sebagai contoh pada Gambar \ref{fig:optima}, apabila suatu program mencari solusi yang merupakan nilai maksimum maka program dapat terjebak pada nilai $2$ yang merupakan \textit{local maximum} karena seharusnya keluaran dari program tersebut adalah $6$ yang merupakan \textit{global maximum}. Sedangkan apabila suatu program mencari solusi berupa nilai minimum maka program dapat terjebak pada nilai $-1$ yang merupakan \textit{local minimum} karena seharusnya keluaran dari program tersebut adalah $-3$ yang merupakan \textit{global minimum}.
 
-\section{K-Means}
-K-means merupakan salah satu algoritma pengelompokan yang umum digunakan saat ini. Algoritma ini membagi objek ke dalam $K$ \textit{cluster}. Setiap \textit{cluster} direpresentasikan dengan titik tengahnya (\textit{centroid}). Titik tengah akan dihitung sebagai rata-rata dari semua titik objek dari \textit{cluster} tersebut dalam setiap iterasinya. Persamaaan \ref{eq:kmeans} merupakan persamaan untuk menghitung \textit{centroid}
+\section{\textit{K-Means}}
+\textit{K-means} merupakan salah satu algoritma pengelompokan yang umum digunakan saat ini. Algoritma ini membagi objek ke dalam $K$ \textit{cluster}. Setiap \textit{cluster} direpresentasikan dengan titik tengahnya (\textit{centroid}). Titik tengah akan dihitung sebagai rata-rata dari semua titik objek dari \textit{cluster} tersebut dalam setiap iterasinya. Persamaaan \ref{eq:kmeans} merupakan persamaan untuk menghitung \textit{centroid}
 \begin{equation}
 	\label{eq:kmeans}
 	\mu_i=\frac{1}{N_i}\sum_{q=1}^{N_i}x_q
@@ -62,7 +62,7 @@ K-means merupakan salah satu algoritma pengelompokan yang umum digunakan saat in
 dengan $\mu_i$ merupakan \textit{centroid} ke-$i$, $N_i$ merupakan jumlah titik objek pada \textit{cluster} ke-$i$, dan $x_q$ merupakan titik ke-$q$ pada \textit{cluster} ke-$i$.
 
 \begin{algorithm} % enter the algorithm environment
-\caption{K-Means} % give the algorithm a caption
+\caption{\textit{K-means}} % give the algorithm a caption
 \label{alg:kmeans} % and a label for \ref{} commands later in the document
 \begin{flushleft}
 	\textbf{Input:} $S$ (himpunan titik objek), $K$ (Jumlah \textit{cluster})\\
@@ -106,7 +106,7 @@ Secara umum, proses pada GA ditunjukkan dalam Gambar \ref{fig:GA-flowchart}. Pen
 	\item \textbf{Perhitungan \textit{Fitness}} \\
 	Menghitung nilai \textit{fitness} $\textrm{f}(i)$ dari setiap individu dalam populasi saat ini $P(t)$. Nilai \textit{fitness} ini akan digunakan dalam operasi genetik selanjutnya.
 	\item \textbf{Seleksi} \\
-	Proses seleksi akan terjadi berdasarkan nilai \textit{fitness} $\textrm{f}(i)$ setiap individu. Individu yang lebih "kuat" akan memiliki peluang terpilih lebih besar dalam proses seleksi.
+	Proses seleksi akan terjadi berdasarkan nilai \textit{fitness} $\textrm{f}(i)$ setiap individu. Individu yang lebih \textit{fit} akan memiliki peluang terpilih lebih besar dalam proses seleksi.
 	\item \textbf{Persilangan} \\
 	Individu yang terpilih pada proses seleksi akan disilangkan untuk menghasilkan keturunan. Proses persilangan ini terjadi antara dua induk hasil seleksi.
 	\item \textbf{Mutasi} \\
@@ -117,7 +117,7 @@ Proses 2 sampai 5 akan diulang terus-menerus sampai ditemukan suatu solusi yang 
 
 \subsection{\textit{Fitness}}
 \label{sub:fitness}
-\textit{Fitness} dari suatu individu dalam algoritma genetika adalah suatu nilai fungsi objektif untuk fenotipenya \cite{sivanandam2007introduction}. \textit{Fitness} harus bisa memperkirakan seberapa dekat sebuah calon solusi dengan solusi yang optimal. Suatu solusi yang optimal akan memaksimalkan fungsi \textit{fitness}. 
+\textit{Fitness} dari suatu individu dalam algoritma genetika adalah suatu nilai fungsi objektif untuk fenotipenya \cite{sivanandam2007introduction}. \textit{Fitness} harus bisa memperkirakan seberapa dekat sebuah calon solusi dengan solusi yang optimal. Suatu solusi yang optimal akan memaksimalkan fungsi \textit{fitness}. Perhitungan \textit{fitness} sangatlah tergantung dengan masalah yang ingin diselesaikan. Fungsi \textit{fitness} yang baik harus bisa menentukan solusi mana yang paling baik diantara banyak calon solusi.
 
 \subsection{Seleksi}
 \label{sub:selection}
@@ -305,7 +305,6 @@ Penjelasan untuk fungsi Mutasi pada Algoritma \ref{alg:GA:mutation} adalah sebag
 \subsection{GA dalam Pengelompokan}
 Algoritma yang umum diterapkan untuk pengelompokan adalah \textit{K-means}. Namun, algoritma \textit{K-means} masih memiliki kekurangan. Salah satu kekurangannya adalah masih dapat terjebak pada \textit{local optimum}. \textit{Local optimum} dapat diatasi oleh GA yang sudah terbukti efektif dalam masalah pencarian dan optimasi \cite{srinivas1994genetic}. Oleh karena itu, diharapkan pengelompokan berbasis GA dapat menghasilkan solusi yang lebih baik dibandingkan dengan algoritma \textit{K-means}.
 
-
 \section{Model Ruang Vektor}
 \label{sec:vsm}
 Model ruang vektor adalah representasi dari koleksi dokumen sebagai vektor dalam ruang vektor yang umum \cite{schutze2008introduction}. Model ruang vektor ini biasanya digunakan dalam sejumlah operasi pencarian informasi mulai dari penilaian dokumen pada \textit{query}, klasifikasi dokumen, dan pengelompokan dokumen. Pada penerapannya, akan dilakukan pengukuran kemiripan suatu dokumen terhadap \textit{query} untuk dapat menentukan peringkat relevansi dokumen terhadap \textit{query} (\textit{relevance ranking}). Dokumen dan \textit{query} akan direpresentasikan sebagai model ruang vektor seperti pada Persamaan \ref{eq:vectors}.
@@ -442,6 +441,16 @@ dengan $M$ merupakan jumlah jarak seluruh objek ke \textit{centroid} masing-masi
 	\end{center}
 \end{figure}
 
-Pada Gambar \ref{fig:intracluster}, terdapat 14 objek yang telah dibagi ke dalam dua \textit{cluster} berwarna merah dan biru. Persegi pada Gambar \ref{fig:intracluster} mengilustrasikan objek yang akan dikelompokkan. Lingkaran mengilustrasikan titik pusat \textit{cluster} (\textit{centroid}). Garis yang menghubungkan objek dan \textit{centroid} menggambarkan jarak antara objek dengan \textit{centroid} dan ditandai dengan label antara huruf $a$ sampai dengan $n$. Persegi berwarna merah merupakan anggota dari \textit{cluster} 1, sedangkan persegi berwarna biru merupakan anggota dari \textit{cluster} 2. Berdasarkan Persamaan \ref{eq:intracluster}, jarak \textit{intracluster} dari \textit{cluster} 1 ($M_1$) didapat dengan menjumlahkan $a, b, c, d, e, f,$ dan $g$. Sedangkan, jarak \textit{intracluster} dari \textit{cluster} 2 ($M_2$) didapat dengan menjumlahkan $h, i, j, k, l, m,$ dan $n$. Jarak \textit{intracluster} total didapatkan dengan menjumlahkan jarak \textit{intracluster} miliki \textit{cluster} 1 dan \textit{cluster} 2 ($a + b + ... + n$).
+Pada Gambar \ref{fig:intracluster}, terdapat 14 objek yang telah dibagi ke dalam dua \textit{cluster} berwarna merah dan biru. Persegi pada Gambar \ref{fig:intercluster} mengilustrasikan objek yang akan dikelompokkan. Lingkaran mengilustrasikan titik pusat \textit{cluster} (\textit{centroid}). Garis yang menghubungkan objek dan \textit{centroid} menggambarkan jarak antara objek dengan \textit{centroid} dan ditandai dengan label antara huruf $a$ sampai dengan $n$. Persegi berwarna merah merupakan anggota dari \textit{cluster} 1, sedangkan persegi berwarna biru merupakan anggota dari \textit{cluster} 2. Berdasarkan Persamaan \ref{eq:intracluster}, jarak \textit{intracluster} dari \textit{cluster} 1 ($M_1$) didapat dengan menjumlahkan $a, b, c, d, e, f,$ dan $g$. Sedangkan, jarak \textit{intracluster} dari \textit{cluster} 2 ($M_2$) didapat dengan menjumlahkan $h, i, j, k, l, m,$ dan $n$. Jarak \textit{intracluster} total didapatkan dengan menjumlahkan jarak \textit{intracluster} miliki \textit{cluster} 1 dan \textit{cluster} 2 ($a + b + ... + n$).
 
 Semakin kecil nilai $M$, maka pengelompokan dianggap semakin baik. Ini berarti setiap objek dalam suatu\textit{cluster} mirip satu sama lain. Metrik ini dapat mengukur seberapa baik objek sudah dikelompokan dengan mempertimbangkan kedekatan setiap objek ke titik pusatnya.
+
+\section{Evaluasi Hasil Pengelompokan Menggunakan \textit{Purity}}
+Selain metode perhitungan jarak \textit{intracluster} yang telah dijelaskan pada Subbab \ref{sec:metric}, Diperlukan cara eksternal yang dapat mengukur kualitas dari pengelompokan. Pada bagian ini akan dijelaskan salah satu metode eksternal yaitu \textit{purity}. \textit{Purity} adalah persentase objek yang berhasil dikelompokan dengan benar \cite{schutze2008introduction}. Untuk menghitung \textit{purity}, diperlukan suatu \textit{dataset} yang sudah diberi label. Label ini kemudian akan digunakan untuk menghitung akurasi dari pengelompokan itu sendiri. Cara untuk menghitung \textit{purity} ditunjukkan dalam Persamaan \ref{eq:purity}.
+
+\begin{equation}
+	\label{eq:purity}
+	purity=\frac{1}{N}\sum^k_{i=1} max_j |c_i \cap t_j|
+\end{equation}
+
+dengan $N$ merupakan banyaknya objek, $k$ merupakan banyakya \textit{cluster}, $c_i$ merupakan \textit{cluster} ke-$i$, dan $t_j$ adalah label $j$. Rentang dari nilai \textit{purity} adalah antara 0 sampai dengan 1. \textit{Purity} bernilai 1 apabila tidak ada objek dengan 2 atau lebih label berbeda dalam satu kelompok yang sama. Apabila nilai \textit{purity}semakin mendekati 0, maka hasil pengelompokan semakin tidak murni (terdapat banyak objek dengan label berbeda dalam satu kelompok).
