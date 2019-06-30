@@ -16,13 +16,6 @@ public class CosineSimilarityCalculator extends SimilarityCalculator{
 
     @Override
     public double calculateSimilarity(Vector vector1, Vector vector2) {
-//        System.out.println("l1 "+vsm1.getLength());
-//        System.out.println("l2 "+vsm2.getLength());
-//        System.out.println("dot "+dotProduct(vsm1, vsm2));
-//        if(vsm1.getLength()==0 || vsm2.getLength()==0){
-//            System.out.println("asdasad");
-//            return 0;
-//        }
         return dotProduct(vector1, vector2)/(vector1.getLength()*vector2.getLength());
     }
     

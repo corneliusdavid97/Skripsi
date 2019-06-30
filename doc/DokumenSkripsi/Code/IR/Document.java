@@ -46,20 +46,11 @@ public class Document {
             sc=new Scanner(new ByteArrayInputStream(input.getBytes(StandardCharsets.UTF_8)));    
             doc.close();
         }
-//        StemmerIndo stemmer=new StemmerIndo();
         while(sc.hasNext())
         {
             String temp=sc.next();
             temp=temp.replaceAll("[^A-Za-z0-9]", "").toLowerCase();
             if(temp.length()==0)continue;
-//            if(ClusteringConfig.getInstance().USE_STEMMER){
-//                temp=stemmer.getRootWord(temp);
-//            }
-//            if(ClusteringConfig.getInstance().STOPWORD_REMOVAL){
-//                if(Lexicon.getInstance().isStopWord(temp)){
-//                    continue;
-//                }
-//            }
             Lexicon.getInstance().insertTerm(temp);
             if (!wordCount.containsKey(temp)) {
                 wordCount.put(temp, 0);

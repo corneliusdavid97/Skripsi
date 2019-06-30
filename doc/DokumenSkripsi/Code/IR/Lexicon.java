@@ -16,27 +16,13 @@ public class Lexicon {
 
     private HashMap<String, Integer> globalTermCount;
     private HashMap<String, Integer> documentFrequency;
-//    private HashSet<String> stopwords;
     private static Lexicon instance;
     private int numberOfDocument;
 
     private Lexicon() {
         this.globalTermCount = new HashMap<>();
-//        this.stopwords=new HashSet<>();
         this.documentFrequency=new HashMap<>();
-//        this.loadStopwords();
     }
-    
-//    private void loadStopwords(){
-//        try {
-//            BufferedReader br=new BufferedReader(new FileReader("stopword-list.txt"));
-//            String tmp=br.readLine();
-//            while(tmp!=null && tmp.length()>0){
-//                this.stopwords.add(tmp);
-//                tmp=br.readLine();
-//            }
-//        } catch (Exception ex) {}        
-//    }
 
     public static Lexicon getInstance() {
         if (instance == null) {
@@ -68,22 +54,6 @@ public class Lexicon {
         documentFrequency.put(term, documentFrequency.get(term) + 1);                
     }
     
-//    public double getMaxValue(){
-//        double max=0;
-//        String str="";
-//        for(Entry<String,Integer> x:globalTermCount.entrySet()){
-//            if(max<x.getValue()){
-//                max=x.getValue();
-//                str=x.getKey();
-//            }
-//        }
-//        return max;
-//    }
-    
-//    public boolean isStopWord(String term){
-//        return stopwords.contains(term);
-//    }
-
     public int getNumberOfDocument() {
         return numberOfDocument;
     }

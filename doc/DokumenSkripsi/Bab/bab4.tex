@@ -4,9 +4,9 @@
 Pada bab ini dijelaskan mengenai beberapa perancangan yang dilakukan dalam penelitian ini yaitu rancangan kelas dan rancangan antarmuka pengguna
 
 \section{Kebutuhan Masukan dan Keluaran}
-Seluruh kebutuhan masukan dari perangkat lunak ini akan diakomodasi oleh antarmuka pengguna (Graphical User Interface). Rincian masukan melalui antarmuka pengguna akan dibahas lebih lanjut pada Subbab \ref{sec:guidesign}. Keluaran dari perangkat lunak ini adalah sebuah \textit{file} berformat \textit{CSV} sehingga dapat dibuka dan diolah lebih lanjut dengan perangkat pengolah \textit{spreadsheet} seperti Microsoft Excel. \textit{File} ini berisi laporan mengenai parameter masukan, hasil pengelompokan, nilai fitness, dan waktu yang dibutuhkan untuk melakukan seluruh proses tersebut. Contoh \textit{file} tersebut dapat dilihat pada Tabel \ref{tbl:csv-example}. 
+Seluruh kebutuhan masukan dari perangkat lunak ini akan diakomodasi oleh antarmuka pengguna (Graphical User Interface). Rincian masukan melalui antarmuka pengguna akan dibahas lebih lanjut pada Subbab \ref{sec:guidesign}. Keluaran dari perangkat lunak ini adalah sebuah \textit{file} berformat \textit{CSV} sehingga dapat dibuka dan diolah lebih lanjut dengan perangkat pengolah \textit{spreadsheet} seperti Microsoft Excel. \textit{File} ini berisi laporan mengenai parameter masukan, hasil pengelompokan, nilai fitness, dan waktu yang dibutuhkan untuk melakukan seluruh proses tersebut. Contoh keluaran yang akan ditulis pada \textit{file} CSV dapat dilihat pada Tabel \ref{tbl:csv-example}. 
 
-\textit{File} ini dinamai berdasarkan algoritma dan waktu penulisan dengan format "algoritma-YYYY.MM.DD hh{\_}mm{\_}ss.csv". Sebagai contoh apabila pengelompokan menggunakan algoritma genetika dan dilakukan pada tanggal 30 Januari 2019 pukul 08:15:30 maka nama dari \textit{file} yang dihasilkan adalah "GA-2019.01.30 08{\_}15{\_}30.csv". Apabila algoritma yang digunakan adalah \textit{K-means} maka nama \textit{file} yang dihasilkan adalah "KMeans-2019.01.30 08{\_}15{\_}30.csv".
+Format penamaan dari \textit{file} ini adalah "algoritma-YYYY.MM.DD hh{\_}mm{\_}ss.csv". Sebagai contoh apabila pengelompokan menggunakan algoritma genetika dan dilakukan pada tanggal 30 Januari 2019 pukul 08:15:30 maka nama dari \textit{file} yang dihasilkan adalah "GA-2019.01.30 08{\_}15{\_}30.csv". Apabila algoritma yang digunakan adalah \textit{K-means} maka nama \textit{file} yang dihasilkan adalah "KMeans-2019.01.30 08{\_}15{\_}30.csv".
 
 \begin{table}[H]
 \begin{tabular}{lllll}
@@ -36,11 +36,11 @@ C1                                                 & C2                         
 \multicolumn{1}{|l|}{tech\textbackslash{}334.txt}  & \multicolumn{1}{l|}{sport\textbackslash{}471.txt}              & \multicolumn{1}{l|}{tech\textbackslash{}359.txt}      & \multicolumn{1}{l|}{sport\textbackslash{}305.txt}      & \multicolumn{1}{l|}{sport\textbackslash{}206.txt}     \\ \hline
 \multicolumn{1}{|c|}{...}                          & \multicolumn{1}{c|}{...}                                       & \multicolumn{1}{c|}{...}                              & \multicolumn{1}{c|}{...}                               & \multicolumn{1}{c|}{...}                             
 \end{tabular}
-\caption{Contoh \textit{file CSV} hasil pengelompokan dokumen}
+\caption{Contoh keluaran dalam bentuk \textit{file CSV}}
 \label{tbl:csv-example}
 \end{table}
 
-
+\newpage
 \section{Rancangan Kelas}
 Berdasarkan hasil analisis dari masalah yang dihadapi, dibentuklah diagram kelas pada Gambar \ref{fig:diagramkelas} sebagai gambaran dari perangkat lunak yang akan dibuat.
 
@@ -104,10 +104,12 @@ Kelas ini merupakan kelas yang merepresentasikan sebuah vektor. Kelas ini memili
 
 \begin{itemize}
 	\item \textit{Vector}: \textit{method} ini merupakan constructor dengan sebuah parameter yaitu \textit{wordCount} bertipe \textit{Hashmap<String,Integer>} yang merupakan pasangan kata dan banyak kemunculannya dalam dokumen.
+	\item \textit{Vector}: \textit{method} ini merupakan constructor dengan sebuah parameter yaitu objek \textit{Vector} yang berfungsi untuk menduplikasi objek \textit{Vector}.
 	\item \textit{generateVector}: \textit{method} ini merupakan \textit{method} dengan sebuah parameter \textit{Hashmap<String,Integer>} untuk mengisi atribut \textit{termsWeight} dengan bobot tiap \term.
 	\item \textit{getWeight}: \textit{method} ini berfungsi untuk mengembalikan bobot dari \term.
 	\item \textit{calculateWeight}: \textit{method} ini membutuhkan dua buah parameter yaitu sebuah \term bertipe \textit{String} dan sebuah \textit{Hashmap<String,Integer>}. \textit{Method} ini berfungsi untuk menghitung bobot dari \term berdasarkan frekuensi yang terdapat pada \textit{HashMap}.
 	\item \textit{calculateSimilarity}: \textit{method} ini berfungsi untuk menghitung kemiripan (\textit{similarity}) antara vektor ini dengan \textit{otherVector} menggunakan metode yang dipilih oleh pengguna.
+	\item \textit{mutate}: \textit{method} ini berfungsi untuk melakukan operasi mutasi pada tingkat vektor.
 	\item \textit{setTermsWeight}: \textit{method} ini merupakan \textit{setter} dari atribut \textit{termsWeight}.
 	\item \textit{setWeight}: \textit{method} ini berfungsi untuk mengubah bobot \term menjadi \textit{value}.
 	\item \textit{getLength}: \textit{method} ini berfungsi untuk mendapatkan panjang dari vektor.
@@ -233,6 +235,7 @@ Kelas ini merepresentasikan gen dalam algoritma genetika. Kelas ini hanya memili
 
 \begin{itemize}
 	\item \textit{Gene}: \textit{method} ini merupakan \textit{constructor} dari kelas \textit{Gene} yang membutuhkan sebuah parameter bertipe \textit{Vector} untuk mengisi atribut \textit{value}.
+	\item \textit{Gene}: \textit{method} ini merupakan \textit{overloading constructor} yang berfungsi untuk menduplikasi objek dari kelas \textit{Gene}.
 	\item \textit{getValue}: \textit{method} ini merupakan \textit{getter} dari atribut \textit{value}.
 	\item \textit{mutate}: \textit{method} ini berfungsi untuk melakukan mutasi pada gen. \textit{Method} ini sebenarnya hanya bertugas memanggil fungsi \textit{mutate()} dari atribut \textit{value}.
 \end{itemize}
@@ -247,7 +250,7 @@ Kelas ini merepresentasikan gen dalam algoritma genetika. Kelas ini hanya memili
 	\end{center}
 \end{figure}
 
-Kelas ini merepresentasikan kromosom dalam algoritma genetika (Subbab \ref{sub:chromosome}). Atribut yang terdapat dalam kelas ini adalah:
+Kelas ini merepresentasikan kromosom dalam algoritma genetika. Atribut yang terdapat dalam kelas ini adalah:
 
 \begin{itemize}
 	\item \textit{genes}: atribut bertipe \textit{List of Gene} dan merupakan kumpulan gen yang terdapat dalam kromosom.
@@ -264,7 +267,7 @@ Kelas ini merepresentasikan kromosom dalam algoritma genetika (Subbab \ref{sub:c
 	\item \textit{mutate}: \textit{method} ini berfungsi untuk melakukan mutasi pada kromosom dengan cara melakukan mutasi pada sebuah gen secara acak (Subbab \ref{sub:mutation}).
 	\item \textit{crossover}: \textit{method} ini bertugas untuk melakukan persilangan dengan kromosom \textit{otherChromosome} untuk mengahsilkan keturunan (Subbab \ref{sub:crossover}).
 	\item \textit{determineCluster}: \textit{method} ini berfungsi untuk menentukan keanggotaan dari setiap dokumen.
-	\item \textit{computeFitness}: \textit{method} ini mengembalikan nilai \textit{fitness} dari kromosom (Subbab \ref{sub:fitnessFn}).
+	\item \textit{computeFitness}: \textit{method} ini mengembalikan nilai \textit{fitness} dari kromosom (Subbab \ref{sub:fitness}).
 	\item \textit{getFitness}: \textit{method} ini merupakan \textit{getter} dari atribut \textit{fitnessValue}.
 	\item \textit{getAllGenes}: \textit{method} ini merupakan \textit{getter} dari atribut \textit{genes}.
 	\item \textit{getClusteringResult}: \textit{method} ini merupakan \textit{getter} dari atribut \textit{clusteringResult}.
@@ -386,7 +389,7 @@ Kelas ini merupakan kelas utama yang akan mengatur jalannya proses pengelompokan
 	\item \textit{getSolutionIntracluster}: \textit{method} ini merupakan \textit{getter} dari atribut \textit{solutionIntracluster}.
 	\item \textit{computeIntracluster}: \textit{method} ini bertugas untuk menghitung \textit{intracluster} apabila diketahui \textit{centroid} setiap \textit{cluster} adalah \textit{centroids} dan keanggotaan setiap dokumen adalah \textit{cluster}.
 	\item \textit{determineCluster}: \textit{method} ini berfungsi untuk menentukan keanggotaan dari setiap dokumen.
-	%\item \textit{reset}: \textit{method} ini berfungsi untuk mengatur ulang seluruh atribut untuk proses pengelompokan berikutnya.
+	\item \textit{reset}: \textit{method} ini berfungsi untuk mengatur ulang seluruh atribut untuk proses pengelompokan berikutnya.
 \end{itemize}
 
 \subsection{\textit{FXMLDocumentController}}

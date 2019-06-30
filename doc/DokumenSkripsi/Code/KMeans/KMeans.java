@@ -100,8 +100,6 @@ public class KMeans {
             centroids[i] = list.get(i).getVector();
         }
         
-        System.out.println("init done");
-        
         if(!isRunning){
             progress.set(0);
             return;
@@ -109,9 +107,7 @@ public class KMeans {
         
         iteration:
         for (int a = 0; a < maxIt; a++) {
-            System.out.println("it-"+(a+1));
             HashMap<Document, Integer> cluster=determineCluster(docs, centroids);
-            System.out.println("assign");
             progress.set(0);
             
             if(!isRunning){
@@ -140,7 +136,6 @@ public class KMeans {
                 pointCount[clusterCode]++;
                 progress.set(i*0.5/docs.size());
             }
-            System.out.println("recompute");
             for (int i = 0; i < k; i++) {
                 HashMap<String,Double> temp=new HashMap<>();
                 for (String term : Lexicon.getInstance().getAllTermList()) {
@@ -158,8 +153,7 @@ public class KMeans {
                 centroids[i].setTermsWeight(temp);
                 progress.set(0.5+(i*0.49)/k);
             }
-//            System.out.println(Arrays.toString(pointCount));
-            System.out.println(computeIntracluster(cluster, centroids));
+            
             if(!isRunning){
                 progress.set(0);
                 return;
@@ -188,7 +182,6 @@ public class KMeans {
     
     private double computeIntracluster(HashMap<Document, Integer> cluster, Vector[] centroids){
         double res=0.0;
-//        determineCluster(docs, centroids);
         for (int i = 0; i < docs.size(); i++) {
             int clusterCode=cluster.get(docs.get(i));
             double tmp=docs.get(i).getVector().calculateSimilarity(centroids[clusterCode]);

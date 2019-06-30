@@ -487,7 +487,6 @@ public class FXMLDocumentController implements Initializable {
     
     private void writeToFile(String mode, HashMap<Document, Integer> clusteringResult, double fitness){
         try{
-            System.out.println("writing...");
             String filepath=Params.getInstance().getFilepath();
             List<Document>[] result=new ArrayList[Params.getInstance().getK()];
             for (int i = 0; i < result.length; i++) {
@@ -545,6 +544,5 @@ public class FXMLDocumentController implements Initializable {
             }
             bw.close();
         }catch(Exception e){}
-        System.out.println("written");
     }
 }

@@ -67,11 +67,9 @@ public class Vector {
     
     public void mutate(){
         Random rand=new Random();
-//        System.out.println("tw: "+termsWeight.size());
         String key=(String) termsWeight.keySet().toArray()[rand.nextInt(termsWeight.size())];
         double value=termsWeight.get(key);
         double newVal=value+(rand.nextBoolean()?value*2*rand.nextDouble():value*-2*rand.nextDouble());
-//        System.out.println(key);
         termsWeight.put(key, newVal);//mutasi dari 0 - nilai sendiri dikali 2
     }
 

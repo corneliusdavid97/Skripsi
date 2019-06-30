@@ -249,7 +249,14 @@ Sebagai contoh, diketahui dua buah kromosom yang akan mengalami persilangan adal
 \end{figure}
 
 \subsection{Mutasi}
-Setiap individu keturunan yang berasal dari proses persilangan akan memiliki peluang untuk mengalami mutasi. Seperti yang telah dijelaskan pada Subbab \ref{sub:mutation}, mutasi dapat terjadi berdasarkan peluang mutasi $\mu_m$. Apabila mutasi terjadi, maka akan ditentukan gen mana yang akan mengalami mutasi dengan mengambilnya secara acak. Nilai gen yang baru akan ditentukan dari pembangkitan suatu angka acak yang berada antara batas minimum kemunculan istilah (0) dan total kemunculan istilah tersebut dari keseluruhan dokumen. Sebagai contoh dengan menggunakan Gambar \ref{fig:mutated:before}, akan ditentukan satu dari enam gen yang akan mengalami mutasi. Misalkan dalam contoh ini gen kedua yang mengalami mutasi (Gambar \ref{fig:mutated:choose}). Lalu akan dilakukan pembangkitan angka acak antara 0 sampai dengan total kemunculan istilah dari keseluruhan dokumen (dalam contoh ini bernilai 9). Kromosom hasil mutasi ditunjukkan dalam Gambar \ref{fig:mutated:after}.
+Setiap individu keturunan yang berasal dari proses persilangan akan memiliki peluang untuk mengalami mutasi. Seperti yang telah dijelaskan pada Subbab \ref{sub:mutation}, mutasi dapat terjadi berdasarkan peluang mutasi $\mu_m$. Apabila mutasi terjadi, maka akan ditentukan gen mana yang akan mengalami mutasi dengan mengambilnya secara acak. Nilai gen yang baru akan ditentukan dari pembangkitan suatu angka acak yang berada antara batas minimum kemunculan istilah (0) dan total kemunculan istilah tersebut dari keseluruhan dokumen. Sebagai contoh dengan menggunakan Gambar \ref{fig:mutated:before}, akan ditentukan satu dari enam gen yang akan mengalami mutasi. Misalkan dalam contoh ini gen kedua yang mengalami mutasi (Gambar \ref{fig:mutated:choose}). Nilai gen yang baru dapat ditentukan menggunakan Persamaan \ref{eq:mutation:analysis}. 
+
+\begin{equation}
+	\label{eq:mutation:analysis}
+	v'=v\pm 2*\delta*v
+\end{equation}
+
+dengan $v'$ nilai yang baru dari gen setelah mutasi, $v$ merupakan nilai gen sebelumnya, dan $\delta$ merupakan suatu bilangan acak antara 0 sampai 1 yang dibangkitkan menggunakan pesebaran \textit{uniform}. Kromosom hasil mutasi ditunjukkan dalam Gambar \ref{fig:mutated:after}.
 
 \begin{figure}[H]
 	\centering
@@ -298,3 +305,6 @@ Setiap individu keturunan yang berasal dari proses persilangan akan memiliki pel
 %		\label{fig:diagramkelas}
 %	\end{center}
 %\end{figure}
+
+\section{Evaluasi Hasil Pengelompokan Menggunakan \textit{Purity}}
+Seperti yang telah dijelaskan pada Subbab \ref{sec:dataset}, \textit{dataset} yang akan digunakan merupakan \textit{dataset} berlabel. Untuk mengukur akurasi pengelompokan berdasarkan labelnya, maka pada penelitian ini akan digunakan pengukuran nilai \textit{purity} (Subbab \ref{sec:purity}). Oleh karena nilai \textit{purity} didapatkan dari membandingkan hasil pengelompokan dengan label \textit{dataset}, maka nilai \textit{purity} ini dapat menjadi acuan kualitas dari hasil suatu pengelompokan. Selain itu, nilai \textit{purity} juga dapat menentukan kinerja dari metrik yang digunakan dalam proses pengelompokan.
