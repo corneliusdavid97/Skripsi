@@ -59,19 +59,19 @@ Suatu program optimasi dapat terjebak di \textit{local optimum}. Sebagai contoh 
 	\label{eq:kmeans}
 	\mu_i=\frac{1}{N_i}\sum_{q=1}^{N_i}x_q
 \end{equation}
-dengan $\mu_i$ merupakan \textit{centroid} ke-$i$, $N_i$ merupakan jumlah titik objek pada \textit{cluster} ke-$i$, dan $x_q$ merupakan titik ke-$q$ pada \textit{cluster} ke-$i$.
+dengan $\mu_i$ merupakan \textit{centroid} ke-$i$, $N_i$ merupakan jumlah objek pada \textit{cluster} ke-$i$, dan $x_q$ merupakan titik ke-$q$ pada \textit{cluster} ke-$i$.
 
 \begin{algorithm} % enter the algorithm environment
 \caption{\textit{K-means}} % give the algorithm a caption
 \label{alg:kmeans} % and a label for \ref{} commands later in the document
 \begin{flushleft}
-	\textbf{Input:} $S$ (himpunan titik objek), $K$ (Jumlah \textit{cluster})\\
+	\textbf{Input:} $S$ (himpunan objek), $K$ (Jumlah \textit{cluster})\\
 	\textbf{Output:} himpunan \textit{cluster}
 \end{flushleft}
 \begin{algorithmic}[1] % enter the algorithmic environment
-	\STATE Pilih $K$ titik objek sebagai himpunan awal \textit{centroid}. \label{alg:kmeans:ln-1}
+	\STATE Pilih $K$ objek sebagai himpunan awal \textit{Centroid}. \label{alg:kmeans:ln-1}
 	\REPEAT \label{alg:kmeans:ln-2}
-		\STATE Bentuk $K$ \textit{cluster} dengan menempatkan setiap titik objek ke \textit{cluster} dengan \textit{centroid} terdekat. \label{alg:kmeans:ln-3}
+		\STATE Bentuk $K$ \textit{cluster} dengan menempatkan setiap objek ke \textit{cluster} dengan \textit{centroid} terdekat. \label{alg:kmeans:ln-3}
 		\STATE Hitung ulang \textit{centroid} untuk setiap \textit{cluster}. \label{alg:kmeans:ln-4}
 	\UNTIL{\textit{Centroid} tidak berubah.} \label{alg:kmeans:ln-5}
 \end{algorithmic}
@@ -79,13 +79,14 @@ dengan $\mu_i$ merupakan \textit{centroid} ke-$i$, $N_i$ merupakan jumlah titik 
 
 Penjelasan dari Algoritma \ref{alg:kmeans} adalah sebagai berikut:
 \begin{itemize}
+	\item Pada baris \ref{alg:kmeans:ln-1}, \textit{centroid} awal akan dipilih secara acak dari objek-objek yang sudah ada.
 	\item Pada baris \ref{alg:kmeans:ln-4}, \textit{centroid} baru akan ditentukan dengan menggunakan Persamaan \ref{eq:kmeans}.
 	\item Pada baris \ref{alg:kmeans:ln-5}, pengulangan akan berhenti saat \textit{centroid} mengalami pergeseran yang tidak terlalu signifikan (lebih kecil dari suatu nilai $\epsilon$ yang merupakan masukan dari pengguna).
 \end{itemize}
 
 \section{Algoritma Genetika}
 \label{sec:GA}
-Algoritma genetika atau biasa disebut \textit{Genetic Algorithm}(GA) adalah suatu algoritma pencarian yang terinspirasi dari proses seleksi alam yang terjadi secara alami dalam proses evolusi. Di alam, individu dalam suatu populasi berkompetisi satu sama lain untuk memperebutkan tempat tinggal, makanan, dll \cite{sivanandam2007introduction}. Bahkan setiap individu dalam spesies yang sama pun harus bersaing menarik lawan jenis untuk berkembang biak. Individu yang kurang baik akan memiliki peluang bertahan hidup lebih kecil, dan individu yang bisa beradaptasi dengan baik atau "\textit{fit}" akan menghasilkan keturunan dengan jumlah yg relatif banyak. 
+Algoritma genetika atau biasa disebut \textit{Genetic Algorithm}(GA) adalah suatu algoritma pencarian yang terinspirasi dari proses seleksi alam yang terjadi secara alami dalam proses evolusi. Di alam, individu dalam suatu populasi berkompetisi satu sama lain untuk memperebutkan tempat tinggal, makanan, dan lain lain \cite{sivanandam2007introduction}. Bahkan setiap individu dalam spesies yang sama pun harus bersaing menarik lawan jenis untuk berkembang biak. Individu yang kurang baik akan memiliki peluang bertahan hidup lebih kecil, dan individu yang bisa beradaptasi dengan baik atau "\textit{fit}" akan menghasilkan keturunan dengan jumlah yg relatif banyak. 
 
 GA merupakan metode penyelesaian masalah yang menggunakan genetika sebagai pemodelannya. Suatu calon solusi dalam GA dimodelkan sebagai suatu individu. Kumpulan individu-individu ini disebut dengan populasi. Setiap individu dalam populasi direpresentasikan dengan kromosom. Kromosom merupakan kumpulan parameter yang membentuk suatu solusi. Parameter-parameter yang menyusun kromosom disebut dengan gen. Setiap kromosom memiliki suatu nilai yang terkait dengan \textit{fitness} dari solusi yang direpresentasikannya. Nilai itu biasanya disebut dengan nilai \textit{fitness}.
 
@@ -137,7 +138,8 @@ Sebagai penjelasan dari ilustrasi pada Gambar \ref{fig:pieChart} mengenai nilai 
 \begin{itemize}
 	\item Ada enam individu dalam suatu populasi (Individu 1, Individu 2, dst).
 	\item Setiap individu memililiki nilai \textit{fitness} seperti yang tertera pada gambar (Individu 1 memiliki nilai \textit{fitness} sebesar 5.994, Individu 2 memiliki nilai \textit{fitness} sebesar 4.881, dst).
-	\item Berdasarkan nilai \textit{fitness} tersebut, maka tiap Individu dalam populasi memiliki peluang terpilih yang tercantum dalam persentase pada diagram lingkaran (Individu 1 memiliki peluang terpilih sebesar 11\%, Individu 2 memiliki peluang terpilih sebesar 9\%, dst). Peluang tersebut dapat dihitung menggunakan persamaan \ref{eq:ProbSelection}.
+	\item Berdasarkan nilai \textit{fitness} tersebut, maka tiap Individu dalam populasi memiliki peluang terpilih yang tercantum dalam persentase pada diagram lingkaran (Individu 1 memiliki peluang terpilih sebesar 11\%, Individu 2 memiliki peluang terpilih sebesar 9\%, dst). Peluang tersebut dapat dihitung menggunakan persamaan \ref{eq:ProbSelection} dengan cara normalisasi.
+	\item Kemudian sebuah kromosom akan dipilih secara acak dengan cara yang sama seperti prinsip kerja roda \textit{roulette}.
 \end{itemize}
 
 \begin{equation}
@@ -235,7 +237,7 @@ Penjelasan untuk fungsi  Algoritma-Genetika pada Algoritma \ref{alg:GA} adalah s
 Penjelasan untuk fungsi Persilangan pada Algoritma \ref{alg:GA:crossover} adalah sebagai berikut:
 \begin{itemize}
 	\item Pada baris \ref{alg:GA:crossover:ln-2}, variabel $c$ akan berisi bilangan bulat antara 1 sampai $N$. Bilangan bulat ini akan dibangkitkan secara acak dengan distribusi \textit{uniform}.
-	\item Pada baris \ref{alg:GA:crossover:ln-3}, \textit{Append} merupakan fungsi untuk menggabungkan dua \textit{string} dan \textit{Substring} merupakan fungsi untuk memotong \textit{string} mulai dari batas tertentu sampai dengan batas tertentu juga.
+	\item Pada baris \ref{alg:GA:crossover:ln-3}, \textit{Append} merupakan fungsi untuk menggabungkan dua \textit{string} dan \textit{Substring} merupakan fungsi untuk memotong \textit{string} mulai dari batas bawah tertentu (inklusif) sampai dengan batas atas tertentu (inklusif).
 \end{itemize}
 
 \begin{algorithm}[H]
@@ -362,6 +364,7 @@ Berdasarkan keempat contoh dokumen, maka dibentuk tabel ketetanggaan antara \tex
 
 \begin{table}[h]
 \centering
+\caption{\textit{Term-document incidence matrix}}
 \begin{tabular}{|l|c|c|c|c|} \hline
 	\textit{Term} & d1 & d2 & d3 & d4 \\ \hline
 	new		&	1	&	0	&	0	&	1	\\
@@ -374,7 +377,6 @@ Berdasarkan keempat contoh dokumen, maka dibentuk tabel ketetanggaan antara \tex
 	july	&	0	&	1	&	1	&	1	\\
 	increase&	0	&	0	&	1	&	0	\\ \hline
 \end{tabular}
-\caption{\textit{Term-document incidence matrix}}
 \label{tbl:term-doc}
 \end{table}
 

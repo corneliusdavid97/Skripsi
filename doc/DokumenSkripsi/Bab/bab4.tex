@@ -9,6 +9,7 @@ Seluruh kebutuhan masukan dari perangkat lunak ini akan diakomodasi oleh antarmu
 Format penamaan dari \textit{file} ini adalah "algoritma-YYYY.MM.DD hh{\_}mm{\_}ss.csv". Sebagai contoh apabila pengelompokan menggunakan algoritma genetika dan dilakukan pada tanggal 30 Januari 2019 pukul 08:15:30 maka nama dari \textit{file} yang dihasilkan adalah "GA-2019.01.30 08{\_}15{\_}30.csv". Apabila algoritma yang digunakan adalah \textit{K-means} maka nama \textit{file} yang dihasilkan adalah "KMeans-2019.01.30 08{\_}15{\_}30.csv".
 
 \begin{table}[H]
+\caption{Contoh keluaran dalam bentuk \textit{file CSV}}
 \begin{tabular}{lllll}
 Direktori Dokumen:                                 & \multicolumn{4}{l}{D:\textbackslash{}dataset\textbackslash{}bbc} \\
                                                    &                                                                &                                                       &                                                        &                                                       \\
@@ -36,7 +37,6 @@ C1                                                 & C2                         
 \multicolumn{1}{|l|}{tech\textbackslash{}334.txt}  & \multicolumn{1}{l|}{sport\textbackslash{}471.txt}              & \multicolumn{1}{l|}{tech\textbackslash{}359.txt}      & \multicolumn{1}{l|}{sport\textbackslash{}305.txt}      & \multicolumn{1}{l|}{sport\textbackslash{}206.txt}     \\ \hline
 \multicolumn{1}{|c|}{...}                          & \multicolumn{1}{c|}{...}                                       & \multicolumn{1}{c|}{...}                              & \multicolumn{1}{c|}{...}                               & \multicolumn{1}{c|}{...}                             
 \end{tabular}
-\caption{Contoh keluaran dalam bentuk \textit{file CSV}}
 \label{tbl:csv-example}
 \end{table}
 
@@ -470,6 +470,7 @@ Penjelasan setiap \textit{field} dalam halaman ini dijelaskan dalam Tabel \ref{t
 
 \begin{table}[H]
 	\renewcommand{\arraystretch}{2}
+	\caption{Rincian \textit{field} pada halaman algoritma genetika}
 	\begin{tabularx}{\textwidth}{l X l X l X} \hline
 		\textbf{Kode} & \textbf{Nama} & \textbf{Jenis} & \textbf{\textit{Defaut value}} & \textbf{Wajib} & \textbf{Aturan validasi} \\ \hline
 		A01 & Direktori Dokumen & \textit{file chooser} & - & ya & - \\ \hline
@@ -483,7 +484,6 @@ Penjelasan setiap \textit{field} dalam halaman ini dijelaskan dalam Tabel \ref{t
 		A09 & Banyaknya Generasi Konvergen & \textit{spinner} & 3 & ya & Nilai minimum 2 dan harus lebih kecil dari Maksimum Iterasi (A07) \\ \hline
 		A10 & Batas Konvergen & \textit{spinner} & 0.00001 & ya & Hanya bisa bernilai $10^{-3}$, $10^{-4}$, $10^{-5}$, $10^{-6}$, dan $10^{-7}$ \\ \hline
 	\end{tabularx}
-	\caption{Rincian \textit{field} pada halaman algoritma genetika}
 	\label{tbl:field-GA}
 \end{table}
 
@@ -503,6 +503,7 @@ Gambar \ref{fig:UI-KMeans} merupakan tampilan yang akan digunakan oleh pengguna 
 
 \begin{table}[H]
 	\renewcommand{\arraystretch}{2}
+	\caption{Rincian \textit{field} pada halaman algoritma \textit{K-means}}
 	\begin{tabularx}{\textwidth}{l X l X l X} \hline
 		\textbf{Kode} & \textbf{Nama} & \textbf{Jenis} & \textbf{\textit{Defaut value}} & \textbf{Wajib} & \textbf{Aturan validasi} \\ \hline
 		B01 & Direktori Dokumen & \textit{file chooser} & - & ya & - \\ \hline
@@ -511,7 +512,6 @@ Gambar \ref{fig:UI-KMeans} merupakan tampilan yang akan digunakan oleh pengguna 
 		B04 & Metode Pembobotan & \textit{dropdown} & TF-IDF & ya & - \\ \hline
 		B05 & Maksimum Iterasi & \textit{spinner} & 100 & ya & Nilai minimum 1\\ \hline
 	\end{tabularx}
-	\caption{Rincian \textit{field} pada halaman algoritma \textit{K-means}}
 	\label{tbl:field-KMeans}
 \end{table}
 

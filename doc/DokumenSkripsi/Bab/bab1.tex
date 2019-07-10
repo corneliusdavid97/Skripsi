@@ -9,6 +9,8 @@ Pengelompokan (\textit{clustering}) merupakan prosedur untuk mencari struktur al
 
 \textit{Clustering} merupakan salah satu teknik pembelajaran tak terarah (\textit{unsupervised learning}). Pembagian kelompok dalam \textit{clustering} tidak berdasarkan sesuatu yang telah diketahui sebelumnya, melainkan berdasarkan kesamaan tertentu menurut suatu ukuran tertentu \cite{raposo2014automatic}.
 
+\textit{Document clustering} (pengelompokan dokumen) merupakan proses pengelompokan yang dilakukan terhadap suatu koleksi dokumen. Pengelompokan dokumen diterapkan dalam beberapa bidang seperti penambangan web, mesin pencari (\textit{search engine}), dan temu kembali informasi (\textit{information retrieval}) \cite{shah2012document}. Hal yang dilakukan dalam pengelompokan dokumen adalah mengukur kemiripan (\textit{similarity}) antar dokumen dan mengelompokan dokumen yang serupa. Suatu dokumen dapat terdiri dari beberapa jenis informasi seperti teks, jenis tulisan, ukuran tulisan, warna tulisan, dan gambar. 
+
 Salah satu algoritma pengelompokan yang paling sering digunakan adalah \textit{K-means} yang dilakukan dengan cara membagi data ke dalam \textit{K} kelompok. Kelompok tersebut dibentuk dengan cara meminimalkan jarak antara titik pusat \textit{cluster} (\textit{centroid}) dengan setiap anggota \textit{cluster} tersebut. Titik pusat \textit{cluster} dicari dengan menggunakan rata-rata (\textit{mean}) dari nilai setiap anggota \textit{cluster}. Dalam hal ini, setiap anggota \textit{cluster} dimodelkan sebagai vektor dalam $n$ dimensi ($n$ merupakan banyaknya atribut). \textit{K-means} sudah terbukti efektif dalam melakukan pengelompokan  dalam situasi apapun. Namun, cara tersebut tetap saja memiliki kekurangan yaitu dapat terjebak dalam \textit{local optima} tergantung dengan pemilihan \textit{centroid} awal \cite{maulik2000genetic}.
 
 Masalah \textit{local optima} dapat ditangani menggunakan \textit{Genetic Algorithm} (GA) yang telah terbukti efektif dalam menyelesaikan masalah pencarian dan optimasi. GA merupakan teknik pencarian heuristik tingkat tinggi yang menirukan proses evolusi yang secara alami terjadi \cite{holland1992genetic} berdasarkan prinsip \textit{survival of the fittest}. Algoritma ini dinamakan demikian karena menggunakan konsep-konsep dalam genetika sebagai model pemecahan masalahnya \cite{sivanandam2007introduction}.
@@ -39,21 +41,21 @@ dokumen.
 
 \section{Batasan Masalah}
 \label{sec:batasan}
-Rumusan masalah yang telah disebutkan memiliki ruang lingkup yang cukup luas. Dengan menyadari terbatasnya waktu serta kemampuan, penelitian ini akan difokuskan dengan memperlihatkan batasan masalah sebagai berikut:
+Rumusan masalah yang telah disebutkan memiliki ruang lingkup yang cukup luas. Dengan menyadari terbatasnya waktu serta kemampuan, penelitian ini difokuskan dengan memperlihatkan batasan masalah sebagai berikut:
 
 \begin{enumerate}
-	\item Jenis dokumen yang dapat diproses dengan perangkat lunak yang akan dibuat hanyalah \textit{Text Document} dengan ekstensi \textit{TXT}.
-	\item Informasi dari dokumen yang akan diproses dalam pengelompokan hanya berasal dari teks yang menjadi isi dari dokumen tersebut. Gambar dan \textit{metadata} (pemilik, tanggal modifikasi) tidak akan diperhitungkan.
+	\item Jenis dokumen yang dapat diproses dengan perangkat lunak yang dibuat hanyalah \textit{Text Document} dengan ekstensi \textit{TXT}.
+	\item Informasi dari dokumen yang diproses dalam pengelompokan hanya berasal dari teks yang menjadi isi dari dokumen tersebut. Gambar dan \textit{metadata} (pemilik, tanggal modifikasi) tidak diperhitungkan.
 \end{enumerate}
 
 
 \section{Metodologi}
 \label{sec:metlit}
-Langkah-langkah yang akan dilakukan dalam penelitian ini adalah:
+Langkah-langkah yang dilakukan dalam penelitian ini adalah:
 
 \begin{enumerate}
 	\item Melakukan studi literatur mengenai model ruang vektor, {\it Document Clustering} (pengelompokan dokumen), {\it Genetic Algorithm} (algoritma genetik), dan penggunaan algoritma genetik dalam pengelompokan dokumen.
-	\item Mencari dokumen yang akan dijadikan {\it training} dan {\it test datasets}.
+	\item Mencari dokumen yang dijadikan {\it datasets}.
 	\item Membuat rancangan perangkat lunak yang menggunakan algoritma genetik sebagai algoritma pengelompokan dokumen.
 	\item Mengimplementasikan hasil rancangan menjadi perangkat lunak dalam bahasa pemrograman Java.
 	\item Melatih dan menguji perangkat lunak dengan dokumen yang telah tersedia.
@@ -62,7 +64,7 @@ Langkah-langkah yang akan dilakukan dalam penelitian ini adalah:
 
 \section{Sistematika Pembahasan}
 \label{sec:sispem}
-Dokumentasi dari penelitian ini akan disajikan dalam enam bab dengan sistematika pembahasan sebagai berikut:
+Dokumentasi dari penelitian ini disajikan dalam enam bab dengan sistematika pembahasan sebagai berikut:
 \begin{enumerate}
 	\item Bab 1 Pendahuluan\\
 		Bab 1 berisi latar belakang pemilihan "Pengelompokan Dokumen berbasis Algoritma Genetika" sebagai judul dari penelitian ini. Selain itu, dibahas juga rumusan masalah, tujuan penelitian, batasan masalah, serta metodologi penelitian yang menjadi acuan dari penelitian ini.

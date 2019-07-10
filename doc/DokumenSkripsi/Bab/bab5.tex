@@ -54,6 +54,7 @@ Keempat variabel terikat ini merupakan variabel yang dipengaruhi oleh berubahnya
 
 \begin{table}[H]
 	\centering
+	\caption{Variasi nilai variabel bebas}
 	\begin{tabular}{|l|l|}
 		\hline
 		Variabel Bebas                       & Variasi   \\ \hline
@@ -69,7 +70,6 @@ Keempat variabel terikat ini merupakan variabel yang dipengaruhi oleh berubahnya
  		                                     & 1         \\ \cline{2-2} 
 		                                     & 5         \\ \hline
 \end{tabular}
-	\caption{Variasi nilai variabel bebas}
 	\label{tbl:testScenario}
 \end{table}
 
@@ -94,13 +94,13 @@ Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Ter
 	\item Banyaknya populasi:
 		\begin{table}[H]
 			\centering
+			\caption{Rata-rata hasil pengelompokan dengan variasi variabel banyaknya populasi}
 			\begin{tabular}{|l|l|l|l|l|} \hline
 				Populasi & Waktu (jam) & \textit{Intracluster} & Iterasi& \textit{Purity} \\ \hline
 				50  & 0.707222222 & 760.5179536 & 4.8 & 0.779595506 \\ \hline
 				100 & 1.092666667 & 771.6192479 & 4.6 & 0.798382022 \\ \hline
 				150 & 1.857611111 & 862.1796042 & 4.6 & 0.746696629 \\ \hline
 			\end{tabular}
-			\caption{Rata-rata hasil pengelompokan dengan variasi variabel banyaknya populasi}
 			\label{tbl:exp-pop}
 		\end{table}
 		
@@ -144,12 +144,12 @@ Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Ter
 		\item Metode pembobotan:
 		\begin{table}[H]
 			\centering
+			\caption{Rata-rata hasil pengelompokan dengan variasi variabel metode pembobotan}
 			\begin{tabular}{|l|l|l|l|l|} \hline
 				Bobot & Waktu (jam) & \textit{Intracluster} & Iterasi& \textit{Purity} \\ \hline
 				TF-IDF    & 1.092666667 & 771.6192479 & 4.6 & 0.798382022 \\ \hline
 				Frekuensi & 2.733222222 & 1750.874933 & 7   & 0.571325843 \\ \hline
 			\end{tabular}
-			\caption{Rata-rata hasil pengelompokan dengan variasi variabel metode pembobotan}
 			\label{tbl:exp-weight}
 		\end{table}
 		
@@ -194,13 +194,13 @@ Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Ter
 		\item Probabilitas mutasi:
 		\begin{table}[H]
 			\centering
+			\caption{Rata-rata hasil pengelompokan dengan variasi variabel probabilitas mutasi}
 			\begin{tabular}{|l|l|l|l|l|} \hline
 				Probabilitas mutasi & Waktu (jam) & \textit{Intracluster} & Iterasi& \textit{Purity} \\ \hline
 				0    & 1.650722222 & 1105.863837 & 5.2 & 0.632359551 \\ \hline
 				0.05 & 1.092666667 & 771.6192479 & 4.6 & 0.798382022 \\ \hline
 				0.25 & 1.566277778 & 1290.371505 & 5   & 0.437123596 \\ \hline
 			\end{tabular}
-			\caption{Rata-rata hasil pengelompokan dengan variasi variabel probabilitas mutasi}
 			\label{tbl:exp-mutation}
 		\end{table}
 		
@@ -246,13 +246,13 @@ Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Ter
 		\item Individu elitisme:
 		\begin{table}[H]
 			\centering
+			\caption{Rata-rata hasil pengelompokan dengan variasi variabel individu elitisme}
 			\begin{tabular}{|l|l|l|l|l|} \hline
 				Individu elitisme & Waktu (jam) & \textit{Intracluster} & Iterasi & \textit{Purity} \\ \hline
 				0 & 5.963388889 & 679.7977532 & 15  & 0.826247191 \\ \hline
 				1 & 1.092666667 & 771.6192479 & 4.6 & 0.798382022 \\ \hline
 				5 & 2.081777778 & 1215.335516 & 6   & 0.527101124 \\ \hline
 			\end{tabular}
-			\caption{Rata-rata hasil pengelompokan dengan variasi variabel individu elitisme}
 			\label{tbl:exp-elitism}
 		\end{table}
 		
@@ -300,12 +300,12 @@ Sebagai perbandingan terhadap pengelompokan menggunakan algoritma genetika, maka
 
 \begin{table}[H]
 	\centering
+	\caption{Rata-rata hasil pengelompokan dengan menggunakan algoritma \textit{K-means}}
 	\begin{tabular}{|l|l|l|l|l|} \hline
 		Algoritma & Waktu (jam) & \textit{Intracluster} & Iterasi& \textit{Purity} \\ \hline
 		GA      & 1.092666667 & 771.6192479 & 4.6  & 0.798382022 \\ \hline
 		\textit{K-means} & 0.024472222 & 831.5881861 & 11.5 & 0.51191103 \\ \hline
 	\end{tabular}
-	\caption{Rata-rata hasil pengelompokan dengan menggunakan algoritma \textit{K-means}}
 	\label{tbl:exp-kmeans}
 \end{table}
 
@@ -357,6 +357,7 @@ Berikut merupakan hasil analisis berdasarkan hasil eksperimen yang telah dilakuk
 	\item Untuk membandingkan antara algoritma \textit{K-means} dengan algoritma genetika, maka akan dilakukan operasi statistika dasar terhadap data hasil eksperimen (Tabel \ref{tbl:resKM} dan Tabel \ref{tbl:res1} pada Lampiran \ref{lamp:B}). Hasil perhitungan statistika dasar terhadap kedua tabel tersebut dijelaskan dalam Tabel \ref{tbl:stat-res}.
 	
 \begin{table}[H]
+\caption{Hasil perhitungan statistika terhadap hasil eksperimen algoritma genetika dan \textit{K-means}}
 \begin{tabular}{|l|l|l|l|l|l|}
 \hline
 \multicolumn{2}{|l|}{Algoritma}         & Rata-rata   & Standar Deviasi & Nilai Maksimum & Nilai Minimum \\ \hline
@@ -365,7 +366,6 @@ Berikut merupakan hasil analisis berdasarkan hasil eksperimen yang telah dilakuk
 \multirow{2}{*}{\textit{K-means}} & \textit{intracluster} & 831.5881861 & 272.6741901     & 1383.188573    & 512.6894755   \\ \cline{2-6} 
                          & \textit{purity}       & 0.51191103  & 0.20861176      & 0.794606742    & 0.248153619   \\ \hline
 \end{tabular}
-\caption{Hasil perhitungan statistika terhadap hasil eksperimen algoritma genetika dan \textit{K-means}}
 \label{tbl:stat-res}
 \end{table}
 	
