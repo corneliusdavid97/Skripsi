@@ -70,7 +70,8 @@ public class Vector {
         String key=(String) termsWeight.keySet().toArray()[rand.nextInt(termsWeight.size())];
         double value=termsWeight.get(key);
         double newVal=value+(rand.nextBoolean()?value*2*rand.nextDouble():value*-2*rand.nextDouble());
-        termsWeight.put(key, newVal);//mutasi dari 0 - nilai sendiri dikali 2
+        newVal=newVal<0?0:newVal;
+        termsWeight.put(key, newVal);
     }
 
     public void setTermsWeight(HashMap<String, Double> termsWeight) {

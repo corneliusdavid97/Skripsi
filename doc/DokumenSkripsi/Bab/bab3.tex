@@ -1,19 +1,21 @@
 \chapter{Analisis}
 \label{chap:analisis}
 
-Bab ini membahas hasil analisis berdasarkan dasar teori yang sudah dijelaskan sebelumnya. Pada bab ini akan dijelaskan hasil analisis \textit{dataset} yang akan digunakan dalam pengujian, representasi dokumen dalam perangkat lunak, dan pemodelan ruang vektor pada dokumen. Selain itu pada bab ini juga akan dibahas mengenai representasi kromosom, fungsi \textit{fitness}, dan beberapa operasi genetik yang akan digunakan dalam membuat pengelompokan dokumen berbasis algoritma genetika.
+Bab ini membahas hasil analisis berdasarkan dasar teori yang sudah dijelaskan sebelumnya. Pada bab ini dijelaskan hasil analisis \textit{dataset} yang digunakan dalam pengujian, representasi dokumen dalam perangkat lunak, dan pemodelan ruang vektor pada dokumen. Selain itu pada bab ini juga dibahas mengenai representasi kromosom, fungsi \textit{fitness}, dan beberapa operasi genetik yang digunakan dalam membuat pengelompokan dokumen berbasis algoritma genetika.
 
 \section{Analisis \textit{Dataset}}
 \label{sec:dataset}
-Pada bagian ini akan dibahas mengenai \textit{dataset} yang akan digunakan dalam proses pengujian. \textit{Dataset} yang akan digunakan berisi artikel berita \textit{BBC News} dan disediakan untuk menjadi tolok ukur dalam penelitian pembelajaran mesin. Karakteristik dari \textit{dataset} ini antara lain:
+Pada bagian ini dibahas mengenai \textit{dataset} yang digunakan dalam proses pengujian. \textit{Dataset} yang digunakan berisi artikel berita \textit{BBC News} dan disediakan untuk menjadi tolok ukur dalam penelitian pembelajaran mesin. Karakteristik dari \textit{dataset} ini antara lain:
 
 \begin{itemize}
 	\item Terdiri dari 2225 dokumen yang berasal dari \textit{website BBC News} dari tahun 2004-2005.
 	\item Dokumen ditulis dalam Bahasa Inggris.
-	\item Terbagi menjadi lima topik yaitu \textit{business, entertainment, politics, sport}, dan \textit{tech}.
+	\item Terbagi menjadi lima topik yaitu textit{business, entertainment, politics, sport}, dan \textit{tech}.
 	\item Pada topik \textit{business} terdapat 510 dokumen, \textit{entertainment} terdapat 386 dokumen, \textit{politics} terdapat 417 dokumen, \textit{sport} terdapat 511 dokumen, dan \textit{tech} terdapat 401 dokumen.
 	\item Dokumen merupakan \textit{plain text} yang ditulis dalam file dengan ekstensi \textit{TXT}.
 	\item Rata-rata dalam satu dokumen terdapat 384 kata.
+	\item Tanda baca dalam dokumen diabaikan (hanya mengambil informasi berupa karakter alfanumerik)
+	\item Kapitalisasi dalam dokumen diabaikan
 \end{itemize}
 
 \section{Representasi Dokumen}
@@ -29,7 +31,7 @@ Pada subbab \ref{sec:vsm} telah dijelaskan bahwa dokumen akan dibentuk ke dalam 
 	\item Bulan Februari merupakan bulan puncak penjualan kendaraan.
 \end{enumerate}
 
-Berdasarkan tiga dokumen tersebut akan ditentukan bobot dari masing-masing \textit{term} dalam tiap dokumen untuk setiap jenis pembobotan.
+Berdasarkan tiga dokumen tersebut maka ditentukan bobot dari masing-masing \textit{term} dalam tiap dokumen untuk setiap jenis pembobotan.
 
 \subsection{Bobot Frekuensi}
 Pada subbab \ref{sub:freq} telah dijelaskan bahwa bobot frekuensi dari suatu \term dapat ditentukan dengan cara menghitung banyaknya kemunculan \term tersebut dalam dokumen. Hasil perhitungan bobot frekuensi berdasarkan contoh pada Subbab \ref{sec:analysis:vsm} ditunjukkan dalam Tabel \ref{tbl:freq}.
@@ -58,7 +60,7 @@ Pada subbab \ref{sub:freq} telah dijelaskan bahwa bobot frekuensi dari suatu \te
 Semakin besar bobot, maka \term dianggap semakin mewakili isi dokumen. Sebagai contoh pada Tabel \ref{tbl:freq}, \term "di" muncul dua kali pada dokumen 1 sehingga berbobot 2, muncul satu kali pada dokumen 2 sehingga berbobot 1, dan tidak muncul sama sekali pada dokumen 3 sehingga memiliki bobot 0 sehingga \term "di" dianggap mewakili dokumen 1 karena muncul dua kali pada dokumen tersebut.
 
 \subsection{Bobot TF-IDF}
-Berbeda dengan bobot frekuensi yang hanya menghitung frekuensi kemunculan \term pada dokumen, perhitungan bobot TF-IDF ini memerlukan perhitungan seperti yang telah dijelaskan dalam Persamaan \ref{eq:tf-idf} pada Subbab \ref{sub:tf-idf}. Sama dengan perhitungan bobot frekuensi, contoh yang berasal dari Subbab \ref{sec:analysis:vsm} akan digunakan sebagai ilustrasi perhitungan TF-IDF. Sesuai dengan apa yang telah dijelaskan pada Subbab \ref{sub:tf-idf}, perhitungan dari TF-IDF akan dibagi menjadi dua tahap yaitu perhitungan TF dan perhitungan IDF. 
+Berbeda dengan bobot frekuensi yang hanya menghitung frekuensi kemunculan \term pada dokumen, perhitungan bobot TF-IDF ini memerlukan perhitungan seperti yang telah dijelaskan dalam Persamaan \ref{eq:tf-idf} pada Subbab \ref{sub:tf-idf}. Sama dengan perhitungan bobot frekuensi, contoh yang berasal dari Subbab \ref{sec:analysis:vsm} digunakan sebagai ilustrasi perhitungan TF-IDF. Sesuai dengan apa yang telah dijelaskan pada Subbab \ref{sub:tf-idf}, perhitungan dari TF-IDF akan dibagi menjadi dua tahap yaitu perhitungan TF dan perhitungan IDF. 
 
 \Term "properti" akan digunakan dalam contoh perhitungan TF. Berdasarkan Persamaan \ref{eq:tf} pada Subbab \ref{sub:tf-idf}, maka perhitungan TF dari \term "properti" ditunjukkan pada Persamaan \ref{eq:tf-idf:tf}.
 
@@ -162,7 +164,7 @@ Nilai yang berasal dari Persamaan \ref{eq:tf-idf:tf} dan Persamaan \ref{eq:tf-id
 
 \section{Representasi Kromosom}
 \label{sec:chromosome-rep}
-Individu dalam pengelompokan merupakan salah satu cara pengelompokan. Dalam penelitian ini, individu direpresentasikan oleh sebuah kromosom. Kromosom tersusun dari gen-gen yang merupakan \textit{centroid} dari $K$ buah \textit{cluster} yang akan dibentuk. \textit{Centroid} disimpan dalam bentuk vektor yang terdiri dari $N$ buah bilangan riil. $N$ merupakan dimensi dari vektor tersebut yang merupakan banyaknya \term berbeda yang terdapat pada seluruh koleksi dokumen. Oleh karena itu, setiap kromosom akan memiliki $N\times K$ buah gen. Secara umum representasi \textit{centroid} ke dalam kromosom ditunjukkan pada Gambar \ref{fig:chromosome-rep}.
+Individu dalam pengelompokan merupakan salah satu cara pengelompokan. Dalam penelitian ini, individu direpresentasikan oleh sebuah kromosom. Kromosom tersusun dari gen-gen yang merupakan \textit{centroid} dari $K$ buah \textit{cluster} yang akan dibentuk. \textit{Centroid} disimpan dalam bentuk vektor yang terdiri dari $N$ buah bilangan riil. $N$ merupakan dimensi dari vektor tersebut yang merupakan banyaknya \term berbeda yang terdapat pada seluruh koleksi dokumen. Oleh karena itu, setiap kromosom akan memiliki $N\times K$ buah gen. Meskipun \textit{centroid} menyimpan informasi mengenai isi dari dokumen, namun \textit{centroid} bukanlah sebuah dokumen. \textit{Centroid} hanyalah suatu vektor pada bidang $N$ dimensi yang merupakan titik tengah dari suatu \textit{cluster}. Secara umum representasi \textit{centroid} ke dalam kromosom ditunjukkan pada Gambar \ref{fig:chromosome-rep}.
 
 \begin{figure}[H]
 	\centering
@@ -197,7 +199,7 @@ Seperti yang telah dijelaskan pada Subbab \ref{sec:chromosome-rep}, kromosom aka
 
 Persamaan \ref{eq:minimum-dist} menjelaskan bahwa akan dicari suatu \textit{cluster} $C_j$ yang paling dekat dengan dokumen $x_i$. Hal ini dilakukan dengan cara membandingkan jarak antara dokumen $x_i$ dengan seluruh \textit{centroid} dari $K$ buah \textit{cluster}. 
 
-Setelah proses pengelompokan selesai, maka akan dilanjutkan dengan tahap kedua yaitu mengganti \textit{centroid} terkandung dalam kromosom dengan \textit{centroid} baru. \textit{Centroid} baru ini ditentukan dengan cara menghitung rata-rata vektor dari tiap \textit{cluster}. Untuk \textit{cluster} $C_i$, \textit{centroid} baru $z_i^*$ dapat dihitung menggunakan Persamaan \ref{eq:centroid}.
+Setelah proses pengelompokan selesai, maka dilanjutkan dengan tahap kedua yaitu mengganti \textit{centroid} terkandung dalam kromosom dengan \textit{centroid} baru. \textit{Centroid} baru ini ditentukan dengan cara menghitung rata-rata vektor dari tiap \textit{cluster}. Untuk \textit{cluster} $C_i$, \textit{centroid} baru $z_i^*$ dapat dihitung menggunakan Persamaan \ref{eq:centroid}.
 
 \begin{equation}
 \label{eq:centroid}
@@ -206,7 +208,7 @@ z_i^*=\frac{1}{n_i} \sum_{x_j\in C_i} x_j,   i=1,2, ... ,K.
 
 dengan $z_i^*$ merupakan \textit{centroid} dari \textit{cluster} $i$, $n_i$ merupakan jumlah anggota \textit{cluster} $i$, dan $x_j$ merupakan dokumen $j$ yang merupakan anggota dari \textit{cluster} $i$. $z_i^*$ ini akan menggantikan $z_i$ sebelumnya di kromosom. 
 
-Tahap terakhir dari perhitungan \textit{fitness} adalah menghitung nilai \textit{fitness} itu sendiri. Pada penelitian ini, nilai \textit{fitness} akan dihitung menggunakan \textit{cosine similarity} seperti yang sudah dijelaskan pada Subbab \ref{sec:vsm}. Sesuai dengan Persamaan \ref{eq:intracluster} pada Subbab \ref{sec:metric}, perhitungan \textit{fitness} sebagai metrik yang menggambarkan seberapa baiknya suatu calon solusi ditunjukkan dalam Persamaan \ref{eq:cosSim-fitness} dengan beberapa penyesuaian.
+Tahap terakhir dari perhitungan \textit{fitness} adalah menghitung nilai \textit{fitness} itu sendiri. Pada penelitian ini, nilai \textit{fitness}  dihitung menggunakan \textit{cosine similarity} seperti yang sudah dijelaskan pada Subbab \ref{sec:vsm}. Sesuai dengan Persamaan \ref{eq:intracluster} pada Subbab \ref{sec:metric}, perhitungan \textit{fitness} sebagai metrik yang menggambarkan seberapa baiknya suatu calon solusi ditunjukkan dalam Persamaan \ref{eq:cosSim-fitness} dengan beberapa penyesuaian.
 \begin{equation}
 \label{eq:cosSim-fitness}
 	\begin{gathered}
@@ -215,19 +217,19 @@ Tahap terakhir dari perhitungan \textit{fitness} adalah menghitung nilai \textit
 	\end{gathered}
 \end{equation}
 
-Penjelasan dari Persamaan \ref{eq:cosSim-fitness} adalah sebagai berikut. Nilai \textit{fitness} $\textrm{f}$ didapatkan dengan menjumlahkan nilai \textit{fitness} $\textrm{f}_i$ setiap \textit{centroid} $i=1, 2, ..., K$. Nilai \textit{fitness} $\textrm{f}_i$ tiap \textit{centroid} didapatkan dengan menjumlahkan jarak setiap dokumen ke \textit{centroid} masing-masing (Subbab \ref{sec:metric}). Perhitungan jarak antara dokumen dengan \textit{centroid} akan dihitung dengan menggunakan \textit{cosine similarity} sehingga persamaan untuk menghitung \textit{cosine similarity} (Persamaan \ref{eq:cosine} pada Subbab \ref{sec:vsm}) dimasukkan ke dalam Persamaan \ref{eq:cosSim-fitness}. Semakin besar nilai \textit{fitness} $\textrm{f}$, maka kromosom tersebut semakin mendekati solusi yang optimal.
+Penjelasan dari Persamaan \ref{eq:cosSim-fitness} adalah sebagai berikut. Nilai \textit{fitness} $\textrm{f}$ didapatkan dengan menjumlahkan nilai \textit{fitness} $\textrm{f}_i$ setiap \textit{centroid} $i=1, 2, ..., K$. Nilai \textit{fitness} $\textrm{f}_i$ tiap \textit{centroid} didapatkan dengan menjumlahkan jarak setiap dokumen ke \textit{centroid} masing-masing (Subbab \ref{sec:metric}). Perhitungan jarak antara dokumen dengan \textit{centroid} dihitung dengan menggunakan \textit{cosine similarity} sehingga persamaan untuk menghitung \textit{cosine similarity} (Persamaan \ref{eq:cosine} pada Subbab \ref{sec:vsm}) dimasukkan ke dalam Persamaan \ref{eq:cosSim-fitness}. Semakin besar nilai \textit{fitness} $\textrm{f}$, maka kromosom tersebut semakin mendekati solusi yang optimal.
 
 \section{Operasi Genetik Dalam Pengelompokan Dokumen}
-Seperti yang telah di bahas pada Subbab \ref{sec:GA}, ada beberapa operator genetik yang digunakan dalam algoritma genetika. Beberapa operasi genetik yang akan digunakan dalam penelitian ini di antaranya adalah inisialisasi populasi, seleksi, persilangan, dan mutasi. Sama seperti kromosom, operator genetik ini juga perlu dimodifikasi sedemikian rupa sehingga dapat digunakan untuk proses pengelompokan dokumen. Berikut merupakan pembahasan lebih detil mengenai setiap operator genetik yang akan digunakan.
+Seperti yang telah di bahas pada Subbab \ref{sec:GA}, ada beberapa operator genetik yang digunakan dalam algoritma genetika. Beberapa operasi genetik yang digunakan dalam penelitian ini di antaranya adalah inisialisasi populasi, seleksi, persilangan, dan mutasi. Sama seperti kromosom, operator genetik ini juga perlu dimodifikasi sedemikian rupa sehingga dapat digunakan untuk proses pengelompokan dokumen. Berikut merupakan pembahasan lebih detil mengenai setiap operator genetik yang digunakan.
 
 \subsection{Inisialisasi Populasi}
-Proses pengelompokan dengan menggunakan algoritma genetika akan dimulai dengan inisialisasi populasi awal. Seperti yang sudah dijelaskan pada Subbab \ref{sec:chromosome-rep}, kromosom dari masing-masing individu akan terdiri dari $K$ buah \textit{centroid} dalam bentuk vektor. Populasi awal akan dibangkitkan dengan cara memilih $K$ dokumen secara acak yang akan dijadikan \textit{centroid} mula-mula. Kemudian proses tersebut akan dilakukan sebanyak $P$ kali dengan $P$ adalah banyaknya individu dalam populasi.
+Proses pengelompokan dengan menggunakan algoritma genetika dimulai dengan inisialisasi populasi awal. Seperti yang sudah dijelaskan pada Subbab \ref{sec:chromosome-rep}, kromosom dari masing-masing individu terdiri dari $K$ buah \textit{centroid} dalam bentuk vektor. Populasi awal dibangkitkan dengan cara memilih $K$ dokumen secara acak yang kemudian dijadikan \textit{centroid} mula-mula. Kemudian proses tersebut dilakukan sebanyak $P$ kali dengan $P$ adalah banyaknya individu dalam populasi.
 
 \subsection{Seleksi}
-Proses seleksi akan dilakukan setiap iterasi (setiap generasi) untuk memilih calon induk dari generasi selanjutnya. Pada penelitian ini akan digunakan teknik seleksi \textit{roulette-wheel selection} seperti yang telah dijelaskan pada Subbab \ref{sub:selection}. \textit{Roulette-wheel selection} digunakan secara langsung pada penelitian ini dan tidak dimodifikasi. Individu dengan nilai \textit{fitness} lebih tinggi akan memiliki probabilitas lebih tinggi untuk terpilih menjadi induk dari generasi selanjutnya dan akan masuk ke dalam proses persilangan. Namun karena masih ada peluang individu dengan nilai \textit{fitness} tertinggi tidak terpilih, maka dalam penelitian ini juga akan digunakan teknik elitisme \cite{ahn2003elitism}. Dengan digunakannya elitisme, maka individu dengan nilai \textit{fitness} terbaik akan disalin dan langsung menjadi anggota dari generasi berikutnya. Hal ini dilakukan untuk menjamin individu terbaik tidak hilang akibat tidak terpilih oleh \textit{roulette-wheel selection}.
+Proses seleksi dilakukan setiap iterasi (setiap generasi) untuk memilih calon induk dari generasi selanjutnya. Pada penelitian ini digunakan teknik seleksi \textit{roulette-wheel selection} seperti yang telah dijelaskan pada Subbab \ref{sub:selection}. \textit{Roulette-wheel selection} digunakan secara langsung pada penelitian ini dan tidak dimodifikasi. Individu dengan nilai \textit{fitness} lebih tinggi memiliki probabilitas lebih tinggi untuk terpilih menjadi induk dari generasi selanjutnya dan masuk ke dalam proses persilangan. Namun karena masih ada peluang individu dengan nilai \textit{fitness} tertinggi tidak terpilih, maka dalam penelitian ini juga digunakan teknik elitisme \cite{ahn2003elitism}. Dengan digunakannya elitisme, maka individu dengan nilai \textit{fitness} terbaik disalin dan langsung menjadi anggota dari generasi berikutnya. Hal ini dilakukan untuk menjamin individu terbaik tidak hilang akibat tidak terpilih oleh \textit{roulette-wheel selection}.
 
 \subsection{Persilangan}
-Dua kromosom yang terpilih dalam proeses seleksi akan disilangkan untuk menghasilkan keturunan yang akan dimasukkan ke dalam generasi selanjutnya. Dalam penelitian ini akan digunakan teknik persilangan dengan satu titik potong (\textit{single-point crossover}). Teknik \textit{single-point crossover} yang digunakan dalam penelitian ini sedikit berbeda karena perlu disesuaikan dengan kebutuhan pengelompokan dokumen. Titik potong tidak ditentukan pada tingkat gen, namun ditentukan pada tingkat \textit{centroid}. Apabila diketahui terdapat kromosom seperti pada Gambar \ref{fig:ilust-crossover:chromosome}, maka titik potong yang dipilih bukan berupa gen ($w_{k,n}$) melainkan \textit{centroid} ($C_k$).
+Dua kromosom yang terpilih dalam proeses seleksi disilangkan untuk menghasilkan keturunan yang akan dimasukkan ke dalam generasi selanjutnya. Dalam penelitian ini akan digunakan teknik persilangan dengan satu titik potong (\textit{single-point crossover}). Teknik \textit{single-point crossover} yang digunakan dalam penelitian ini sedikit berbeda karena perlu disesuaikan dengan kebutuhan pengelompokan dokumen. Titik potong tidak ditentukan pada tingkat gen, namun ditentukan pada tingkat \textit{centroid}. Apabila diketahui terdapat kromosom seperti pada Gambar \ref{fig:ilust-crossover:chromosome}, maka titik potong yang dipilih bukan berupa gen ($w_{k,n}$) melainkan \textit{centroid} ($C_k$).
 
 \begin{figure}[H]
 	\centering
@@ -239,7 +241,7 @@ Dua kromosom yang terpilih dalam proeses seleksi akan disilangkan untuk menghasi
 	\label{fig:ilust-crossover:chromosome}
 \end{figure}
 
-Sebagai contoh, diketahui dua buah kromosom yang akan mengalami persilangan adalah kromosom $A$ dengan kromosom $B$ seperti pada Gambar \ref{fig:illust-crossover}. Setelah itu akan ditentukan suatu titik potong (\textit{crossover point}) secara acak dan ditandai dengan garis tegak berwarna merah pada Gambar \ref{fig:illust-crossover}. Proses selanjutnya adalah pembentukan individu keturunan. Proses ini dilakukan dengan cara menggabungkan seluruh gen induk $A$ yang berada di sebelah kiri garis merah dengan seluruh gen induk $B$ yang berada di sebelah kanan garis merah. Keturunan yang dihasilkan dari proses ini hanya satu individu seperti yang dapat dilihat pada Gambar \ref{fig:illust-crossover}. 
+Sebagai contoh, diketahui dua buah kromosom yang mengalami persilangan adalah kromosom $A$ dengan kromosom $B$ seperti pada Gambar \ref{fig:illust-crossover}. Setelah itu ditentukan suatu titik potong (\textit{crossover point}) secara acak dan ditandai dengan garis tegak berwarna merah pada Gambar \ref{fig:illust-crossover}. Proses selanjutnya adalah pembentukan individu keturunan. Proses ini dilakukan dengan cara menggabungkan seluruh gen induk $A$ yang berada di sebelah kiri garis merah dengan seluruh gen induk $B$ yang berada di sebelah kanan garis merah. Keturunan yang dihasilkan dari proses ini hanya satu individu seperti yang dapat dilihat pada Gambar \ref{fig:illust-crossover}. 
 
 \begin{figure}[H]
 	\centering
@@ -249,14 +251,14 @@ Sebagai contoh, diketahui dua buah kromosom yang akan mengalami persilangan adal
 \end{figure}
 
 \subsection{Mutasi}
-Setiap individu keturunan yang berasal dari proses persilangan akan memiliki peluang untuk mengalami mutasi. Seperti yang telah dijelaskan pada Subbab \ref{sub:mutation}, mutasi dapat terjadi berdasarkan peluang mutasi $\mu_m$. Apabila mutasi terjadi, maka akan ditentukan gen mana yang akan mengalami mutasi dengan mengambilnya secara acak. Nilai gen yang baru akan ditentukan dari pembangkitan suatu angka acak yang berada antara batas minimum kemunculan istilah (0) dan total kemunculan istilah tersebut dari keseluruhan dokumen. Sebagai contoh dengan menggunakan Gambar \ref{fig:mutated:before}, akan ditentukan satu dari enam gen yang akan mengalami mutasi. Misalkan dalam contoh ini gen kedua yang mengalami mutasi (Gambar \ref{fig:mutated:choose}). Nilai gen yang baru dapat ditentukan menggunakan Persamaan \ref{eq:mutation:analysis}. 
+Setiap individu keturunan yang berasal dari proses persilangan memiliki peluang untuk mengalami mutasi. Seperti yang telah dijelaskan pada Subbab \ref{sub:mutation}, mutasi dapat terjadi berdasarkan peluang mutasi $\mu_m$. Apabila mutasi terjadi, maka akan ditentukan gen mana yang mengalami mutasi dengan mengambilnya secara acak. Nilai gen yang baru dapat ditentukan menggunakan Persamaan \ref{eq:mutation:analysis}.
 
 \begin{equation}
 	\label{eq:mutation:analysis}
 	v'=v\pm 2*\delta*v
 \end{equation}
 
-dengan $v'$ nilai yang baru dari gen setelah mutasi, $v$ merupakan nilai gen sebelumnya, dan $\delta$ merupakan suatu bilangan acak antara 0 sampai 1 yang dibangkitkan menggunakan pesebaran \textit{uniform}. Kromosom hasil mutasi ditunjukkan dalam Gambar \ref{fig:mutated:after}.
+dengan $v'$ nilai yang baru dari gen setelah mutasi, $v$ merupakan nilai gen sebelumnya, dan $\delta$ merupakan suatu bilangan acak antara 0 sampai 1 yang dibangkitkan menggunakan pesebaran \textit{uniform}. Sebagai contoh dengan menggunakan Gambar \ref{fig:mutated:before}, akan ditentukan satu dari enam gen yang akan mengalami mutasi. Misalkan dalam contoh ini gen kedua yang mengalami mutasi (Gambar \ref{fig:mutated:choose}). Setelah dilakukan perhitungan nilai menggunakan Persamaan \ref{eq:mutation:analysis}, kromosom hasil mutasi ditunjukkan dalam Gambar \ref{fig:mutated:after}.
 
 \begin{figure}[H]
 	\centering
@@ -286,7 +288,7 @@ dengan $v'$ nilai yang baru dari gen setelah mutasi, $v$ merupakan nilai gen seb
 		\centering
 		\begin{tabular}{|c|c|c|c|c|c|}
 			\multicolumn{2}{c}{\textbf{$\mathbf{C1}$}} & \multicolumn{2}{c}{\textbf{$\mathbf{C2}$}} & \multicolumn{2}{c}{$\mathbf{C3}$}\\ \hline
-		3.05 & {\color{red} \textbf{4.18}} & 15.85 & 14.23 & 5.12 & 9.45\\ \hline
+		3.05 & {\color{red} \textbf{2.59}} & 15.85 & 14.23 & 5.12 & 9.45\\ \hline
 		\end{tabular}
 		\caption{Kromosom hasil mutasi}
 		\label{fig:mutated:after}
@@ -307,4 +309,4 @@ dengan $v'$ nilai yang baru dari gen setelah mutasi, $v$ merupakan nilai gen seb
 %\end{figure}
 
 \section{Evaluasi Hasil Pengelompokan Menggunakan \textit{Purity}}
-Seperti yang telah dijelaskan pada Subbab \ref{sec:dataset}, \textit{dataset} yang akan digunakan merupakan \textit{dataset} berlabel. Untuk mengukur akurasi pengelompokan berdasarkan labelnya, maka pada penelitian ini akan digunakan pengukuran nilai \textit{purity} (Subbab \ref{sec:purity}). Oleh karena nilai \textit{purity} didapatkan dari membandingkan hasil pengelompokan dengan label \textit{dataset}, maka nilai \textit{purity} ini dapat menjadi acuan kualitas dari hasil suatu pengelompokan. Selain itu, nilai \textit{purity} juga dapat menentukan kinerja dari metrik yang digunakan dalam proses pengelompokan.
+Seperti yang telah dijelaskan pada Subbab \ref{sec:dataset}, \textit{dataset} yang digunakan merupakan \textit{dataset} berlabel. Untuk mengukur akurasi pengelompokan berdasarkan labelnya, maka pada penelitian ini digunakan pengukuran nilai \textit{purity} (Subbab \ref{sec:purity}). Oleh karena nilai \textit{purity} didapatkan dari membandingkan hasil pengelompokan dengan label \textit{dataset}, maka nilai \textit{purity} ini dapat menjadi acuan kualitas dari hasil suatu pengelompokan. Selain itu, nilai \textit{purity} juga dapat menentukan kinerja dari metrik yang digunakan dalam proses pengelompokan.

@@ -11,17 +11,17 @@ Eksperimen dilakukan dengan menggunakan spesifikasi komputer sebagai berikut:
 	\item Sistem operasi: Windows 10 Pro 64-bit (10.0, Build 17763)
 \end{enumerate}
 
-Pada suatu penelitian, ada beberapa jenis variabel yang akan diteliti diantaranya variabel bebas, variabel terikat, dan variabel kontrol. Pada penelitian ini, pengujian eksperimental dilakukan dengan tujuan untuk mengetahui hubungan antara parameter masukan dengan waktu dan hasil pengelompokan. Oleh karena itu, variabel bebas dari penelitian ini merupakan variabel yang menjadi parameter masukan yang terdapat pada antarmuka pengguna (Subbab \ref{sec:guidesign}). Namun, tidak semua parameter masukan yang terdapat pada antarmuka pengguna akan menjadi variabel bebas. Parameter masukan yang merupakan variabel bebas pada penelitian ini diantaranya adalah:
+Pada suatu penelitian, ada beberapa jenis variabel yang diteliti diantaranya variabel bebas, variabel terikat, dan variabel kontrol. Pada penelitian ini, pengujian eksperimental dilakukan dengan tujuan untuk mengetahui hubungan antara parameter masukan dengan waktu dan hasil pengelompokan. Oleh karena itu, variabel bebas dari penelitian ini merupakan variabel yang menjadi parameter masukan yang terdapat pada antarmuka pengguna (Subbab \ref{sec:guidesign}). Namun, tidak semua parameter masukan yang terdapat pada antarmuka pengguna menjadi variabel bebas. Parameter masukan yang merupakan variabel bebas pada penelitian ini diantaranya adalah:
 
 \begin{enumerate}
 	\item Banyaknya populasi \\
-	Jumlah individu yang akan dibentuk dalam proses pengelompokan menggunakan algoritma genetika.
+	Jumlah individu yang dibentuk dalam proses pengelompokan menggunakan algoritma genetika.
 	\item Metode pembobotan \\
-	Metode penghitungan bobot suatu \textit{term} dalam vektor. Dalam penelitian ini akan digunakan dua metode yaitu bobot TF-IDF dan bobot frekuensi.
+	Metode penghitungan bobot suatu \textit{term} dalam vektor. Dalam penelitian ini digunakan dua metode yaitu bobot TF-IDF dan bobot frekuensi.
 	\item Probabilitas mutasi \\
 	Probabilitas terjadinya mutasi pada saat proses pembentukan keturunan dalam algoritma genetika.
 	\item Individu elitisme \\
-	Jumlah individu dengan \textit{fitness} terbaik yang akan langsung masuk ke generasi selanjutnya.
+	Jumlah individu dengan \textit{fitness} terbaik yang langsung masuk ke generasi selanjutnya.
 \end{enumerate}
 
 Selain variabel bebas, terdapat juga variabel kontrol yang merupakan parameter masukan pada antarmuka pengguna. Variabel kontrol dalam penelitian ini adalah sebagai berikut:
@@ -32,12 +32,12 @@ Selain variabel bebas, terdapat juga variabel kontrol yang merupakan parameter m
 	\item Maksimum iterasi \\
 	Batas maksimum iterasi yang dapat dilakukan selama proses pengelompokan dokumen.
 	\item Banyaknya generasi konvergen \\
-	Banyaknya generasi terakhir yang akan dilihat selisih nilai \textit{fitness}-nya.
+	Banyaknya generasi terakhir yang dilihat selisih nilai \textit{fitness}-nya.
 	\item Batas konvergen \\
 	Batas selisih nilai \textit{fitness} supaya dianggap memiliki nilai \textit{fitness} sama.
 \end{itemize}
 
-Keempat variabel ini tidak masuk ke dalam variabel bebas karena alasan tertentu. Variabel banyaknya \textit{cluster} akan dijadikan variabel kontrol karena nilai dari variabel ini harus disesuaikan dengan banyaknya topik pada \textit{dataset} (Subbab \ref{sec:dataset}) untuk mendapatkan hasil yang maksimal. Variabel maksimum iterasi juga merupakan variabel kontrol untuk menjaga agar proses pengelompokan tidak menjadi sangat lama karena terlalu banyak iterasi yang terjadi. Sama halnya untuk variabel banyaknya generasi konvergen dan batas konvergen, kedua variabel ini juga dapat menjaga agar iterasi yang terjadi tidak terlalu banyak sehingga menghabiskan waktu yang lebih banyak. Variabel terikat dalam penelitian ini adalah sebagai berikut:
+Keempat variabel ini tidak masuk ke dalam variabel bebas karena alasan tertentu. Variabel banyaknya \textit{cluster} dijadikan variabel kontrol karena nilai dari variabel ini harus disesuaikan dengan banyaknya topik pada \textit{dataset} (Subbab \ref{sec:dataset}) untuk mendapatkan hasil yang maksimal. Variabel maksimum iterasi juga merupakan variabel kontrol untuk menjaga agar proses pengelompokan tidak menjadi sangat lama karena terlalu banyak iterasi yang terjadi. Sama halnya untuk variabel banyaknya generasi konvergen dan batas konvergen, kedua variabel ini juga dapat menjaga agar iterasi yang terjadi tidak terlalu banyak sehingga menghabiskan waktu yang lebih banyak. Variabel terikat dalam penelitian ini adalah sebagai berikut:
 
 \begin{itemize}
 	\item Waktu \\
@@ -50,7 +50,7 @@ Keempat variabel ini tidak masuk ke dalam variabel bebas karena alasan tertentu.
 	Nilai yang menunjukkan akurasi dari pengelompokan (Subbab \ref{sec:purity}).
 \end{itemize}
 
-Keempat variabel terikat ini merupakan variabel yang dipengaruhi oleh berubahnya variabel bebas. Dalam penelitian ini hanya ada empat aspek yang diperhatikan yaitu waktu, nilai \textit{intracluster}, banyak iterasi, dan nilai \textit{purity}. Oleh karena itu, akan dibuat suatu skenario pengujian eksperimental untuk mengetahui pengaruh variabel bebas terhadap variabel terikat. Variasi nilai dari variabel bebas ditunjukkan dalam Tabel \ref{tbl:testScenario}.
+Keempat variabel terikat ini merupakan variabel yang dipengaruhi oleh berubahnya variabel bebas. Dalam penelitian ini hanya ada empat aspek yang diperhatikan yaitu waktu, nilai \textit{intracluster}, banyak iterasi, dan nilai \textit{purity}. Oleh karena itu, dibuat suatu skenario pengujian eksperimental untuk mengetahui pengaruh variabel bebas terhadap variabel terikat. Variasi nilai dari variabel bebas ditunjukkan dalam Tabel \ref{tbl:testScenario}.
 
 \begin{table}[H]
 	\centering
@@ -73,7 +73,7 @@ Keempat variabel terikat ini merupakan variabel yang dipengaruhi oleh berubahnya
 	\label{tbl:testScenario}
 \end{table}
 
-Setiap variabel dalam Tabel \ref{tbl:testScenario} memiliki dua sampai tiga variasi nilai. Karena keterbatasan waktu, maka pengujian eksperimental ini tidak akan menguji seluruh kombinasi parameter yang ada. Variasi dari parameter dalam Tabel \ref{tbl:testScenario} hanya akan menggantikan nilai pada suatu kasus uji yang disebut kasus uji ideal. Kasus uji ideal merupakan kasus uji yang dianggap akan menghasilkan keluaran yang ideal. Kasus uji ideal untuk pengujian eksperimental dalam penelitian ini adalah sebagai berikut:
+Setiap variabel dalam Tabel \ref{tbl:testScenario} memiliki dua sampai tiga variasi nilai. Karena keterbatasan waktu, maka pengujian eksperimental ini tidak menguji seluruh kombinasi parameter yang ada. Variasi dari parameter dalam Tabel \ref{tbl:testScenario} hanya menggantikan nilai pada suatu kasus uji yang disebut kasus uji ideal. Kasus uji ideal merupakan kasus uji yang dianggap menghasilkan keluaran yang ideal. Kasus uji ideal untuk pengujian eksperimental dalam penelitian ini adalah sebagai berikut:
 
 \begin{itemize}
     \item Banyaknya \textit{Cluster}: 5
@@ -88,7 +88,7 @@ Setiap variabel dalam Tabel \ref{tbl:testScenario} memiliki dua sampai tiga vari
 
 \section{Eksperimen Algoritma Genetika}
 \label{sec:experiment-ga}
-Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Terdapat 4 bagian yaitu berdasarkan keempat variabel bebas yang telah dijelaskan pada Subbab \ref{sec:exp-scenario}. Untuk setiap variasi parameter, dilakukan lima kali pengujian dan akan dihitung rata-rata hasilnya. Berikut adalah hasil dari eksperimen untuk keempat variabel bebas.
+Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Terdapat 4 bagian yaitu berdasarkan keempat variabel bebas yang telah dijelaskan pada Subbab \ref{sec:exp-scenario}. Untuk setiap variasi parameter, dilakukan lima kali pengujian dan dihitung rata-rata hasilnya. Berikut adalah hasil dari eksperimen untuk keempat variabel bebas.
 
 \begin{enumerate}
 	\item Banyaknya populasi:
@@ -108,24 +108,24 @@ Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Ter
 		
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.6 \textwidth]{diagram-pop-waktu}
+			\includegraphics[width=0.6 \textwidth]{Diagram-pop-waktu}
 			\caption{Grafik hubungan banyaknya populasi dengan waktu pengelompokan}
 			\label{fig:graph:pop-time}
 		\end{figure}
 		
-		Dapat disimpulkan dari diagram pada Gambar \ref{fig:graph:pop-time}, pada saat populasi berjumlah 100, waktu tempuh lebih lama 55\% dari saat populasi berjumlah 50. Pada saat populasi berjumlah 150, waktu tempuh 70\% lebih lama dibandingkan denga waktu pada saat populasi berjumlah 100. Kompleksitas algoritma genetika tidaklah linear sehingga menyebabkan kenaikan waktunya juga tidak linear. Selain itu, semakin banyak populasi maka calon solusi akan semakin banyak pula. Hal ini menyebabkan GA akan lebih sulit mencapai konvergen.
+		Dapat disimpulkan dari diagram pada Gambar \ref{fig:graph:pop-time}, pada saat populasi berjumlah 100, waktu tempuh lebih lama 55\% dari saat populasi berjumlah 50. Pada saat populasi berjumlah 150, waktu tempuh 70\% lebih lama dibandingkan denga waktu pada saat populasi berjumlah 100. Kompleksitas algoritma genetika tidaklah linear sehingga menyebabkan kenaikan waktunya juga tidak linear. Selain itu, semakin banyak populasi maka calon solusi semakin banyak pula. Hal ini menyebabkan GA lebih sulit mencapai konvergen.
 		
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.6 \textwidth]{diagram-pop-intracluster}
+			\includegraphics[width=0.6 \textwidth]{Diagram-pop-intracluster}
 			\caption{Diagram hubungan banyaknya populasi dengan \textit{intracluster similarity}}
 			\label{fig:graph:pop-intra}
 		\end{figure}
 		
-		Dapat disimpulkan dari diagram pada Gambar \ref{fig:graph:pop-intra}, kenaikan populasi juga mempengaruhi kenaikan \textit{intracluster similarity}. \textit{Intracluster similarity} pada saat populasi berjumlah 100 lebih besar 1\% dibandingkan dengan \textit{intracluster similarity} pada saat populasi berjumlah 50. Sedangkan \textit{intracluster similarity} pada saat populasi berjumlah 150 lebih besar 11\% dibandingkan dengan \textit{intracluster similarity} pada saat populasi berjumlah 100. Hal ini dikarenakan dengan populasi yang lebih banyak maka kemungkinan untuk mendapat solusi yang lebih baik akan semakin besar.
+		Dapat disimpulkan dari diagram pada Gambar \ref{fig:graph:pop-intra}, kenaikan populasi juga mempengaruhi kenaikan \textit{intracluster similarity}. \textit{Intracluster similarity} pada saat populasi berjumlah 100 lebih besar 1\% dibandingkan dengan \textit{intracluster similarity} pada saat populasi berjumlah 50. Sedangkan \textit{intracluster similarity} pada saat populasi berjumlah 150 lebih besar 11\% dibandingkan dengan \textit{intracluster similarity} pada saat populasi berjumlah 100. Hal ini dikarenakan dengan populasi yang lebih banyak maka kemungkinan untuk mendapat solusi yang lebih baik semakin besar.
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.6 \textwidth]{diagram-pop-iterasi}
+			\includegraphics[width=0.6 \textwidth]{Diagram-pop-iterasi}
 			\caption{Diagram hubungan banyaknya populasi dengan banyaknya iterasi}
 			\label{fig:graph:pop-iteration}
 		\end{figure}
@@ -134,7 +134,7 @@ Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Ter
 		
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.6 \textwidth]{diagram-pop-purity}
+			\includegraphics[width=0.6 \textwidth]{Diagram-pop-purity}
 			\caption{Diagram hubungan banyaknya populasi dengan nilai \textit{purity}}
 			\label{fig:graph:pop-purity}
 		\end{figure}
@@ -157,7 +157,7 @@ Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Ter
 		
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.6 \textwidth]{diagram-bobot-waktu}
+			\includegraphics[width=0.6 \textwidth]{Diagram-bobot-waktu}
 			\caption{Diagram hubungan metode pembobotan dengan waktu pengelompokan}
 			\label{fig:graph:weight-time}
 		\end{figure}
@@ -166,7 +166,7 @@ Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Ter
 		
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.6 \textwidth]{diagram-bobot-intracluster}
+			\includegraphics[width=0.6 \textwidth]{Diagram-bobot-intracluster}
 			\caption{Diagram hubungan metode pembobotan dengan \textit{intracluster similarity}}
 			\label{fig:graph:weight-intra}
 		\end{figure}
@@ -175,7 +175,7 @@ Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Ter
 		
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.6 \textwidth]{diagram-bobot-iterasi}
+			\includegraphics[width=0.6 \textwidth]{Diagram-bobot-iterasi}
 			\caption{Diagram hubungan metode pembobotan dengan banyaknya iterasi}
 			\label{fig:graph:weight-iteration}
 		\end{figure}
@@ -184,7 +184,7 @@ Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Ter
 		
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.6 \textwidth]{diagram-bobot-purity}
+			\includegraphics[width=0.6 \textwidth]{Diagram-bobot-purity}
 			\caption{Diagram hubungan metode pembobotan dengan nilai \textit{purity}}
 			\label{fig:graph:weight-purity}
 		\end{figure}
@@ -208,7 +208,7 @@ Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Ter
 		
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.6 \textwidth]{diagram-mutation-waktu}
+			\includegraphics[width=0.6 \textwidth]{Diagram-mutation-waktu}
 			\caption{Diagram hubungan probabilitas mutasi dengan waktu pengelompokan}
 			\label{fig:graph:mutation-time}
 		\end{figure}
@@ -217,7 +217,7 @@ Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Ter
 		
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.6 \textwidth]{diagram-mutation-intracluster}
+			\includegraphics[width=0.6 \textwidth]{Diagram-mutation-intracluster}
 			\caption{Diagram hubungan probabilitas mutasi dengan \textit{intracluster similarity}}
 			\label{fig:graph:mutation-intra}
 		\end{figure}
@@ -226,16 +226,16 @@ Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Ter
 		
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.6 \textwidth]{diagram-mutation-iterasi}
+			\includegraphics[width=0.6 \textwidth]{Diagram-mutation-iterasi}
 			\caption{Diagram hubungan probabilitas mutasi dengan banyaknya iterasi}
 			\label{fig:graph:mutation-iteration}
 		\end{figure}
 		
-		Dapat disimpulkan dari diagram pada Gambar \ref{fig:graph:mutation-iteration}, jumlah iterasi paling sedikit akan didapatkan dengan menggunakan probabilitas mutasi 0.05. Sama dengan waktu tempuh, apabila probabilitas mutasi bernilai 0, maka mutasi tidak pernah terjadi sehingga GA lebih sulit mencapai konvergen. Hal ini menyebabkan jumlah iterasi yang dibutuhkan untuk mencapai konvergen lebih banyak. Apabila mutasi terjadi terlalu sering (pada kasus ini dengan probabilitas 0.25), maka GA juga akan sulit mencapai konvergen karena proses pencariannya menjadi tidak terarah.
+		Dapat disimpulkan dari diagram pada Gambar \ref{fig:graph:mutation-iteration}, jumlah iterasi paling sedikit didapatkan dengan menggunakan probabilitas mutasi 0.05. Sama dengan waktu tempuh, apabila probabilitas mutasi bernilai 0, maka mutasi tidak pernah terjadi sehingga GA lebih sulit mencapai konvergen. Hal ini menyebabkan jumlah iterasi yang dibutuhkan untuk mencapai konvergen lebih banyak. Apabila mutasi terjadi terlalu sering (pada kasus ini dengan probabilitas 0.25), maka GA juga sulit mencapai konvergen karena proses pencariannya menjadi tidak terarah.
 		
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.6 \textwidth]{diagram-mutation-purity}
+			\includegraphics[width=0.6 \textwidth]{Diagram-mutation-purity}
 			\caption{Diagram hubungan probabilitas mutasi dengan nilai \textit{purity}}
 			\label{fig:graph:mutation-purity}
 		\end{figure}
@@ -260,7 +260,7 @@ Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Ter
 		
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.6 \textwidth]{diagram-elit-waktu}
+			\includegraphics[width=0.6 \textwidth]{Diagram-elit-waktu}
 			\caption{Diagram hubungan individu elitisme dengan waktu pengelompokan}
 			\label{fig:graph:elite-time}
 		\end{figure}
@@ -269,7 +269,7 @@ Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Ter
 		
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.6 \textwidth]{diagram-elit-intracluster}
+			\includegraphics[width=0.6 \textwidth]{Diagram-elit-intracluster}
 			\caption{Diagram hubungan individu elitisme dengan \textit{intracluster similarity}}
 			\label{fig:graph:elite-intra}
 		\end{figure}
@@ -278,25 +278,25 @@ Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Ter
 		
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.6 \textwidth]{diagram-elit-iterasi}
+			\includegraphics[width=0.6 \textwidth]{Diagram-elit-iterasi}
 			\caption{Diagram hubungan individu elitisme dengan banyaknya iterasi}
 			\label{fig:graph:elite-iteration}
 		\end{figure}
 		
-		Sama halnya dengan waktu, berdasarkan diagram pada Gambar \ref{fig:graph:elite-iteration}, banyaknya iterasi pada saat proses pengelompokan terjadi tanpa individu elitisme akan lebih banyak (dalam eksperimen ini mencapai batas maksimum iterasi). Hal ini terjadi karena lebih sulit untuk mencapai konvergen tanpa ada bantuan dari elitisme. Banyaknya iterasi paling minimum dicapai dengan 1 individu elitisme. Proses pengelompokan dengan banyak individu elitisme hanya akan memperlambat proses pengelompokan karena kandidat solusi dengan nilai \textit{fitness} tinggi akan menjadi lebih banyak dan terus dipertahankan dalam populasi sehingga memperlambat GA dalam mencapai konvergen.
+		Sama halnya dengan waktu, berdasarkan diagram pada Gambar \ref{fig:graph:elite-iteration}, banyaknya iterasi pada saat proses pengelompokan terjadi tanpa individu elitisme lebih banyak (dalam eksperimen ini mencapai batas maksimum iterasi). Hal ini terjadi karena lebih sulit untuk mencapai konvergen tanpa ada bantuan dari elitisme. Banyaknya iterasi paling minimum dicapai dengan 1 individu elitisme. Proses pengelompokan dengan banyak individu elitisme hanya memperlambat proses pengelompokan karena kandidat solusi dengan nilai \textit{fitness} tinggi menjadi lebih banyak dan terus dipertahankan dalam populasi sehingga memperlambat GA dalam mencapai konvergen.
 		
 		\begin{figure}[H]
 			\centering
-			\includegraphics[width=0.6 \textwidth]{diagram-elit-purity}
+			\includegraphics[width=0.6 \textwidth]{Diagram-elit-purity}
 			\caption{Diagram hubungan individu elitisme dengan nilai \textit{purity}}
 			\label{fig:graph:elite-purity}
 		\end{figure}
 		
-		Dapat disimpulkan dari diagram pada Gambar \ref{fig:graph:elite-purity}, nilai \textit{purity} pada saat individu elitisme berjumlah 0 lebih besar 3\% dibandingkan dengan pada saat individu elitisme berjumlah 1. Hal ini mungkin disebabkan oleh banyaknya iterasi yang ditempuh pada saat individu elitisme berjumlah 0 jauh lebih banyak dibandingkan dengan pada saat individu elitisme berjumlah 1. Dengan jumlah iterasi yang lebih banyak, maka hasilnya akan semakin baik. Nilai \textit{purity} pada saat individu elitisme berjumlah 1 lebih besar 51\% dibandingkan dengan pada saat individu elitisme berjumlah 5. Hal ini mungkin terjadi karena individu yang dibawa pada saat proses elitisme mungkin saja individu dengan nilai \textit{fitness} rendah. Semakin banyak individu yang dibawa ke generasi selanjutnya dalam elitisme, maka semakin besar kemungkinan akan membawa individu dengan nilai \textit{fitness} rendah.
+		Dapat disimpulkan dari diagram pada Gambar \ref{fig:graph:elite-purity}, nilai \textit{purity} pada saat individu elitisme berjumlah 0 lebih besar 3\% dibandingkan dengan pada saat individu elitisme berjumlah 1. Hal ini mungkin disebabkan oleh banyaknya iterasi yang ditempuh pada saat individu elitisme berjumlah 0 jauh lebih banyak dibandingkan dengan pada saat individu elitisme berjumlah 1. Dengan jumlah iterasi yang lebih banyak, maka hasilnya semakin baik. Nilai \textit{purity} pada saat individu elitisme berjumlah 1 lebih besar 51\% dibandingkan dengan pada saat individu elitisme berjumlah 5. Hal ini mungkin terjadi karena individu yang dibawa pada saat proses elitisme mungkin saja individu dengan nilai \textit{fitness} rendah. Semakin banyak individu yang dibawa ke generasi selanjutnya dalam elitisme, maka semakin besar kemungkinan membawa individu dengan nilai \textit{fitness} rendah.
 \end{enumerate}
 
 \section{Eksperimen \textit{K-Means}}
-Sebagai perbandingan terhadap pengelompokan menggunakan algoritma genetika, maka dibuat pula eksperimen menggunakan algoritma \textit{K-means}. Seperti yang telah dijelaskan pada Subbab \ref{sub:ui-kmeans}, pada penelitian ini \textit{K-means} hanya memiliki tiga buah parameter. Hanya satu diantara ketiga parameter tersebut yang dapat dijadikan variabel bebas karena alasan yang sama dengan yang telah dijelaskan pada Subbab \ref{sec:exp-scenario}. Eksperimen menggunakan algoritma \textit{K-means} hanya dilakukan menggunakan dua variasi yaitu dengan metode pembobotan TF-IDF dan Frekuensi. Namun dalam eksperimen pada penelitian ini, hanya variasi menggunakan bobot TF-IDF yang akan diuji. Hasil dari eksperimen menggunakan algoritma \textit{K-means} ini kemudian akan dibandingkan dengan kasus uji ideal pada algoritma genetika. Berbeda dari pengujian menggunakan algoritma genetika, pengujian menggunakan \textit{K-means} akan dilakukan sebanyak 10 kali tiap variasi. Hasil eksperimen menggunakan algoritma \textit{K-means} dijelaskan dalam Tabel \ref{tbl:exp-kmeans}.
+Sebagai perbandingan terhadap pengelompokan menggunakan algoritma genetika, maka dibuat pula eksperimen menggunakan algoritma \textit{K-means}. Seperti yang telah dijelaskan pada Subbab \ref{sub:ui-kmeans}, pada penelitian ini \textit{K-means} hanya memiliki tiga buah parameter. Hanya satu diantara ketiga parameter tersebut yang dapat dijadikan variabel bebas karena alasan yang sama dengan yang telah dijelaskan pada Subbab \ref{sec:exp-scenario}. Eksperimen menggunakan algoritma \textit{K-means} hanya dilakukan menggunakan dua variasi yaitu dengan metode pembobotan TF-IDF dan Frekuensi. Namun dalam eksperimen pada penelitian ini, hanya variasi menggunakan bobot TF-IDF yang diuji. Hasil dari eksperimen menggunakan algoritma \textit{K-means} ini kemudian dibandingkan dengan kasus uji ideal pada algoritma genetika. Berbeda dari pengujian menggunakan algoritma genetika, pengujian menggunakan \textit{K-means} dilakukan sebanyak 10 kali tiap variasi. Hasil eksperimen menggunakan algoritma \textit{K-means} dijelaskan dalam Tabel \ref{tbl:exp-kmeans}.
 
 \begin{table}[H]
 	\centering
@@ -351,10 +351,10 @@ Berdasarkan diagram pada Gambar \ref{fig:graph:kmeans-purity}, nilai \textit{pur
 Berikut merupakan hasil analisis berdasarkan hasil eksperimen yang telah dilakukan.
 
 \begin{enumerate}
-	\item \textit{Intracluster similarity} belum dapat menentukan apakah hasil dari suatu pengelompokan sudah baik atau belum. Berdasarkan hasil eksperimen, nilai \textit{intracluster} similarity tidak berbanding lurus dengan nilai \textit{purity}. Salah satu kemungkinannya adalah karena semakin jauh jarak suatu anggota \textit{cluster} dari \textit{centroid}, maka nilai \textit{intracluster similarity} akan semakin kecil. Nilai \textit{purity} merupakan suatu nilai biner sehingga sejauh apapun suatu anggota \textit{cluster} dari \textit{centroid}, objek tersebut tetap merupakan anggota dari \textit{cluster}. Kemungkinan yang terjadi adalah banyak objek yang jaraknya cukup jauh dari \textit{centroid} namun tetap merupakan bagian dari \textit{cluster} tersebut karena jarak ke \textit{centroid} lain lebih jauh. Hal ini yang dapat menyebabkan suatu hasil pengelompokan memiliki \textit{intracluster similarity} bernilai kecil sedangkan \textit{purity} bernilai besar atau sebaliknya.
+	\item \textit{Intracluster similarity} belum dapat menentukan apakah hasil dari suatu pengelompokan sudah baik atau belum. Berdasarkan hasil eksperimen, nilai \textit{intracluster} similarity tidak berbanding lurus dengan nilai \textit{purity}. Salah satu kemungkinannya adalah karena semakin jauh jarak suatu anggota \textit{cluster} dari \textit{centroid}, maka nilai \textit{intracluster similarity} semakin kecil. Nilai \textit{purity} merupakan suatu nilai biner sehingga sejauh apapun suatu anggota \textit{cluster} dari \textit{centroid}, objek tersebut tetap merupakan anggota dari \textit{cluster}. Kemungkinan yang terjadi adalah banyak objek yang jaraknya cukup jauh dari \textit{centroid} namun tetap merupakan bagian dari \textit{cluster} tersebut karena jarak ke \textit{centroid} lain lebih jauh. Hal ini yang dapat menyebabkan suatu hasil pengelompokan memiliki \textit{intracluster similarity} bernilai kecil sedangkan \textit{purity} bernilai besar atau sebaliknya.
 	\item Algoritma genetika lebih baik 56\% menurut nilai \textit{purity} (Gambar \ref{fig:graph:kmeans-purity}). Namun, kekurangan dari algoritma genetika adalah waktu pemrosesan yang jauh lebih lama dibandingkan dengan algoritma \textit{K-means}. 
 	
-	\item Untuk membandingkan antara algoritma \textit{K-means} dengan algoritma genetika, maka akan dilakukan operasi statistika dasar terhadap data hasil eksperimen (Tabel \ref{tbl:resKM} dan Tabel \ref{tbl:res1} pada Lampiran \ref{lamp:B}). Hasil perhitungan statistika dasar terhadap kedua tabel tersebut dijelaskan dalam Tabel \ref{tbl:stat-res}.
+	\item Untuk membandingkan antara algoritma \textit{K-means} dengan algoritma genetika, maka dilakukan operasi statistika dasar terhadap data hasil eksperimen (Tabel \ref{tbl:resKM} dan Tabel \ref{tbl:res1} pada Lampiran \ref{lamp:B}). Hasil perhitungan statistika dasar terhadap kedua tabel tersebut dijelaskan dalam Tabel \ref{tbl:stat-res}.
 	
 \begin{table}[H]
 \caption{Hasil perhitungan statistika terhadap hasil eksperimen algoritma genetika dan \textit{K-means}}

@@ -4,7 +4,7 @@
 Pada bab ini dijelaskan mengenai beberapa perancangan yang dilakukan dalam penelitian ini yaitu rancangan kelas dan rancangan antarmuka pengguna
 
 \section{Kebutuhan Masukan dan Keluaran}
-Seluruh kebutuhan masukan dari perangkat lunak ini akan diakomodasi oleh antarmuka pengguna (Graphical User Interface). Rincian masukan melalui antarmuka pengguna akan dibahas lebih lanjut pada Subbab \ref{sec:guidesign}. Keluaran dari perangkat lunak ini adalah sebuah \textit{file} berformat \textit{CSV} sehingga dapat dibuka dan diolah lebih lanjut dengan perangkat pengolah \textit{spreadsheet} seperti Microsoft Excel. \textit{File} ini berisi laporan mengenai parameter masukan, hasil pengelompokan, nilai fitness, dan waktu yang dibutuhkan untuk melakukan seluruh proses tersebut. Contoh keluaran yang akan ditulis pada \textit{file} CSV dapat dilihat pada Tabel \ref{tbl:csv-example}. 
+Seluruh kebutuhan masukan dari perangkat lunak ini diakomodasi oleh antarmuka pengguna (Graphical User Interface). Rincian masukan melalui antarmuka pengguna dibahas lebih lanjut pada Subbab \ref{sec:guidesign}. Keluaran dari perangkat lunak ini adalah sebuah \textit{file} berformat \textit{CSV} sehingga dapat dibuka dan diolah lebih lanjut dengan perangkat pengolah \textit{spreadsheet} seperti Microsoft Excel. \textit{File} ini berisi laporan mengenai parameter masukan, hasil pengelompokan, nilai fitness, dan waktu yang dibutuhkan untuk melakukan seluruh proses tersebut. Contoh keluaran yang ditulis pada \textit{file} CSV dapat dilihat pada Tabel \ref{tbl:csv-example}. 
 
 Format penamaan dari \textit{file} ini adalah "algoritma-YYYY.MM.DD hh{\_}mm{\_}ss.csv". Sebagai contoh apabila pengelompokan menggunakan algoritma genetika dan dilakukan pada tanggal 30 Januari 2019 pukul 08:15:30 maka nama dari \textit{file} yang dihasilkan adalah "GA-2019.01.30 08{\_}15{\_}30.csv". Apabila algoritma yang digunakan adalah \textit{K-means} maka nama \textit{file} yang dihasilkan adalah "KMeans-2019.01.30 08{\_}15{\_}30.csv".
 
@@ -42,7 +42,7 @@ C1                                                 & C2                         
 
 \newpage
 \section{Rancangan Kelas}
-Berdasarkan hasil analisis dari masalah yang dihadapi, dibentuklah diagram kelas pada Gambar \ref{fig:diagramkelas} sebagai gambaran dari perangkat lunak yang akan dibuat.
+Berdasarkan hasil analisis dari masalah yang dihadapi, dibentuklah diagram kelas pada Gambar \ref{fig:diagramkelas} sebagai gambaran dari perangkat lunak yang dibuat.
 
 \begin{figure}[H]
 	\begin{center}
@@ -52,7 +52,7 @@ Berdasarkan hasil analisis dari masalah yang dihadapi, dibentuklah diagram kelas
 	\end{center}
 \end{figure}
 
-Gambar \ref{fig:diagramkelas} merupakan diagram kelas secara umum yang tidak memuat atribut dan \textit{method} dari setiap kelas. Diagram kelas ini sengaja dibuat agar hubungan antar kelas dapat dengan lebih mudah dilihat. Penjelasan dari setiap kelas dalam Gambar \ref{fig:diagramkelas} adalah sebagai berikut.
+Gambar \ref{fig:diagramkelas} merupakan diagram kelas secara umum yang tidak memuat atribut dan \textit{method} dari setiap kelas. Diagram kelas ini sengaja dibuat agar hubungan antar kelas dapat dengan lebih mudah dilihat. Diagram kelas pada Gambar \ref{fig:diagramkelas} dibagi ke dalam tiga \textit{package} berdasarkan fungsinya. \textit{Package} IR berfungsi untuk mengambil informasi dari dokumen input. \textit{Package} GA berfungsi untuk melakukan pengelompokan dokumen dengan menggunakan algoritma genetika. Sedangkan \textit{package} \textit{K-means} berfungsi untuk melakukan pengelompokan dokumen menggunakan algoritma \textit{K-means}. Beberapa kelas dalam penelitian ini dibuat sebagai kelas \textit{singleton} untuk menjaga integritas data yang disimpan saat ada lebih dari satu \textit{instance} yang ingin mengakses atribut-atributnya. Penjelasan dari setiap kelas dalam Gambar \ref{fig:diagramkelas} adalah sebagai berikut.
 
 \subsection{\textit{Document}}
 
@@ -64,10 +64,10 @@ Gambar \ref{fig:diagramkelas} merupakan diagram kelas secara umum yang tidak mem
 	\end{center}
 \end{figure}
 
-Kelas ini merupakan representasi dari dokumen yang akan diproses dalam pengelompokan. Kelas ini berfungsi untuk menyimpan informasi yang dibutuhkan dari sebuah dokumen selama proses pengelompokan. Atribut yang dimiliki oleh kelas \textit{Document} adalah:
+Kelas ini merupakan representasi dari dokumen yang diproses dalam pengelompokan. Kelas ini berfungsi untuk menyimpan informasi yang dibutuhkan dari sebuah dokumen selama proses pengelompokan. Atribut yang dimiliki oleh kelas \textit{Document} adalah:
 
 \begin{itemize}
-	\item \textit{file}: atribut ini bertipe \textit{File} milik \textit{package} java.io yang berfungsi untuk merepresentasikan \textit{file} dari dokumen yang akan diproses.
+	\item \textit{file}: atribut ini bertipe \textit{File} milik \textit{package} java.io yang berfungsi untuk merepresentasikan \textit{file} dari dokumen yang diproses.
 	\item \textit{wordCount}: atribut ini bertipe \textit{HashMap} dengan \textit{key} bertipe \textit{String} dan \textit{value} bertipe \textit{Integer}. Atribut ini menyimpan pasangan kata yang dimiliki oleh dokumen tersebut dan frekuensinya.
 	\item \textit{vector}: atribut bertipe \textit{Vector} ini merepresentasikan model ruang vektor pada sebuah dokumen.
 \end{itemize}
@@ -75,7 +75,7 @@ Kelas ini merupakan representasi dari dokumen yang akan diproses dalam pengelomp
 \textit{Method} yang terdapat dalam kelas ini adalah:
 
 \begin{itemize}
-	\item \textit{Document}: \textit{method} ini merupakan \textit{constructor} dengan sebuah parameter bertipe \textit{File} yaitu \textit{file} dari dokumen yang akan dikelompokkan.
+	\item \textit{Document}: \textit{method} ini merupakan \textit{constructor} dengan sebuah parameter bertipe \textit{File} yaitu \textit{file} dari dokumen yang dikelompokkan.
 	\item \textit{indexDocument}: \textit{method} tanpa kembalian (\textit{void}) yang berfungsi untuk mengindeks dokumen untuk mengisi atribut \textit{wordCount}.
 	\item \textit{getWordCount}: \textit{method} yang berfungsi untuk mengembalikan banyaknya \textit{term} muncul dalam dokumen.
 	\item \textit{getVector}: \textit{method} ini merupakan \textit{getter} dari atribut \textit{vector}.
@@ -96,8 +96,8 @@ Kelas ini merupakan kelas yang merepresentasikan sebuah vektor. Kelas ini memili
 
 \begin{itemize}
 	\item \textit{termsWeight}: atribut ini bertipe \textit{Hashmap} dengan \textit{key} berupa \textit{String} dan \textit{value} berupa \textit{Double}. Atribut ini menyimpan pasangan \term dan bobotnya sesuai dengan metode pembobotan.
-	\item \textit{similarityCalculator}: atribut ini bertipe \textit{SimilarityCalculator} dan merupakan objek yang akan digunakan untuk menghitung kemiripan antar vektor.
-	\item \textit{termWeighting}: atribut ini bertipe \textit{TermWeighting} dan merupakan objek yang akan digunakan untuk menghitung bobot dari setiap dimensi dalam suatu vektor.
+	\item \textit{similarityCalculator}: atribut ini bertipe \textit{SimilarityCalculator} dan merupakan objek yang digunakan untuk menghitung kemiripan antar vektor.
+	\item \textit{termWeighting}: atribut ini bertipe \textit{TermWeighting} dan merupakan objek yang digunakan untuk menghitung bobot dari setiap dimensi dalam suatu vektor.
 \end{itemize}
 
 \textit{Method} yang terdapat dalam kelas ini adalah:
@@ -256,7 +256,7 @@ Kelas ini merepresentasikan kromosom dalam algoritma genetika. Atribut yang terd
 	\item \textit{genes}: atribut bertipe \textit{List of Gene} dan merupakan kumpulan gen yang terdapat dalam kromosom.
 	\item \textit{rand}: atribut ini merupakan objek \textit{Random} milik \textit{Java} dan berfungsi untuk membangkitkan bilangan acak yang dibutuhkan dalam setiap proses dalam kromosom.
 	\item \textit{fitnessValue}: atribut ini menyimpan nilai \textit{fitness} dari kromosom.
-	\item \textit{clusteringResult}: atribut ini akan menyimpan hasil dari pengelompokan. Atribut ini bertipe \textit{HashMap} yang menyimpan pasangan dokumen dan \textit{cluster} dari dokumen tersebut.
+	\item \textit{clusteringResult}: atribut ini menyimpan hasil dari pengelompokan. Atribut ini bertipe \textit{HashMap} yang menyimpan pasangan dokumen dan \textit{cluster} dari dokumen tersebut.
 \end{itemize}
 
 \textit{Method} yang terdapat dalam kelas ini adalah:
@@ -271,7 +271,7 @@ Kelas ini merepresentasikan kromosom dalam algoritma genetika. Atribut yang terd
 	\item \textit{getFitness}: \textit{method} ini merupakan \textit{getter} dari atribut \textit{fitnessValue}.
 	\item \textit{getAllGenes}: \textit{method} ini merupakan \textit{getter} dari atribut \textit{genes}.
 	\item \textit{getClusteringResult}: \textit{method} ini merupakan \textit{getter} dari atribut \textit{clusteringResult}.
-	\item \textit{compareTo}: \textit{method} ini merupakan turunan dari \textit{interface Comparable} milik \textit{Java} yang dibutuhkan untuk membandingkan kromosom ini dengan kromosom \textit{o}. Method ini nantinya akan digunakan dalam proses \textit{sorting}.
+	\item \textit{compareTo}: \textit{method} ini merupakan turunan dari \textit{interface Comparable} milik \textit{Java} yang dibutuhkan untuk membandingkan kromosom ini dengan kromosom \textit{o}. Method ini nantinya digunakan dalam proses \textit{sorting}.
 \end{itemize}
 
 \subsection{\textit{GAClusterer}}
@@ -284,7 +284,7 @@ Kelas ini merepresentasikan kromosom dalam algoritma genetika. Atribut yang terd
 	\end{center}
 \end{figure}
 
-Kelas ini merupakan kelas utama yang akan mengatur jalannya proses pengelompokan menggunakan algoritma genetika. Kelas ini merupakan kelas \textit{singleton}. Atribut yang terdapat dalam kelas ini adalah:
+Kelas ini merupakan kelas utama yang mengatur jalannya proses pengelompokan menggunakan algoritma genetika. Kelas ini merupakan kelas \textit{singleton}. Atribut yang terdapat dalam kelas ini adalah:
 
 \begin{itemize}
 	\item \textit{population}: atribut ini bertipe \textit{List of Chromosome} yang merepresentasikan populasi pada generasi saat ini.
@@ -304,7 +304,55 @@ Kelas ini merupakan kelas utama yang akan mengatur jalannya proses pengelompokan
 	\item \textit{progressProperty}: \textit{method} ini merupakan \textit{getter} dari atribut \textit{progress}.
 	\item \textit{getInstance}: \textit{method} ini merupakan \textit{getter} dari atribut \textit{instance}.
 	\item \textit{rouletteWheelSelect}: \textit{method} ini bertugas untuk memilih sebuah kromosom menggunakan teknik \textit{roulette-wheel selection} dari populasi.
-	\item \textit{elitism}: \textit{method} ini bertugas untuk memilih $n$ kromosom elit yang akan langsung masuk ke generasi berikutnya.
+	\item \textit{elitism}: \textit{method} ini bertugas untuk memilih $n$ kromosom elit yang langsung masuk ke generasi berikutnya. Cara kerja \textit{method} ini dijelaskan dalam Algoritma \ref{alg:elitism}.
+	
+	\begin{algorithm}[H]
+	%fungsi persilangan
+	\caption{Elitisme Algoritma Genetika}
+	\label{alg:elitism}
+	\begin{flushleft}
+		\textbf{function} ELITISME($count$, $populasi$) \textbf{returns} individu-individu elit
+		\begin{flushleft}
+			\begin{tabular}{ l l }
+				\textbf{inputs:}& $count$, banyaknya individu elit\\
+				& $populasi$, himpunan individu
+				\hspace{5pt} 
+			\end{tabular} 
+		\end{flushleft}
+	\end{flushleft}
+
+	\begin{algorithmic}[1]
+		\STATE $pq \leftarrow$ \textit{Priority Queue}
+		\FOR{$i$=1 \textbf{to} SIZE($populasi$)} \label{alg:elitism:ln-2}
+			\IF{$count == 0$ } \label{alg:elitism:ln-3}
+				\STATE break \label{alg:elitism:ln-4}
+			\ENDIF
+			\IF{$i < count$ } \label{alg:elitism:ln-6}
+				\STATE OFFER($pq$, $populasi[i]$) \label{alg:elitism:ln-7}
+			\ELSE
+				\IF{FITNESS($populasi[i]$) > FITNESS(PEEK($pq$))} \label{alg:elitism:ln-9}
+					\STATE POLL($pq$) \label{alg:elitism:ln-10}
+					\STATE OFFER($pq$,$populasi[i]$) \label{alg:elitism:ln-11}
+				\ENDIF
+			\ENDIF
+		\ENDFOR
+		\STATE \textbf{return} TO-ARRAY($pq$) \label{alg:elitism:ln-15}
+	\end{algorithmic}
+\end{algorithm}
+
+\pagebreak
+	Penjelasan untuk fungsi  Elitisme adalah sebagai berikut:
+	\begin{itemize}
+		\item Individu elit akan dipilih dengan cara mengiterasi seluruh $populasi$ (baris \ref{alg:elitism:ln-2})
+		\item Apabila jumlah elit yang diinginkan adalah 0 ($count ==0$), maka iterasi akan diberhentikan (baris \ref{alg:elitism:ln-3} dan \ref{alg:elitism:ln-4}).
+		\item Apabila banyaknya individu dalam $pq$ masih kurang dari $count$ (baris \ref{alg:elitism:ln-6}), maka akan dilakukan pemanggilan fungsi \textit{OFFER} yang berfungsi untuk memasukkan individu ke-$i$ dari populasi ke dalam $pq$ (baris \ref{alg:elitism:ln-7}).
+		\item Pada baris \ref{alg:elitism:ln-9}, fungsi \textit{PEEK} berfungsi untuk mengembalikan elemen paling awal dalam $pq$. Kemudian akan dibandingkan nilai \textit{fitness} antara elemen paling awal $pq$ dan individu ke-$i$ dalam populasi.
+		\item Apabila nilai \textit{fitness} individu ke-$i$ dalam populasi lebih besar daripada elemen paling awal dalam $pq$, maka akan dilakukan dua hal dalam baris \ref{alg:elitism:ln-10} dan \ref{alg:elitism:ln-11}.\
+		\item Pada baris \ref{alg:elitism:ln-10}, fungsi \textit{POLL} berfungsi untuk mengeluarkan elemen paling awal dalam $pq$.
+		\item Pada baris \ref{alg:elitism:ln-11}, fungsi \textit{OFFER} akan memasukkan individu ke-$i$ dari populasi ke dalam $pq$.
+		\item Pada baris \ref{alg:elitism:ln-15}, fungsi \textit{TO-ARRAY} akan mengubah $pq$ ke dalam bentuk \textit{array}.
+	\end{itemize}
+	
 	\item \textit{selection}: \textit{method} ini bertugas untuk melakukan \textit{roulette-wheel selection} sebanyak populasi untuk menghasilkan populasi dari generasi selanjutnya.
 	\item \textit{initialize}: \textit{method} ini berfungsi untuk melakukan \textit{indexing} dokumen dan membentuk populasi awal.
 	\item \textit{getAllDocs}: \textit{method} ini merupakan \textit{getter} dari atribut \textit{docs}.
@@ -323,19 +371,19 @@ Kelas ini merupakan kelas utama yang akan mengatur jalannya proses pengelompokan
 	\end{center}
 \end{figure}
 
-Kelas ini berfungsi untuk menyimpan seluruh parameter yang diberikan oleh pengguna agar dapat digunakan oleh setiap kelas yang membutuhkannya. Kelas ini bersifat \textit{singleton} sehingga hanya akan ada satu buah \textit{instance} selama perangkat lunak berjalan. Atribut yang ada dalam kelas ini adalah:
+Kelas ini berfungsi untuk menyimpan seluruh parameter yang diberikan oleh pengguna agar dapat digunakan oleh setiap kelas yang membutuhkannya. Kelas ini bersifat \textit{singleton} sehingga hanya ada satu buah \textit{instance} selama perangkat lunak berjalan. Atribut yang ada dalam kelas ini adalah:
 
 \begin{itemize}
 	\item \textit{instance}: atribut ini merupakan objek bertipe \textit{Params} sebagai instansiasi satu-satunya dari kelas \textit{Params} karena kelas ini bersifat \textit{singleton}.
-	\item \textit{filepath}: atribut ini berfungsi untuk menyimpan alamat dari direktori dokumen yang akan dikelompokkan.
-	\item \textit{K}: atribut ini berfungsi untuk menyimpan banyaknya \textit{cluster} yang akan dipentuk dalam proses pengelompokan.
-	\item \textit{P}: atribut ini berfungsi untuk menyimpan banyaknya populasi yang akan dibentuk dalam proses pengelompokan menggunakan algoritma genetika.
-	\item \textit{weightingMethod}: atribut ini berfungsi untuk menyimpan metode pembobotan yang akan digunakan dalam proses pengelompokan. Apabila atribut ini bernilai 0 maka metode yang digunakan adalah TF-IDF sedangkan apabila bernilai 1 maka metode yang akan digunakan adalah bobot frekuensi.
+	\item \textit{filepath}: atribut ini berfungsi untuk menyimpan alamat dari direktori dokumen yang dikelompokkan.
+	\item \textit{K}: atribut ini berfungsi untuk menyimpan banyaknya \textit{cluster} yang dipentuk dalam proses pengelompokan.
+	\item \textit{P}: atribut ini berfungsi untuk menyimpan banyaknya populasi yang dibentuk dalam proses pengelompokan menggunakan algoritma genetika.
+	\item \textit{weightingMethod}: atribut ini berfungsi untuk menyimpan metode pembobotan yang digunakan dalam proses pengelompokan. Apabila atribut ini bernilai 0 maka metode yang digunakan adalah TF-IDF sedangkan apabila bernilai 1 maka metode yang digunakan adalah bobot frekuensi.
 	\item \textit{mu}\_\textit{m}: atribut ini berfungsi untuk menyimpan probabilitas mutasi dalam bentuk bilangan riil bernilai antara 0 sampai dengan 1.
 	\item \textit{maxIt}: atribut ini berfungsi untuk menyimpan banyaknya iterasi maksimal yang dapat dilakukan.
-	\item \textit{elitismCount}: atribut ini berfungsi untuk menyimpan banyaknya individu yang akan dijadikan elit pada tahap seleksi.
+	\item \textit{elitismCount}: atribut ini berfungsi untuk menyimpan banyaknya individu yang dijadikan elit pada tahap seleksi.
 	\item \textit{convergeGen}: atribut ini berfungsi untuk menyimpan banyaknya generasi konvergen sebelum proses pengelompokan diberhentikan.
-	\item \textit{convergeEpsilon}: atribut ini berfungsi untuk menyimpan nilai yang akan digunakan untuk membandingkan \textit{fitness} tiap solusi dari setiap generasi untuk menentukan apakah sudah tercapai konvergen atau belum.
+	\item \textit{convergeEpsilon}: atribut ini berfungsi untuk menyimpan nilai yang digunakan untuk membandingkan \textit{fitness} tiap solusi dari setiap generasi untuk menentukan apakah sudah tercapai konvergen atau belum.
 \end{itemize}
 
 \textit{Method} yang ada pada kelas ini adalah:
@@ -365,7 +413,7 @@ Kelas ini berfungsi untuk menyimpan seluruh parameter yang diberikan oleh penggu
 	\end{center}
 \end{figure}
 
-Kelas ini merupakan kelas utama yang akan mengatur jalannya proses pengelompokan menggunakan algoritma \textit{K-means}. Kelas ini merupakan kelas \textit{singleton}. Atribut yang terdapat dalam kelas ini adalah:
+Kelas ini merupakan kelas utama yang mengatur jalannya proses pengelompokan menggunakan algoritma \textit{K-means}. Kelas ini merupakan kelas \textit{singleton}. Atribut yang terdapat dalam kelas ini adalah:
 
 \begin{itemize}
 	\item \textit{docs}: atribut ini bertipe \textit{List of Document} yang berfungsi untuk menyimpan seluruh koleksi dokumen.
@@ -379,7 +427,7 @@ Kelas ini merupakan kelas utama yang akan mengatur jalannya proses pengelompokan
 \textit{Method} yang terdapat dalam kelas ini adalah:
 
 \begin{itemize}
-	\item \textit{KMeans}: \textit{method} ini merupakan \textit{constructor private} yang berfungsi untuk menjamin tidak akan ada \textit{instance} dibuat diluar dari kelas ini.
+	\item \textit{KMeans}: \textit{method} ini merupakan \textit{constructor private} yang berfungsi untuk menjamin tidak ada \textit{instance} dibuat diluar dari kelas ini.
 	\item \textit{setIsRunning}: \textit{method} ini mrupakan \textit{setter} dari atribut \textit{isRunning}.
 	\item \textit{getProgress}: \textit{method} ini mengembalikan perkembangan pekerjaan program (skala 0 sampai dengan 1).
 	\item \textit{progressProperty}: \textit{method} ini merupakan \textit{getter} dari atribut \textit{progress}.
@@ -407,28 +455,28 @@ Kelas ini merupakan kelas yang bertugas untuk mengendalikan seluruh aktivitas ya
 \begin{itemize}
 	\item \textit{textFieldDokumen}: atribut ini bertipe \textit{TextField} dan berfungsi menampilkan direktori dokumen pada antarmuka pengguna.
 	\item \textit{buttonDokumen}: atribut ini bertipe \textit{Button} yang merupakan tombol untuk memilih direktori dokumen pada antarmuka pengguna.
-	\item \textit{spinnerCluster}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter banyaknya \textit{cluster} pada antarmuka pengguna di bagian GA.
-	\item \textit{spinnerPopulasi}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter banyaknya populasi pada antarmuka pengguna di bagian GA.
-	\item \textit{spinnerMutasi}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter probabilitas mutasi pada antarmuka pengguna di bagian GA.
-	\item \textit{spinnerMaxIterasi}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter maksimum iterasi pada antarmuka pengguna di bagian GA.
-	\item \textit{spinnerElitism}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter individu elitisme pada antarmuka pengguna di bagian GA.
-	\item \textit{spinnerConvergeGen}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter banyaknya generasi konvergen pada antarmuka pengguna di bagian GA.
-	\item \textit{choiceBoxWeighting}: atribut ini bertipe \textit{ChoiceBox} yang akan menangani masukan untuk parameter metode pembobotan pada antarmuka pengguna di bagian GA.
-	\item \textit{spinnerConvergeLimit}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter banyaknya generasi konvergen pada antarmuka pengguna di bagian GA.
-	\item \textit{progressBar}: atribut ini bertipe \textit{progressBar} yang akan menampilkan perkembangan dari proses pengelompokan menggunakan algoritma GA.
+	\item \textit{spinnerCluster}: atribut ini bertipe \textit{Spinner} yang menangani masukan untuk parameter banyaknya \textit{cluster} pada antarmuka pengguna di bagian GA.
+	\item \textit{spinnerPopulasi}: atribut ini bertipe \textit{Spinner} yang menangani masukan untuk parameter banyaknya populasi pada antarmuka pengguna di bagian GA.
+	\item \textit{spinnerMutasi}: atribut ini bertipe \textit{Spinner} yang menangani masukan untuk parameter probabilitas mutasi pada antarmuka pengguna di bagian GA.
+	\item \textit{spinnerMaxIterasi}: atribut ini bertipe \textit{Spinner} yang menangani masukan untuk parameter maksimum iterasi pada antarmuka pengguna di bagian GA.
+	\item \textit{spinnerElitism}: atribut ini bertipe \textit{Spinner} yang menangani masukan untuk parameter individu elitisme pada antarmuka pengguna di bagian GA.
+	\item \textit{spinnerConvergeGen}: atribut ini bertipe \textit{Spinner} yang menangani masukan untuk parameter banyaknya generasi konvergen pada antarmuka pengguna di bagian GA.
+	\item \textit{choiceBoxWeighting}: atribut ini bertipe \textit{ChoiceBox} yang menangani masukan untuk parameter metode pembobotan pada antarmuka pengguna di bagian GA.
+	\item \textit{spinnerConvergeLimit}: atribut ini bertipe \textit{Spinner} yang menangani masukan untuk parameter banyaknya generasi konvergen pada antarmuka pengguna di bagian GA.
+	\item \textit{progressBar}: atribut ini bertipe \textit{progressBar} yang menampilkan perkembangan dari proses pengelompokan menggunakan algoritma GA.
 	\item \textit{buttonMulai}: atribut ini bertipe \textit{Button} yang merupakan tombol untuk memulai proses pengelompokan menggunakan algoritma GA.
 	\item \textit{textFieldHasil}: atribut ini bertipe \textit{TextField} dan berfungsi menampilkan direktori hasil pada antarmuka pengguna.
 	\item \textit{buttonHasil}: atribut ini bertipe \textit{Button} yang merupakan tombol untuk memilih direktori hasil pada antarmuka pengguna.
 	\item \textit{tabGA}: atribut ini bertipe \textit{Tab} yang merupakan \textit{tab} untuk memilih pengelompokan menggunakan algoritma GA.
 	\item \textit{tabKMeans}: atribut ini bertipe \textit{Tab} yang merupakan \textit{tab} untuk memilih pengelompokan menggunakan algoritma \textit{K-means}.
 	\item \textit{labelProgress}: atribut ini bertipe \textit{Label} yang berfungsi untuk menampilkan status dari proses pengelompokan menggunakan algoritma GA.
-	\item \textit{KMspinnerCluster}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter banyaknya \textit{cluster} pada antarmuka pengguna di bagian \textit{K-means}.
-	\item \textit{KMchoiceBoxWeighting}: atribut ini bertipe \textit{ChoiceBox} yang akan menangani masukan untuk parameter metode pembobotan pada antarmuka pengguna di bagian \textit{K-means}.
-	\item \textit{KMspinnerMaxIterasi}: atribut ini bertipe \textit{Spinner} yang akan menangani masukan untuk parameter maksimum iterasi pada antarmuka pengguna di bagian \textit{K-means}.
-	\item \textit{KMprogressBar}: atribut ini bertipe \textit{progressBar} yang akan menampilkan perkembangan dari proses pengelompokan menggunakan algoritma \textit{K-means}.
+	\item \textit{KMspinnerCluster}: atribut ini bertipe \textit{Spinner} yang menangani masukan untuk parameter banyaknya \textit{cluster} pada antarmuka pengguna di bagian \textit{K-means}.
+	\item \textit{KMchoiceBoxWeighting}: atribut ini bertipe \textit{ChoiceBox} yang menangani masukan untuk parameter metode pembobotan pada antarmuka pengguna di bagian \textit{K-means}.
+	\item \textit{KMspinnerMaxIterasi}: atribut ini bertipe \textit{Spinner} yang menangani masukan untuk parameter maksimum iterasi pada antarmuka pengguna di bagian \textit{K-means}.
+	\item \textit{KMprogressBar}: atribut ini bertipe \textit{progressBar} yang menampilkan perkembangan dari proses pengelompokan menggunakan algoritma \textit{K-means}.
 	\item \textit{KMbuttonMulai}: atribut ini bertipe \textit{Button} yang merupakan tombol untuk memulai proses pengelompokan menggunakan algoritma \textit{K-means}.
 	\item \textit{labelProgress}: atribut ini bertipe \textit{Label} yang berfungsi untuk menampilkan status dari proses pengelompokan menggunakan algoritma \textit{K-means}.
-	\item \textit{thread}: atribut ini bertipe \textit{Thread} dan merupakan sebuah \textit{thread} yang akan menjalankan proses pengelompokan.
+	\item \textit{thread}: atribut ini bertipe \textit{Thread} dan merupakan sebuah \textit{thread} yang menjalankan proses pengelompokan.
 	\item \textit{runningTime}: atribut ini bertipe \textit{long} dan berfungsi untuk menyimpan lamanya program berjalan dalam milidetik.
 	\item \textit{task}: atribut ini bertipe \textit{Task} dan berfungsi untuk menjalankan tugas pengelompokan.
 	\item \textit{curIt}: atirbut ini bertipe \textit{int} dan berfungsi untuk menyimpan banyaknya iterasi saat ini.
@@ -453,7 +501,7 @@ Kelas ini merupakan kelas yang bertugas untuk mengendalikan seluruh aktivitas ya
 
 \section{Perancangan Antarmuka Pengguna}
 \label{sec:guidesign}
-Antarmuka yang dirancang untuk perangkat lunak ini hanya terdiri dari 2 halaman. Rancangan antarmuka ini dibuat sedemikian rupa sehingga memudahkan penggunannya dalam melakukan pengujian terhadap perangkat lunak. Pada penelitian ini, perancangan antarmuka dibuat menggunakan perangkat lunak \textit{balsamiq}\footnote{https://balsamiq.com/}. Setiap objek dan \textit{field} akan diberi label unik agar dapat disesuaikan dengan tabel keterangan. Berikut akan dibahas rancangan antarmuka pengguna dari perangkat ini.
+Antarmuka yang dirancang untuk perangkat lunak ini hanya terdiri dari 2 halaman. Rancangan antarmuka ini dibuat sedemikian rupa sehingga memudahkan penggunannya dalam melakukan pengujian terhadap perangkat lunak. Pada penelitian ini, perancangan antarmuka dibuat menggunakan perangkat lunak \textit{balsamiq}\footnote{https://balsamiq.com/}. Setiap objek dan \textit{field} diberi label unik agar dapat disesuaikan dengan tabel keterangan. Berikut dibahas rancangan antarmuka pengguna dari perangkat ini.
 
 \subsection{Halaman Algoritma Genetika}
 Gambar \ref{fig:UI-GA} menunjukkan halaman yang dapat digunakan oleh pengguna untuk mengelompokan dokumen menggunakan algoritma genetika. Pada halaman ini terdapat beberapa \textit{field} yang dapat digunakan pengguna untuk mengatur nilai dari masing-masing parameter.
@@ -487,7 +535,7 @@ Penjelasan setiap \textit{field} dalam halaman ini dijelaskan dalam Tabel \ref{t
 	\label{tbl:field-GA}
 \end{table}
 
-Objek dengan kode A11 merupakan sebuah \textit{progress bar} yang akan menampilkan perkembangan dari jalannya program untuk setiap iterasi. Apabila proses dalam suatu iterasi sudah selesai, maka akan mengubah nilai dari label A12 dan membuat \textit{progress bar} kembali kosong. Label dengan kode A12 berfungsi untuk menampilkan status dari program yang sedang berjalan. Label ini tidak akan memiliki nilai apabila program belum dijalankan dan akan menampilkan status "Inisialisasi..." apabila program sedang melakukan pengindeksan dokumen dan inisialisasi populasi. Setelah iterasi dimulai maka label A12 akan menampilkan generasi saat ini. Sebagai contoh apabila label A12 menampilkan status "Generasi 1" artinya saat ini program sedang melakukan proses-proses pada generasi 1. Begitu juga untuk "Generasi 2" dan seterusnya. Tombol dengan kode A13 berfungsi untuk memulai proses pengelompokan menggunakan algoritma genetika berdasarkan parameter yang telah dimasukkan.
+Objek dengan kode A11 merupakan sebuah \textit{progress bar} yang menampilkan perkembangan dari jalannya program untuk setiap iterasi. Apabila proses dalam suatu iterasi sudah selesai, maka mengubah nilai dari label A12 dan membuat \textit{progress bar} kembali kosong. Label dengan kode A12 berfungsi untuk menampilkan status dari program yang sedang berjalan. Label ini tidak memiliki nilai apabila program belum dijalankan dan menampilkan status "Inisialisasi..." apabila program sedang melakukan pengindeksan dokumen dan inisialisasi populasi. Setelah iterasi dimulai maka label A12 menampilkan generasi saat ini. Sebagai contoh apabila label A12 menampilkan status "Generasi 1" artinya saat ini program sedang melakukan proses-proses pada generasi 1. Begitu juga untuk "Generasi 2" dan seterusnya. Tombol dengan kode A13 berfungsi untuk memulai proses pengelompokan menggunakan algoritma genetika berdasarkan parameter yang telah dimasukkan.
 
 \subsection{Halaman \textit{K-Means}}
 \label{sub:ui-kmeans}
@@ -499,7 +547,7 @@ Objek dengan kode A11 merupakan sebuah \textit{progress bar} yang akan menampilk
 	\end{center}
 \end{figure}
 
-Gambar \ref{fig:UI-KMeans} merupakan tampilan yang akan digunakan oleh pengguna untuk melakukan pengelompokan dokumen menggunakan algoritma \textit{K-means}. Berbeda dengan halaman algoritma genetika, pada halaman ini hanya terdapat tiga buah parameter yang dapat diubah-ubah oleh pengguna dalam melakukan pengelompokan.
+Gambar \ref{fig:UI-KMeans} merupakan tampilan yang digunakan oleh pengguna untuk melakukan pengelompokan dokumen menggunakan algoritma \textit{K-means}. Berbeda dengan halaman algoritma genetika, pada halaman ini hanya terdapat tiga buah parameter yang dapat diubah-ubah oleh pengguna dalam melakukan pengelompokan.
 
 \begin{table}[H]
 	\renewcommand{\arraystretch}{2}
@@ -515,4 +563,4 @@ Gambar \ref{fig:UI-KMeans} merupakan tampilan yang akan digunakan oleh pengguna 
 	\label{tbl:field-KMeans}
 \end{table}
 
-Dalam Tabel \ref{tbl:field-KMeans}, objek dengan kode B06 merupakan sebuah \textit{progress bar} yang akan menampilkan perkembangan dari jalannya program yang menyatakan banyaknya iterasi yang sudah selesai dijalankan dibandingkan dengan maksimum iterasi. Label B07 akan berisi keterangan dari proses yang sedang berlangsung. Salah satu contoh isi dari label B07 adalah "Iterasi 2/100" yang berarti saat ini sedang dilakukan pemrosesan pada iterasi kedua dari 100 iterasi. Tombol dengan kode B08 berfungsi untuk memulai proses pengelompokan menggunakan algoritma \textit{K-means} berdasarkan parameter yang telah dimasukkan.
+Dalam Tabel \ref{tbl:field-KMeans}, objek dengan kode B06 merupakan sebuah \textit{progress bar} yang menampilkan perkembangan dari jalannya program yang menyatakan banyaknya iterasi yang sudah selesai dijalankan dibandingkan dengan maksimum iterasi. Label B07 berisi keterangan dari proses yang sedang berlangsung. Salah satu contoh isi dari label B07 adalah "Iterasi 2/100" yang berarti saat ini sedang dilakukan pemrosesan pada iterasi kedua dari 100 iterasi. Tombol dengan kode B08 berfungsi untuk memulai proses pengelompokan menggunakan algoritma \textit{K-means} berdasarkan parameter yang telah dimasukkan.
