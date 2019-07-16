@@ -83,8 +83,8 @@
 %=============================================================================
 %\mode{bimbingan} 		% untuk keperluan bimbingan
 %\mode{sidang} 			% untuk sidang 1
-\mode{sidangakhir} 	% untuk sidang 2 / sidang pada Skripsi 2(IF)
-%\mode{final} 			% untuk mencetak buku skripsi 
+%\mode{sidangakhir} 	% untuk sidang 2 / sidang pada Skripsi 2(IF)
+\mode{final} 			% untuk mencetak buku skripsi 
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -204,9 +204,9 @@
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda
 %=============================================================================
 \namanpm{Cornelius David Herianto}{2015730034}
-\tanggal{<<tanggal>>}{<<bulan>>}{2019}
+\tanggal{22}{5}{2019}
 \pembimbing{\KDH}{}    
-\penguji{<<penguji 1>>}{<<penguji 2>>} 
+\penguji{\HUH}{\RDL} 
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -241,7 +241,7 @@ Algoritma genetika atau biasa disebut \textit{Genetic Algorithm} (GA) adalah sua
 
 Algoritma genetika dan algoritma \textit{K-means} diuji menggunakan suatu \textit{dataset} berlabel untuk membandingkan waktu dan hasil pengelompokan dari kedua algoritma tersebut. Berdasarkan hasil eksperimen menggunakan \textit{dataset} dalam penelitian ini, rata-rata nilai \textit{purity} dari hasil pengelompokan menggunakan algoritma genetika adalah sebesar 0.799, lebih baik 56\% dibandingkan dengan menggunakan algoritma K-means. Hal ini membuktikan bahwa algoritma genetika sudah dapat mengelompokan dokumen dengan hasil yang memuaskan. Namun dari segi waktu, algoritma genetika membutuhkan waktu 4365\% lebih lama dibandingkan dengan algoritma \textit{K-means}. Hal ini disebabkan oleh proses komputasi yang dilakukan pada algoritma genetika jauh lebih banyak dan kompleks dibandingkan dengan algoritma \textit{K-means}.}
 
-\abstrakENG{Clustering is a method of creating groups of objects, or clusters, in such a way that objects in one cluster are very similar and objects in different clusters are quite distinct \cite{gan2007data}. One of the most frequently used algorithm in clustering is K-means. However, K-means can easily stuck in local optimum. Local optimum of an optimization problem is a solution that is optimal (either maximal or minimal) within a neighboring set of candidate solutions. This is in contrast to a global optimum, which is the optimal solution among all possible solutions, not just those in a particular neighborhood of values.
+\abstrakENG{Clustering is a method of creating groups of objects, or clusters, in such a way that objects in one cluster are very similar and objects in different clusters are quite distinct \cite{gan2007data}. Document clustering is an organization of documents into clusters. It has been studied intensively because of its wide applicability in various areas such as web mining, search engines, and information retrieval \cite{shah2012document}. It is measuring similarity between documents and grouping similar documents together. One of the most frequently used algorithm in clustering is K-means. However, K-means can easily stuck in local optimum. Local optimum of an optimization problem is a solution that is optimal (either maximal or minimal) within a neighboring set of candidate solutions. This is in contrast to a global optimum, which is the optimal solution among all possible solutions, not just those in a particular neighborhood of values.
 
 Genetic Algorithm (GA) is a search algorithm inspired by the natural selection process that occurs naturally in the evolutionary process. GA is a problem solving method that used genetics as its model. A solution candidate is modeled as an individual in GA. Set of these individuals are called population. Every individual in a population is represented by a chromosome. Chromosome is a collection of parameters which formed a solution. That parameters is called gene. Every individual in the population is assigned, by means of a fitness function, a measure of its goodness In this study, GA will be used as a solution to local optimum, which have proven to be effective in search and optimization problems. GA can be used to cluster documents by adapting chromosome representation, fitness function, selection, crossover, and mutation. 
 
@@ -268,7 +268,7 @@ Genetic algorithm and K-means algorithm will be tested using a labeled datasets 
 % Persembahan : kepada siapa anda mempersembahkan skripsi ini ...
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda.
 %=============================================================================
-\untuk{<<kepada siapa anda mempersembahkan skripsi ini\ldots?>>}
+\untuk{Dipersembahkan kepada Tuhan YME, keluarga tercinta, \\ dan diri sendiri}
 %=============================================================================
 
 %_____________________________________________________________________________
@@ -279,7 +279,20 @@ Genetic algorithm and K-means algorithm will be tested using a labeled datasets 
 % kasih kepada yang telah membantu anda bla bla bla ....  
 % Petunjuk: hilangkan tanda << & >>, dan isi sesuai dengan data anda.
 %=============================================================================
-\prakata{<<Tuliskan kata pengantar dari anda di sini \ldots>>} 
+\prakata{Puji syukur kepada Tuhan Yang Maha Esa atas berkat yang diberikan kepada penulis sehingga dapat menyelesaikan skripsi dengan judul \textbf{Pengelompokan Dokumen Berbasis Algoritma Genetika} dengan baik dan tepat waktu. Selama menjalani proses perkuliahan dan penyusunan skripsi, penulis telah mendapat banyak bantuan dan dukungan dalam menghadapi hambatan yang ada. Oleh karena itu, penulis inign menyampaikan rasa terima kasih kepada:
+	\begin{enumerate}
+		\item Keluarga penulis yaitu Papa dan Mama yang selalu mendukung penulis secara moral dan materiil sehingga penulis dapat menyelesaikan proses perkuliahan dan skripsi ini dengan baik. Serta kepada Michelle dan Vincent sebagai adik penulis yang selalu mendukung penulis dalam menyelesaikan skripsi ini.
+		\item Bapak Kristopher David Harjono, M.T. sebagai dosen pembimbing yang telah membimbing penulis hingga dapat menyelesaikan skripsi ini.
+		\item Bapak Husnul Hakim, M.T. dan Ibu Rosa De Lima, M.Kom. sebagai dosen penguji yang telah membantu dalam menguji dan memperbaiki skripsi ini.
+		\item Ibu Mariskha Tri Adithia, P.D.Eng selaku Ketua Program Studi Teknik Informatika Fakultas Teknologi Informasi dan Sains Universitas Katolik Parahyangan.
+		\item Arlin Sasqia Puspa Shiffa sebagai sahabat yang selalu mendampingi penulis dalam penyusunan skripsi dari awal hingga akhir bahkan membantu penulis mempersiapkan presentasi sidang skripsi.
+		\item Vania Stephanie dan Khezia Josephine sebagai sahabat penulis yang senantiasa memberikan dukungan, semangat, masukkan yang berguna untuk penulis, serta menghibur penulis selama proses penyusunan skripsi ini terutama saat sedang mengalami kesulitan.
+		\item Teman-teman dari Grup MANAYGBILANGWGAGUNA yaitu AK, Otung, Devie, Gilbert, Hoshea, Jeane, Khen, Mark, Matthew, Oyeng, Bebe, Rifo, Rizky, Sean, Vinny, dan WM yang telah menghibur dan mendukung penulis dalam penyusunan skripsi ini.
+		\item Teman-teman dari Grup Korea yaitu Ario, Dandy, Fakhry, Felis, Hima, Hizkia, Irvan, Acong, Joshua, Kezia, Edrick, Ocin, Momon, Thoby, Victor, Yona, Yudhis, dan Matthew Ariel sebagai teman seperjuangan di Teknik Informatika UNPAR angkatan 2015 yang telah memberi semangat dan dukungan kepada penulis.
+		\item Teman-teman penulis lain yang tidak dapat disebutkan satu persatu. Terima kasih untuk segala dukungannya sehingga skripsi ini dapat diselesaikan dengan baik.
+	\end{enumerate}
+
+Akhir kata, semoga skripsi ini dapat bermanfaat bagi pembaca dan dapat menjadi dasar untuk penelitian yang terkait dengan skripsi ini.} 
 %=============================================================================
 
 %_____________________________________________________________________________

@@ -11,7 +11,7 @@ Eksperimen dilakukan dengan menggunakan spesifikasi komputer sebagai berikut:
 	\item Sistem operasi: Windows 10 Pro 64-bit (10.0, Build 17763)
 \end{enumerate}
 
-Pada suatu penelitian, ada beberapa jenis variabel yang diteliti diantaranya variabel bebas, variabel terikat, dan variabel kontrol. Pada penelitian ini, pengujian eksperimental dilakukan dengan tujuan untuk mengetahui hubungan antara parameter masukan dengan waktu dan hasil pengelompokan. Oleh karena itu, variabel bebas dari penelitian ini merupakan variabel yang menjadi parameter masukan yang terdapat pada antarmuka pengguna (Subbab \ref{sec:guidesign}). Namun, tidak semua parameter masukan yang terdapat pada antarmuka pengguna menjadi variabel bebas. Parameter masukan yang merupakan variabel bebas pada penelitian ini diantaranya adalah:
+Pada suatu penelitian, ada beberapa jenis variabel yang diteliti di antaranya variabel bebas, variabel terikat, dan variabel kontrol. Pada penelitian ini, pengujian eksperimental dilakukan dengan tujuan untuk mengetahui hubungan antara parameter masukan dengan waktu dan hasil pengelompokan. Oleh karena itu, variabel bebas dari penelitian ini merupakan variabel yang menjadi parameter masukan yang terdapat pada antarmuka pengguna (Subbab \ref{sec:guidesign}). Namun, tidak semua parameter masukan yang terdapat pada antarmuka pengguna menjadi variabel bebas. Parameter masukan yang merupakan variabel bebas pada penelitian ini di antaranya adalah:
 
 \begin{enumerate}
 	\item Banyaknya populasi \\
@@ -37,7 +37,7 @@ Selain variabel bebas, terdapat juga variabel kontrol yang merupakan parameter m
 	Batas selisih nilai \textit{fitness} supaya dianggap memiliki nilai \textit{fitness} sama.
 \end{itemize}
 
-Keempat variabel ini tidak masuk ke dalam variabel bebas karena alasan tertentu. Variabel banyaknya \textit{cluster} dijadikan variabel kontrol karena nilai dari variabel ini harus disesuaikan dengan banyaknya topik pada \textit{dataset} (Subbab \ref{sec:dataset}) untuk mendapatkan hasil yang maksimal. Variabel maksimum iterasi juga merupakan variabel kontrol untuk menjaga agar proses pengelompokan tidak menjadi sangat lama karena terlalu banyak iterasi yang terjadi. Sama halnya untuk variabel banyaknya generasi konvergen dan batas konvergen, kedua variabel ini juga dapat menjaga agar iterasi yang terjadi tidak terlalu banyak sehingga menghabiskan waktu yang lebih banyak. Variabel terikat dalam penelitian ini adalah sebagai berikut:
+Variabel banyaknya \textit{cluster} dijadikan variabel kontrol karena nilai dari variabel ini harus disesuaikan dengan banyaknya topik pada \textit{dataset} (Subbab \ref{sec:dataset}) untuk mendapatkan hasil yang maksimal. Variabel maksimum iterasi juga merupakan variabel kontrol untuk menjaga agar proses pengelompokan tidak menjadi sangat lama karena terlalu banyak iterasi yang terjadi. Sama halnya untuk variabel banyaknya generasi konvergen dan batas konvergen, kedua variabel ini juga dapat menjaga agar iterasi yang terjadi tidak terlalu banyak sehingga menghabiskan waktu yang lebih banyak. Variabel terikat dalam penelitian ini adalah sebagai berikut:
 
 \begin{itemize}
 	\item Waktu \\
@@ -73,7 +73,7 @@ Keempat variabel terikat ini merupakan variabel yang dipengaruhi oleh berubahnya
 	\label{tbl:testScenario}
 \end{table}
 
-Setiap variabel dalam Tabel \ref{tbl:testScenario} memiliki dua sampai tiga variasi nilai. Karena keterbatasan waktu, maka pengujian eksperimental ini tidak menguji seluruh kombinasi parameter yang ada. Variasi dari parameter dalam Tabel \ref{tbl:testScenario} hanya menggantikan nilai pada suatu kasus uji yang disebut kasus uji ideal. Kasus uji ideal merupakan kasus uji yang dianggap menghasilkan keluaran yang ideal. Kasus uji ideal untuk pengujian eksperimental dalam penelitian ini adalah sebagai berikut:
+Setiap variabel dalam Tabel \ref{tbl:testScenario} memiliki dua sampai tiga variasi nilai. Karena keterbatasan waktu, maka pengujian eksperimental ini tidak menguji seluruh kombinasi parameter yang ada. Variasi dari parameter dalam Tabel \ref{tbl:testScenario} hanya menggantikan nilai pada suatu kasus uji yang disebut kasus uji ideal. Kasus uji ideal merupakan kasus uji yang dianggap menghasilkan keluaran yang ideal. Kasus uji ideal untuk pengujian eksperimental dalam penelitian ini (menggunakan dataset yang telah dibahas pada Subbab \ref{sec:dataset}) adalah sebagai berikut:
 
 \begin{itemize}
     \item Banyaknya \textit{Cluster}: 5
@@ -296,7 +296,7 @@ Eksperimen dibagi menjadi beberapa bagian berdasarkan parameter yang diubah. Ter
 \end{enumerate}
 
 \section{Eksperimen \textit{K-Means}}
-Sebagai perbandingan terhadap pengelompokan menggunakan algoritma genetika, maka dibuat pula eksperimen menggunakan algoritma \textit{K-means}. Seperti yang telah dijelaskan pada Subbab \ref{sub:ui-kmeans}, pada penelitian ini \textit{K-means} hanya memiliki tiga buah parameter. Hanya satu diantara ketiga parameter tersebut yang dapat dijadikan variabel bebas karena alasan yang sama dengan yang telah dijelaskan pada Subbab \ref{sec:exp-scenario}. Eksperimen menggunakan algoritma \textit{K-means} hanya dilakukan menggunakan dua variasi yaitu dengan metode pembobotan TF-IDF dan Frekuensi. Namun dalam eksperimen pada penelitian ini, hanya variasi menggunakan bobot TF-IDF yang diuji. Hasil dari eksperimen menggunakan algoritma \textit{K-means} ini kemudian dibandingkan dengan kasus uji ideal pada algoritma genetika. Berbeda dari pengujian menggunakan algoritma genetika, pengujian menggunakan \textit{K-means} dilakukan sebanyak 10 kali tiap variasi. Hasil eksperimen menggunakan algoritma \textit{K-means} dijelaskan dalam Tabel \ref{tbl:exp-kmeans}.
+Sebagai perbandingan terhadap pengelompokan menggunakan algoritma genetika, maka dibuat pula eksperimen menggunakan algoritma \textit{K-means}. Seperti yang telah dijelaskan pada Subbab \ref{sub:ui-kmeans}, pada penelitian ini \textit{K-means} hanya memiliki tiga buah parameter. Hanya satu di antara ketiga parameter tersebut yang dapat dijadikan variabel bebas karena alasan yang sama dengan yang telah dijelaskan pada Subbab \ref{sec:exp-scenario}. Eksperimen menggunakan algoritma \textit{K-means} hanya dilakukan menggunakan dua variasi yaitu dengan metode pembobotan TF-IDF dan Frekuensi. Namun dalam eksperimen pada penelitian ini, hanya variasi menggunakan bobot TF-IDF yang diuji. Hasil dari eksperimen menggunakan algoritma \textit{K-means} ini kemudian dibandingkan dengan kasus uji ideal pada algoritma genetika. Berbeda dari pengujian menggunakan algoritma genetika, pengujian menggunakan \textit{K-means} dilakukan sebanyak 10 kali tiap variasi. Hasil eksperimen menggunakan algoritma \textit{K-means} dijelaskan dalam Tabel \ref{tbl:exp-kmeans}.
 
 \begin{table}[H]
 	\centering

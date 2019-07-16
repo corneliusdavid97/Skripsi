@@ -4,11 +4,12 @@
 Pada bab ini dijelaskan mengenai beberapa perancangan yang dilakukan dalam penelitian ini yaitu rancangan kelas dan rancangan antarmuka pengguna
 
 \section{Kebutuhan Masukan dan Keluaran}
-Seluruh kebutuhan masukan dari perangkat lunak ini diakomodasi oleh antarmuka pengguna (Graphical User Interface). Rincian masukan melalui antarmuka pengguna dibahas lebih lanjut pada Subbab \ref{sec:guidesign}. Keluaran dari perangkat lunak ini adalah sebuah \textit{file} berformat \textit{CSV} sehingga dapat dibuka dan diolah lebih lanjut dengan perangkat pengolah \textit{spreadsheet} seperti Microsoft Excel. \textit{File} ini berisi laporan mengenai parameter masukan, hasil pengelompokan, nilai fitness, dan waktu yang dibutuhkan untuk melakukan seluruh proses tersebut. Contoh keluaran yang ditulis pada \textit{file} CSV dapat dilihat pada Tabel \ref{tbl:csv-example}. 
+Seluruh kebutuhan masukan dari perangkat lunak ini diakomodasi oleh antarmuka pengguna (Graphical User Interface). Rincian masukan melalui antarmuka pengguna dibahas lebih lanjut pada Subbab \ref{sec:guidesign}. Keluaran dari perangkat lunak ini adalah sebuah \textit{file} berformat \textit{CSV} sehingga dapat dibuka dan diolah lebih lanjut dengan perangkat pengolah \textit{spreadsheet} seperti Microsoft Excel. \textit{File} ini berisi laporan mengenai parameter masukan, hasil pengelompokan, nilai \textit{fitness}, dan waktu yang dibutuhkan untuk melakukan seluruh proses tersebut. Contoh keluaran yang ditulis pada \textit{file} CSV dapat dilihat pada Tabel \ref{tbl:csv-example}. 
 
 Format penamaan dari \textit{file} ini adalah "algoritma-YYYY.MM.DD hh{\_}mm{\_}ss.csv". Sebagai contoh apabila pengelompokan menggunakan algoritma genetika dan dilakukan pada tanggal 30 Januari 2019 pukul 08:15:30 maka nama dari \textit{file} yang dihasilkan adalah "GA-2019.01.30 08{\_}15{\_}30.csv". Apabila algoritma yang digunakan adalah \textit{K-means} maka nama \textit{file} yang dihasilkan adalah "KMeans-2019.01.30 08{\_}15{\_}30.csv".
 
 \begin{table}[H]
+\centering
 \caption{Contoh keluaran dalam bentuk \textit{file CSV}}
 \begin{tabular}{lllll}
 Direktori Dokumen:                                 & \multicolumn{4}{l}{D:\textbackslash{}dataset\textbackslash{}bbc} \\
@@ -520,12 +521,12 @@ Penjelasan setiap \textit{field} dalam halaman ini dijelaskan dalam Tabel \ref{t
 	\renewcommand{\arraystretch}{2}
 	\caption{Rincian \textit{field} pada halaman algoritma genetika}
 	\begin{tabularx}{\textwidth}{l X l X l X} \hline
-		\textbf{Kode} & \textbf{Nama} & \textbf{Jenis} & \textbf{\textit{Defaut value}} & \textbf{Wajib} & \textbf{Aturan validasi} \\ \hline
-		A01 & Direktori Dokumen & \textit{file chooser} & - & ya & - \\ \hline
-		A02 & Direktori Hasil & \textit{file chooser} & - & ya & - \\ \hline
+		\textbf{Kode} & \textbf{Nama} & \textbf{Jenis} & \textbf{\textit{Defaut value}} & \textbf{Wajib} & \textbf{Keterangan} \\ \hline
+		A01 & Direktori Dokumen & \textit{file chooser} & - & ya & Folder yang dipilih harus berisi file teks yang akan dikelompokan menggunakan perangkat lunak \\ \hline
+		A02 & Direktori Hasil & \textit{file chooser} & - & ya & Folder yang dipilih merupakan folder tempat menyimpan file CSV hasil pengelompokan \\ \hline
 		A03 & Banyaknya Cluster & \textit{spinner} & 5 & ya & Nilai minimum 1 \\ \hline
 		A04 & Banyaknya Populasi & \textit{spinner} & 1 & ya & Nilai minimum 1 dan harus lebih besar dari Individu Elitisme (A08) \\ \hline
-		A05 & Metode Pembobotan & \textit{dropdown} & TF-IDF & ya & - \\ \hline
+		A05 & Metode Pembobotan & \textit{dropdown} & TF-IDF & ya & Hanya bisa bernilai "TF-IDF" dan "Frekuensi" \\ \hline
 		A06 & Probabilitas Mutasi & \textit{spinner} & 0.05 & ya & Nilai minimum 0.01, maksimum 1.00 \\ \hline
 		A07 & Maksimum Iterasi & \textit{spinner} & 100 & ya & Nilai minimum 1 dan harus lebih besar dari Banyaknya Generasi Konvergen (A09)\\ \hline
 		A08 & Individu Elitisme & \textit{spinner} & 1 & ya & Nilai minimum 0 dan harus lebih kecil dari Banyaknya Populasi (A04)\\ \hline
@@ -553,11 +554,11 @@ Gambar \ref{fig:UI-KMeans} merupakan tampilan yang digunakan oleh pengguna untuk
 	\renewcommand{\arraystretch}{2}
 	\caption{Rincian \textit{field} pada halaman algoritma \textit{K-means}}
 	\begin{tabularx}{\textwidth}{l X l X l X} \hline
-		\textbf{Kode} & \textbf{Nama} & \textbf{Jenis} & \textbf{\textit{Defaut value}} & \textbf{Wajib} & \textbf{Aturan validasi} \\ \hline
-		B01 & Direktori Dokumen & \textit{file chooser} & - & ya & - \\ \hline
-		B02 & Direktori Hasil & \textit{file chooser} & - & ya & - \\ \hline
+		\textbf{Kode} & \textbf{Nama} & \textbf{Jenis} & \textbf{\textit{Defaut value}} & \textbf{Wajib} & \textbf{Keterangan} \\ \hline
+		B01 & Direktori Dokumen & \textit{file chooser} & - & ya & Folder yang dipilih harus berisi file teks yang akan dikelompokan menggunakan perangkat lunak \\ \hline
+		B02 & Direktori Hasil & \textit{file chooser} & - & ya & Folder yang dipilih merupakan folder tempat menyimpan file CSV hasil pengelompokan \\ \hline
 		B03 & Banyaknya Cluster & \textit{spinner} & 5 & ya & Nilai minimum 1 \\ \hline
-		B04 & Metode Pembobotan & \textit{dropdown} & TF-IDF & ya & - \\ \hline
+		B04 & Metode Pembobotan & \textit{dropdown} & TF-IDF & ya & Hanya bisa bernilai "TF-IDF" dan "Frekuensi" \\ \hline
 		B05 & Maksimum Iterasi & \textit{spinner} & 100 & ya & Nilai minimum 1\\ \hline
 	\end{tabularx}
 	\label{tbl:field-KMeans}

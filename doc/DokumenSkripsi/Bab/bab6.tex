@@ -5,7 +5,7 @@
 Kesimpulan yang dapat diambil dari penelitian ini adalah sebagai berikut:
 
 \begin{enumerate}
-	\item Berdasarkan \textit{dataset} yang telah digunakan, algoritma genetika dapat digunakan dalam pengelompokan dokumen. Namun, diperlukan beberapa adaptasi terhadap komponen-komponen dalam algoritma genetika sebelum dapat digunakan untuk mengelompokkan dokumen. Adaptasi yang perlu dilakukan diantaranya adalah:
+	\item Berdasarkan \textit{dataset} yang telah digunakan, algoritma genetika dapat digunakan dalam pengelompokan dokumen. Namun, diperlukan beberapa adaptasi terhadap komponen-komponen dalam algoritma genetika sebelum dapat digunakan untuk mengelompokkan dokumen. Adaptasi yang perlu dilakukan di antaranya adalah:
 	\begin{itemize}
 		\item Merepresentasikan dokumen ke dalam suatu model ruang vektor.
 		\item Kromosom tersusun atas $K$ \textit{centroid} dalam bentuk vektor.
@@ -22,4 +22,5 @@ Saran dari penulis untuk peneliti selanjutnya agar dapat mengembangkan penelitia
 \begin{enumerate}
 	\item Mencari suatu metrik yang lebih mendekati nilai \textit{purity}. Beberapa alternatif metrik yang bisa dicoba untuk mengembangkan penelitian ini adalah dengan menggunakan metrik \textit{intercluster} atau menggunakan metrik \textit{silhouette}.
 	\item Menggunakan representasi kromosom yang lain sehingga dapat menjaga agar vektor dari \textit{centroid} tetap \textit{sparse}. Hal ini dapat dilakukan dengan mengubah representasi kromosom menjadi dokumen dan keanggotaannya dalam \textit{cluster}.
+	\item Memproses dokumen dengan tipe selain TXT seperti file dengan ekstensi DOC, DOCX, PDF, dan lain-lain. Selain itu, pengembangan dari penelitian ini adalah dengan memperhitungkan atribut lain dari suatu dokumen selain teks seperti gambar, metadata (penulis dokumen, waktu dibuat) dan lain-lain.
 \end{enumerate}

@@ -57,7 +57,7 @@ Pada subbab \ref{sub:freq} telah dijelaskan bahwa bobot frekuensi dari suatu \te
 	\label{tbl:freq}
 \end{table}
 
-Semakin besar bobot, maka \term dianggap semakin mewakili isi dokumen. Sebagai contoh pada Tabel \ref{tbl:freq}, \term "di" muncul dua kali pada dokumen 1 sehingga berbobot 2, muncul satu kali pada dokumen 2 sehingga berbobot 1, dan tidak muncul sama sekali pada dokumen 3 sehingga memiliki bobot 0 sehingga \term "di" dianggap mewakili dokumen 1 karena muncul dua kali pada dokumen tersebut.
+Semakin besar nilai bobot, maka \term dianggap semakin mewakili isi dokumen. Sebagai contoh pada Tabel \ref{tbl:freq}, \term "di" muncul dua kali pada dokumen 1 sehingga berbobot 2, muncul satu kali pada dokumen 2 sehingga berbobot 1, dan tidak muncul sama sekali pada dokumen 3 sehingga memiliki bobot 0. \Term "di" dianggap mewakili dokumen 1 karena muncul dua kali pada dokumen tersebut.
 
 \subsection{Bobot TF-IDF}
 Berbeda dengan bobot frekuensi yang hanya menghitung frekuensi kemunculan \term pada dokumen, perhitungan bobot TF-IDF ini memerlukan perhitungan seperti yang telah dijelaskan dalam Persamaan \ref{eq:tf-idf} pada Subbab \ref{sub:tf-idf}. Sama dengan perhitungan bobot frekuensi, contoh yang berasal dari Subbab \ref{sec:analysis:vsm} digunakan sebagai ilustrasi perhitungan TF-IDF. Sesuai dengan apa yang telah dijelaskan pada Subbab \ref{sub:tf-idf}, perhitungan dari TF-IDF akan dibagi menjadi dua tahap yaitu perhitungan TF dan perhitungan IDF. 
@@ -67,7 +67,7 @@ Berbeda dengan bobot frekuensi yang hanya menghitung frekuensi kemunculan \term 
 \begin{equation}
 	\label{eq:tf-idf:tf}
 	\begin{gathered}
- 	\textrm{tf}_{t,d}=\frac{\textrm{f}_{t,d}}{\sum_{t' \in d}\textrm{f}_{t',d}} \\
+ 	%\textrm{tf}_{t,d}=\frac{\textrm{f}_{t,d}}{\sum_{t' \in d}\textrm{f}_{t',d}} \\
 	\textrm{tf}_{"properti",1}=\frac{1}{8}=0.125
 	\end{gathered}
 \end{equation}
@@ -95,12 +95,12 @@ Penjelasan dari Persamaan \ref{eq:tf-idf:tf} adalah sebagai berikut. $\textrm{f}
 	\label{tbl:tf-idf:tf}
 \end{table}
 
-Untuk perhitungan IDF akan digunakan Persamaan \ref{eq:idf} pada Subbab \ref{sub:tf-idf}. Perhitungan IDF untuk \term "properti" ditunjukkan oleh Persamaan \ref{eq:tf-idf:idf}.
+Untuk perhitungan IDF digunakan Persamaan \ref{eq:idf} pada Subbab \ref{sub:tf-idf}. Perhitungan IDF untuk \term "properti" ditunjukkan oleh Persamaan \ref{eq:tf-idf:idf}.
 
 \begin{equation}
 	\label{eq:tf-idf:idf}
 	\begin{gathered}
-	\textrm{idf}_t = \textrm{log} \frac{N}{\textrm{df}_t} \\
+	%\textrm{idf}_t = \textrm{log} \frac{N}{\textrm{df}_t} \\
 	\textrm{idf}_{"properti"}=\textrm{log} \frac{3}{1}=0.4771
 	\end{gathered}
 \end{equation}
@@ -309,4 +309,4 @@ dengan $v'$ nilai yang baru dari gen setelah mutasi, $v$ merupakan nilai gen seb
 %\end{figure}
 
 \section{Evaluasi Hasil Pengelompokan Menggunakan \textit{Purity}}
-Seperti yang telah dijelaskan pada Subbab \ref{sec:dataset}, \textit{dataset} yang digunakan merupakan \textit{dataset} berlabel. Untuk mengukur akurasi pengelompokan berdasarkan labelnya, maka pada penelitian ini digunakan pengukuran nilai \textit{purity} (Subbab \ref{sec:purity}). Oleh karena nilai \textit{purity} didapatkan dari membandingkan hasil pengelompokan dengan label \textit{dataset}, maka nilai \textit{purity} ini dapat menjadi acuan kualitas dari hasil suatu pengelompokan. Selain itu, nilai \textit{purity} juga dapat menentukan kinerja dari metrik yang digunakan dalam proses pengelompokan.
+Seperti yang telah dijelaskan pada Subbab \ref{sec:dataset}, \textit{dataset} yang digunakan merupakan \textit{dataset} berlabel. Untuk mengukur akurasi pengelompokan berdasarkan labelnya, maka pada penelitian ini digunakan pengukuran nilai \textit{purity} (Subbab \ref{sec:purity}). Oleh karena nilai \textit{purity} didapatkan dari membandingkan hasil pengelompokan dengan label \textit{dataset}, maka nilai \textit{purity} ini dapat menjadi acuan kualitas dari hasil suatu pengelompokan. Selain itu, nilai \textit{purity} juga dapat menentukan kinerja dari metrik yang digunakan dalam proses pengelompokan. 
