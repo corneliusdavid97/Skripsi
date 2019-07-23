@@ -69,17 +69,19 @@ dengan $\mu_i$ merupakan \textit{centroid} ke-$i$, $N_i$ merupakan jumlah objek 
 	\textbf{Output:} himpunan \textit{cluster}
 \end{flushleft}
 \begin{algorithmic}[1] % enter the algorithmic environment
-	\STATE Pilih $K$ objek sebagai himpunan awal \textit{Centroid}. \label{alg:kmeans:ln-1}
+	\STATE $C \leftarrow $ pilih $K$ buah objek dari $S$ secara acak \label{alg:kmeans:ln-1}
 	\REPEAT \label{alg:kmeans:ln-2}
-		\STATE Bentuk $K$ \textit{cluster} dengan menempatkan setiap objek ke \textit{cluster} dengan \textit{centroid} terdekat. \label{alg:kmeans:ln-3}
-		\STATE Hitung ulang \textit{centroid} untuk setiap \textit{cluster}. \label{alg:kmeans:ln-4}
-	\UNTIL{\textit{centroid} tidak berubah.} \label{alg:kmeans:ln-5}
-\end{algorithmic}
+		\STATE Tentukan \textit{cluster} setiap objek dalam $S$ \label{alg:kmeans:ln-3}
+		\STATE Hitung ulang nilai setiap\textit{centroid} dalam $C$ \label{alg:kmeans:ln-4}
+	\UNTIL{\textit{centroid} tidak berubah} \label{alg:kmeans:ln-5}
+	\STATE \textbf{return} $C$
+\end{algorithmic} 
 \end{algorithm}
 
 Penjelasan dari Algoritma \ref{alg:kmeans} adalah sebagai berikut:
 \begin{itemize}
-	\item Pada baris \ref{alg:kmeans:ln-1}, \textit{centroid} awal dipilih secara acak dari objek-objek yang sudah ada.
+	\item Pada baris \ref{alg:kmeans:ln-1}, variabel $C$ merupakan himpunan \textit{centroid}.
+	\item Pada baris \ref{alg:kmeans:ln-3}, \textit{cluster} ditentukan dengan mencari jarak terdekat antara setiap objek dalam himpunan $S$ dengan \textit{centroid} dalam himpunan $C$.
 	\item Pada baris \ref{alg:kmeans:ln-4}, \textit{centroid} baru ditentukan dengan menggunakan Persamaan \ref{eq:kmeans}.
 	\item Pada baris \ref{alg:kmeans:ln-5}, pengulangan berhenti saat \textit{centroid} mengalami pergeseran yang tidak terlalu signifikan (lebih kecil dari suatu nilai $\epsilon$ yang merupakan masukan dari pengguna).
 \end{itemize}
