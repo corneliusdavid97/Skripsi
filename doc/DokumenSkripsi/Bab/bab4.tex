@@ -53,7 +53,15 @@ Berdasarkan hasil analisis dari masalah yang dihadapi, dibentuklah diagram kelas
 	\end{center}
 \end{figure}
 
-Gambar \ref{fig:diagramkelas} merupakan diagram kelas secara umum yang tidak memuat atribut dan \textit{method} dari setiap kelas. Diagram kelas ini sengaja dibuat agar hubungan antar kelas dapat dengan lebih mudah dilihat. Diagram kelas pada Gambar \ref{fig:diagramkelas} dibagi ke dalam tiga \textit{package} berdasarkan fungsinya. \textit{Package} IR berfungsi untuk mengambil informasi dari dokumen input. \textit{Package} GA berfungsi untuk melakukan pengelompokan dokumen dengan menggunakan algoritma genetika. Sedangkan \textit{package} \textit{K-means} berfungsi untuk melakukan pengelompokan dokumen menggunakan algoritma \textit{K-means}. Beberapa kelas dalam penelitian ini dibuat sebagai kelas \textit{singleton} untuk menjaga integritas data yang disimpan saat ada lebih dari satu \textit{instance} yang ingin mengakses atribut-atributnya. Penjelasan dari setiap kelas dalam Gambar \ref{fig:diagramkelas} adalah sebagai berikut.
+Gambar \ref{fig:diagramkelas} merupakan diagram kelas secara umum yang tidak memuat atribut dan \textit{method} dari setiap kelas. Diagram kelas ini sengaja dibuat agar hubungan antar kelas dapat dengan lebih mudah dilihat. Diagram kelas pada Gambar \ref{fig:diagramkelas} dibagi ke dalam tiga \textit{package} berdasarkan fungsinya.
+
+\begin{enumerate}
+	\item \textit{Package} IR berfungsi untuk mengambil informasi dari dokumen input. 
+	\item \textit{Package} GA berfungsi untuk melakukan pengelompokan dokumen dengan menggunakan algoritma genetika. 
+	\item \textit{Package} \textit{K-means} berfungsi untuk melakukan pengelompokan dokumen menggunakan algoritma \textit{K-means}.
+\end{enumerate}
+
+Kelas \textit{Lexicon} dan \textit{Params} dibuat sebagai kelas \textit{singleton} agar segala informasi yang dibutuhkan dapat diakses secara global dan integritas dari informasi yang disimpan. Sedangkan untuk kelas \textit{KMeans} dan \textit{GAClusterer} dibuat sebagai kelas \textit{singleton} untuk menjaga hanya ada satu instansiasi kelas tersebut sehingga tidak terjadi bentrok pada saat akan mengambil informasi dari kelas \textit{Lexicon} atau \textit{Params}. Penjelasan dari setiap kelas dalam Gambar \ref{fig:diagramkelas} adalah sebagai berikut.
 
 \subsection{\textit{Document}}
 
